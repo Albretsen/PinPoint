@@ -15,45 +15,73 @@ export type ThemeColors = {
 
 // Define the complete theme type
 export type Theme = {
+  name: string;
   colors: ThemeColors;
-  isDark: boolean;
 };
 
-// Define light theme
-const lightTheme: Theme = {
-  colors: {
-    background: '#FFFFFF',
-    text: '#000000',
-    primary: '#007AFF',
-    secondary: '#5856D6',
-    border: '#E5E5EA',
-    card: '#F2F2F7',
-    error: '#FF3B30',
-    success: '#34C759',
+// Define all available themes
+export const themes = {
+  light: {
+    name: 'Light',
+    colors: {
+      background: '#FFFFFF',
+      text: '#000000',
+      primary: '#007AFF',
+      secondary: '#5856D6',
+      border: '#E5E5EA',
+      card: '#F2F2F7',
+      error: '#FF3B30',
+      success: '#34C759',
+    },
   },
-  isDark: false,
-};
+  dark: {
+    name: 'Dark',
+    colors: {
+      background: '#000000',
+      text: '#FFFFFF',
+      primary: '#0A84FF',
+      secondary: '#5E5CE6',
+      border: '#38383A',
+      card: '#1C1C1E',
+      error: '#FF453A',
+      success: '#32D74B',
+    },
+  },
+  fun: {
+    name: 'Fun',
+    colors: {
+      background: '#FFE5E5',
+      text: '#2D2D2D',
+      primary: '#FF6B6B',
+      secondary: '#4ECDC4',
+      border: '#FFB8B8',
+      card: '#FFF0F0',
+      error: '#FF4757',
+      success: '#2ED573',
+    },
+  },
+  professional: {
+    name: 'Professional',
+    colors: {
+      background: '#F8F9FA',
+      text: '#212529',
+      primary: '#495057',
+      secondary: '#6C757D',
+      border: '#DEE2E6',
+      card: '#FFFFFF',
+      error: '#DC3545',
+      success: '#28A745',
+    },
+  },
+} as const;
 
-// Define dark theme
-const darkTheme: Theme = {
-  colors: {
-    background: '#000000',
-    text: '#FFFFFF',
-    primary: '#0A84FF',
-    secondary: '#5E5CE6',
-    border: '#38383A',
-    card: '#1C1C1E',
-    error: '#FF453A',
-    success: '#32D74B',
-  },
-  isDark: true,
-};
+export type ThemeName = keyof typeof themes;
 
 // Create the theme context
 type ThemeContextType = {
   theme: Theme;
-  toggleTheme: () => void;
-  isDark: boolean;
+  themeName: ThemeName;
+  setTheme: (themeName: ThemeName) => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
@@ -70,21 +98,29 @@ export function useTheme() {
 // Create the theme provider component
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const systemColorScheme = useColorScheme();
-  const [isDark, setIsDark] = useState(systemColorScheme === 'dark');
+  const [themeName, setThemeName] = useState<ThemeName>(
+    systemColorScheme === 'dark' ? 'dark' : 'light'
+  );
 
   // Update theme when system theme changes
   useEffect(() => {
-    setIsDark(systemColorScheme === 'dark');
+    if (systemColorScheme === 'dark' && themeName === 'light') {
+      setThemeName('dark');
+    } else if (systemColorScheme === 'light' && themeName === 'dark') {
+      setThemeName('light');
+    }
   }, [systemColorScheme]);
 
-  const theme = isDark ? darkTheme : lightTheme;
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
+  const theme = themes[themeName];
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, isDark }}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        themeName,
+        setTheme: setThemeName,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );
