@@ -1,9 +1,11 @@
 import { useAuth } from '@/src/context/AuthProvider';
+import { useTheme } from '@/src/context/ThemeProvider';
 import { Stack } from 'expo-router';
 import { ActivityIndicator, View } from 'react-native';
 
 export default function ProtectedLayout() {
   const { isLoading } = useAuth();
+  const { theme } = useTheme();
 
   if (isLoading) {
     return (
@@ -14,7 +16,18 @@ export default function ProtectedLayout() {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: true }}>
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.colors.background,
+        },
+        headerTintColor: theme.colors.text,
+        headerShadowVisible: false,
+        contentStyle: {
+          backgroundColor: theme.colors.background,
+        },
+      }}
+    >
       <Stack.Screen 
         name="home"
         options={{

@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useAuth } from '@/src/context/AuthProvider';
+import { useTheme } from '@/src/context/ThemeProvider';
+import { useState } from 'react';
 import {
     ActivityIndicator,
     Alert,
@@ -7,61 +9,65 @@ import {
     TextInput,
     TouchableOpacity,
     View,
-} from 'react-native'
-import { supabase } from '../lib/supabase'
+} from 'react-native';
 
 export default function Auth() {
-  const [email, setEmail] = useState('test@email.com')
-  const [password, setPassword] = useState('Test123')
-  const [loading, setLoading] = useState(false)
+  const { signIn, signUp, isLoading } = useAuth();
+  const { theme } = useTheme();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSignUp, setIsSignUp] = useState(false);
 
-  async function signInWithEmail() {
-    setLoading(true)
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-
-    if (error) Alert.alert(error.message)
-    setLoading(false)
-  }
-
-  async function signUpWithEmail() {
-    setLoading(true)
-    const {
-      data: { session },
-      error,
-    } = await supabase.auth.signUp({
-      email,
-      password,
-    })
-
-    if (error) Alert.alert(error.message)
-    if (!session) Alert.alert('Please check your inbox for email verification!')
-    setLoading(false)
+  async function handleAuth() {
+    try {
+      if (isSignUp) {
+        await signUp(email, password);
+        Alert.alert('Success', 'Please check your email for verification!');
+      } else {
+        await signIn(email, password);
+      }
+    } catch (error) {
+      Alert.alert('Error', error instanceof Error ? error.message : 'An error occurred');
+    }
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Text style={styles.label}>Email</Text>
+        <Text style={[styles.label, { color: theme.colors.text }]}>Email</Text>
         <TextInput
-          style={styles.input}
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.colors.card,
+              color: theme.colors.text,
+              borderColor: theme.colors.border,
+            },
+          ]}
           onChangeText={setEmail}
           value={email}
           placeholder="email@address.com"
+          placeholderTextColor={theme.colors.text + '80'}
           autoCapitalize="none"
           keyboardType="email-address"
         />
       </View>
 
       <View style={styles.verticallySpaced}>
-        <Text style={styles.label}>Password</Text>
+        <Text style={[styles.label, { color: theme.colors.text }]}>Password</Text>
         <TextInput
-          style={styles.input}
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.colors.card,
+              color: theme.colors.text,
+              borderColor: theme.colors.border,
+            },
+          ]}
           onChangeText={setPassword}
           value={password}
           placeholder="Password"
+          placeholderTextColor={theme.colors.text + '80'}
           secureTextEntry
           autoCapitalize="none"
         />
@@ -69,21 +75,34 @@ export default function Auth() {
 
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <TouchableOpacity
-          style={[styles.button, loading && styles.disabledButton]}
-          onPress={signInWithEmail}
-          disabled={loading}
+          style={[
+            styles.button,
+            { backgroundColor: theme.colors.primary },
+            isLoading && styles.disabledButton,
+          ]}
+          onPress={handleAuth}
+          disabled={isLoading}
         >
-          {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Sign in</Text>}
+          {isLoading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text style={styles.buttonText}>
+              {isSignUp ? 'Sign Up' : 'Sign In'}
+            </Text>
+          )}
         </TouchableOpacity>
       </View>
 
       <View style={styles.verticallySpaced}>
         <TouchableOpacity
-          style={[styles.button, loading && styles.disabledButton]}
-          onPress={signUpWithEmail}
-          disabled={loading}
+          style={styles.linkButton}
+          onPress={() => setIsSignUp(!isSignUp)}
         >
-          {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Sign up</Text>}
+          <Text style={[styles.linkText, { color: theme.colors.primary }]}>
+            {isSignUp
+              ? 'Already have an account? Sign In'
+              : "Don't have an account? Sign Up"}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -92,6 +111,7 @@ export default function Auth() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: 40,
     padding: 12,
   },
@@ -107,22 +127,27 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
     borderRadius: 4,
     padding: 10,
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#007bff',
     paddingVertical: 12,
     borderRadius: 4,
     alignItems: 'center',
   },
   disabledButton: {
-    backgroundColor: '#a0a0a0',
+    opacity: 0.5,
   },
   buttonText: {
     color: '#fff',
+    fontSize: 16,
+  },
+  linkButton: {
+    padding: 8,
+    alignItems: 'center',
+  },
+  linkText: {
     fontSize: 16,
   },
 })
