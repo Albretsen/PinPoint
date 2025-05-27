@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useThemeStore } from '@/src/store/themeStore';
+import { createContext, useContext, useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
 // Define the theme structure
@@ -97,17 +98,15 @@ export function useTheme() {
 
 // Create the theme provider component
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { themeName, setTheme } = useThemeStore();
   const systemColorScheme = useColorScheme();
-  const [themeName, setThemeName] = useState<ThemeName>(
-    systemColorScheme === 'dark' ? 'dark' : 'light'
-  );
 
   // Update theme when system theme changes
   useEffect(() => {
     if (systemColorScheme === 'dark' && themeName === 'light') {
-      setThemeName('dark');
+      setTheme('dark');
     } else if (systemColorScheme === 'light' && themeName === 'dark') {
-      setThemeName('light');
+      setTheme('light');
     }
   }, [systemColorScheme]);
 
@@ -118,7 +117,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       value={{
         theme,
         themeName,
-        setTheme: setThemeName,
+        setTheme,
       }}
     >
       {children}
