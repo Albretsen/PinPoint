@@ -1,8 +1,30 @@
 import { useTheme } from '@/src/context/ThemeProvider';
-import { Stack } from 'expo-router';
+import { useUserStore } from '@/src/store/userStore';
+import { Stack, useRouter, useSegments } from 'expo-router';
+import { useEffect } from 'react';
+
+function useProtectedRoute(session: any) {
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    const inAuthGroup = segments[0] === '(auth)';
+
+    if (!session && !inAuthGroup) {
+      // Redirect to the sign-in page.
+      router.replace('/login');
+    } else if (session && inAuthGroup) {
+      // Redirect away from the sign-in page.
+      router.replace('/home');
+    }
+  }, [session, segments]);
+}
 
 export default function AuthLayout() {
+  const { session } = useUserStore();
   const { theme } = useTheme();
+
+  useProtectedRoute(session);
 
   return (
     <Stack

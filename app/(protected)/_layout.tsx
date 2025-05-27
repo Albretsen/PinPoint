@@ -1,19 +1,30 @@
-import { useAuth } from '@/src/context/AuthProvider';
 import { useTheme } from '@/src/context/ThemeProvider';
-import { Stack } from 'expo-router';
-import { ActivityIndicator, View } from 'react-native';
+import { useUserStore } from '@/src/store/userStore';
+import { Stack, useRouter, useSegments } from 'expo-router';
+import { useEffect } from 'react';
+
+function useProtectedRoute(session: any) {
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    const inAuthGroup = segments[0] === '(auth)';
+
+    if (!session && !inAuthGroup) {
+      // Redirect to the sign-in page.
+      router.replace('/login');
+    } else if (session && inAuthGroup) {
+      // Redirect away from the sign-in page.
+      router.replace('/home');
+    }
+  }, [session, segments]);
+}
 
 export default function ProtectedLayout() {
-  const { isLoading } = useAuth();
+  const { session } = useUserStore();
   const { theme } = useTheme();
 
-  if (isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
+  useProtectedRoute(session);
 
   return (
     <Stack

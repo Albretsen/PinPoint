@@ -1,10 +1,10 @@
 import { ThemeSelector } from '@/src/components/ThemeSelector';
-import { useAuth } from '@/src/context/AuthProvider';
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useUserStore } from '@/src/store/userStore';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
-  const { signOut } = useAuth();
+  const { signOut } = useUserStore();
   const { theme } = useTheme();
 
   return (
