@@ -8,6 +8,7 @@ export default function LoginScreen() {
   const { signIn, signUp } = useUserStore();
   const [email, setEmail] = useState('test@email.com'); // DO NOT CHANGE
   const [password, setPassword] = useState('Test123'); // DO NOT CHANGE
+  const [username, setUsername] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -15,7 +16,11 @@ export default function LoginScreen() {
     try {
       setError(null);
       if (isSignUp) {
-        await signUp(email, password);
+        if (!username.trim()) {
+          setError('Username is required');
+          return;
+        }
+        await signUp(email, password, username);
       } else {
         await signIn(email, password);
       }
@@ -59,6 +64,23 @@ export default function LoginScreen() {
         onChangeText={setPassword}
         secureTextEntry
       />
+      {isSignUp && (
+        <TextInput
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.colors.card,
+              color: theme.colors.text,
+              borderColor: theme.colors.border,
+            },
+          ]}
+          placeholder="Username"
+          placeholderTextColor={theme.colors.text + '80'}
+          value={username}
+          onChangeText={setUsername}
+          autoCapitalize="none"
+        />
+      )}
       {error && (
         <Text style={[styles.error, { color: theme.colors.error }]}>{error}</Text>
       )}
