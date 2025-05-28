@@ -11,12 +11,9 @@ function useProtectedRoute(session: any) {
   useEffect(() => {
     const inAuthGroup = segments[0] === '(auth)';
 
-    if (!session && !inAuthGroup) {
-      // Redirect to the sign-in page with a slide from left animation
-      router.replace('/login');
-    } else if (session && inAuthGroup) {
+    if (session && inAuthGroup) {
       // Redirect away from the sign-in page with a push animation
-      router.push('/home');
+      router.replace('/home');
     }
   }, [session, segments]);
 }

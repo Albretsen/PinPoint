@@ -15,12 +15,8 @@ function useProtectedRoute(session: any) {
       // Redirect to the sign-in page with a slide from left animation
       router.push({
         pathname: '/login',
-        params: { animation: 'slide_from_left' }
       });
-    } else if (session && inAuthGroup) {
-      // Redirect away from the sign-in page with a push animation
-      router.push('/home');
-    }
+    } 
   }, [session, segments]);
 }
 
