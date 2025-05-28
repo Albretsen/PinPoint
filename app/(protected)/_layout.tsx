@@ -1,57 +1,70 @@
 import { useTheme } from '@/src/context/ThemeProvider';
-import { useUserStore } from '@/src/store/userStore';
-import { Stack, useRouter, useSegments } from 'expo-router';
-import { useEffect } from 'react';
-import { Platform } from 'react-native';
-
-function useProtectedRoute(session: any) {
-  const segments = useSegments();
-  const router = useRouter();
-
-  useEffect(() => {
-    const inAuthGroup = segments[0] === '(auth)';
-
-    if (!session && !inAuthGroup) {
-      // Redirect to the sign-in page with a slide from left animation
-      router.push({
-        pathname: '/login',
-      });
-    } 
-  }, [session, segments, router]);
-}
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
 
 export default function ProtectedLayout() {
-  const { session } = useUserStore();
   const { theme } = useTheme();
 
-  useProtectedRoute(session);
-
   return (
-    <Stack
+    <Tabs
       screenOptions={{
+        tabBarStyle: {
+          backgroundColor: theme.colors.background,
+          borderTopColor: theme.colors.border,
+        },
+        tabBarActiveTintColor: theme.colors.primary,
+        tabBarInactiveTintColor: theme.colors.text,
         headerStyle: {
           backgroundColor: theme.colors.background,
         },
         headerTintColor: theme.colors.text,
-        headerShadowVisible: false,
-        contentStyle: {
-          backgroundColor: theme.colors.background,
-        },
-        animation: Platform.select({
-          ios: 'default',
-          android: 'fade',
-        }),
-        presentation: 'card',
-        animationDuration: 200,
       }}
     >
-      <Stack.Screen 
+      <Tabs.Screen
         name="home"
         options={{
           title: 'Home',
-          animation: 'slide_from_right',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
         }}
       />
-    </Stack>
+      <Tabs.Screen
+        name="groups"
+        options={{
+          title: 'Groups',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="people" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="camera"
+        options={{
+          title: 'Camera',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="camera" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="settings" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tabs>
   );
 } 
