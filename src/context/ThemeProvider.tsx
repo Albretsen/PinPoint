@@ -111,14 +111,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const { themeName, setTheme } = useThemeStore();
   const systemColorScheme = useColorScheme();
 
-  // Update theme when system theme changes
+  // Only set initial theme based on system preference if no theme is stored
   useEffect(() => {
-    if (systemColorScheme === 'dark' && themeName === 'light') {
-      setTheme('dark');
-    } else if (systemColorScheme === 'light' && themeName === 'dark') {
-      setTheme('light');
+    if (!themeName) {
+      setTheme(systemColorScheme === 'dark' ? 'dark' : 'light');
     }
-  }, [systemColorScheme, setTheme, themeName]);
+  }, []); // Empty dependency array since we only want this to run once on mount
 
   const theme = themes[themeName];
 
