@@ -1,3 +1,4 @@
+import Frame from '@/src/components/design/Frame';
 import { ThemeSelector } from '@/src/components/ThemeSelector';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useUserStore } from '@/src/store/userStore';
@@ -12,6 +13,9 @@ export default function HomeScreen() {
       <Text style={[styles.title, { color: theme.colors.text }]}>
         Welcome to the Protected Home Screen!
       </Text>
+      <Frame style={{ width: 100, height: 100, marginBottom: 20 }}>
+        <Text style={{ color: theme.colors.text, textAlign: 'center', lineHeight: 100 }}>Test</Text>
+      </Frame>
       <View style={styles.section}>
         <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>
           Choose a Theme

@@ -12,6 +12,8 @@ export type ThemeColors = {
   card: string;
   error: string;
   success: string;
+  frameBorder: string;
+  frameBackground: string;
 };
 
 // Define the complete theme type
@@ -33,6 +35,8 @@ export const themes = {
       card: '#F2F2F7',
       error: '#FF3B30',
       success: '#34C759',
+      frameBorder: '#1A1A2E',
+      frameBackground: '#F5F5F5',
     },
   },
   dark: {
@@ -46,6 +50,8 @@ export const themes = {
       card: '#1C1C1E',
       error: '#FF453A',
       success: '#32D74B',
+      frameBorder: '#1A1A2E',
+      frameBackground: '#1C1C1E',
     },
   },
   fun: {
@@ -59,6 +65,8 @@ export const themes = {
       card: '#FFF0F0',
       error: '#FF4757',
       success: '#2ED573',
+      frameBorder: '#1A1A2E',
+      frameBackground: '#FFF0F0',
     },
   },
   professional: {
@@ -72,6 +80,8 @@ export const themes = {
       card: '#FFFFFF',
       error: '#DC3545',
       success: '#28A745',
+      frameBorder: '#1A1A2E',
+      frameBackground: '#FFFFFF',
     },
   },
 } as const;
