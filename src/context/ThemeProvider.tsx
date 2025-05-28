@@ -108,7 +108,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else if (systemColorScheme === 'light' && themeName === 'dark') {
       setTheme('light');
     }
-  }, [systemColorScheme]);
+  }, [systemColorScheme, setTheme, themeName]);
 
   const theme = themes[themeName];
 

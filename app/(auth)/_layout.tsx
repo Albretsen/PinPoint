@@ -12,10 +12,9 @@ function useProtectedRoute(session: any) {
     const inAuthGroup = segments[0] === '(auth)';
 
     if (session && inAuthGroup) {
-      // Redirect away from the sign-in page with a push animation
       router.replace('/home');
     }
-  }, [session, segments]);
+  }, [session, segments, router]);
 }
 
 export default function AuthLayout() {

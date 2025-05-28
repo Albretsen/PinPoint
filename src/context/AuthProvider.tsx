@@ -81,14 +81,13 @@ function useProtectedRoute(session: Session | null) {
     if (!isNavigationReady) return;
 
     const inAuthGroup = segments[0] === '(auth)';
-    const inProtectedGroup = segments[0] === '(protected)';
 
     if (!session && !inAuthGroup) {
       router.replace('/login');
     } else if (session && inAuthGroup) {
       router.replace('/home');
     }
-  }, [session, segments, isNavigationReady]);
+  }, [session, segments, isNavigationReady, router]);
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {

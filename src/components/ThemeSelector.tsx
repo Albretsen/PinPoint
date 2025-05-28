@@ -2,7 +2,7 @@ import { ThemeName, themes, useTheme } from '@/src/context/ThemeProvider';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 export function ThemeSelector() {
-  const { theme, themeName, setTheme } = useTheme();
+  const { themeName, setTheme } = useTheme();
 
   return (
     <View style={styles.container}>

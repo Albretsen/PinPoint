@@ -17,7 +17,7 @@ function useProtectedRoute(session: any) {
         pathname: '/login',
       });
     } 
-  }, [session, segments]);
+  }, [session, segments, router]);
 }
 
 export default function ProtectedLayout() {
