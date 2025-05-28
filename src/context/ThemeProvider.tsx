@@ -20,6 +20,7 @@ export type ThemeColors = {
 export type Theme = {
   name: string;
   colors: ThemeColors;
+  fontFamily: string;
 };
 
 // Define all available themes
@@ -38,6 +39,7 @@ export const themes = {
       frameBorder: '#1A1A2E',
       frameBackground: '#F5F5F5',
     },
+    fontFamily: 'Satoshi',
   },
   dark: {
     name: 'Dark',
@@ -53,6 +55,7 @@ export const themes = {
       frameBorder: '#1A1A2E',
       frameBackground: '#1C1C1E',
     },
+    fontFamily: 'Satoshi',
   },
   fun: {
     name: 'Fun',
@@ -68,6 +71,7 @@ export const themes = {
       frameBorder: '#1A1A2E',
       frameBackground: '#FFF0F0',
     },
+    fontFamily: 'Satoshi',
   },
   professional: {
     name: 'Professional',
@@ -83,6 +87,7 @@ export const themes = {
       frameBorder: '#1A1A2E',
       frameBackground: '#FFFFFF',
     },
+    fontFamily: 'Satoshi',
   },
 } as const;
 

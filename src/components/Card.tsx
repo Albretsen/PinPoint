@@ -1,6 +1,7 @@
 import { useTheme } from '@/src/context/ThemeProvider';
 import React from 'react';
-import { Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ImageSourcePropType, StyleSheet, TouchableOpacity, View } from 'react-native';
+import PinText from './PinText';
 
 interface CardProps {
   image: ImageSourcePropType;
@@ -28,13 +29,13 @@ export const Card: React.FC<CardProps> = ({ image, header, subheading, buttonLab
             ]}
             onPress={onButtonPress}
           >
-            <Text style={[styles.buttonText, { color: theme.colors.text }]}>{buttonLabel}</Text>
+            <PinText style={[styles.buttonText, { color: theme.colors.text }]}>{buttonLabel}</PinText>
           </TouchableOpacity>
         )}
       </View>
       <View style={styles.content}>
-        <Text style={[styles.header, { color: theme.colors.text }]}>{header}</Text>
-        <Text style={[styles.subheading, { color: theme.colors.text }]}>{subheading}</Text>
+        <PinText style={[styles.header, { color: theme.colors.text }]}>{header}</PinText>
+        <PinText style={[styles.subheading, { color: theme.colors.text }]}>{subheading}</PinText>
       </View>
     </View>
   );

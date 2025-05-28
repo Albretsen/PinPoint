@@ -1,8 +1,9 @@
 import Card from '@/src/components/Card';
+import PinText from '@/src/components/PinText';
 import { ThemeSelector } from '@/src/components/ThemeSelector';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useUserStore } from '@/src/store/userStore';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 
 export default function HomeScreen() {
   const { signOut } = useUserStore();
@@ -10,9 +11,9 @@ export default function HomeScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text style={[styles.title, { color: theme.colors.text }]}>
+      <PinText style={[styles.title, { color: theme.colors.text }]}>
         Welcome to the Protected Home Screen!
-      </Text>
+      </PinText>
       <Card
         image={require('@/assets/images/partial-react-logo.png')}
         header="Bergen Brothers"
@@ -21,9 +22,9 @@ export default function HomeScreen() {
         onButtonPress={() => {}}
       />
       <View style={styles.section}>
-        <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>
+        <PinText style={[styles.sectionTitle, { color: theme.colors.text }]}>
           Choose a Theme
-        </Text>
+        </PinText>
         <ThemeSelector />
       </View>
       <View style={styles.buttonContainer}>
