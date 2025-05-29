@@ -85,7 +85,7 @@ function useProtectedRoute(session: Session | null) {
     if (!session && !inAuthGroup) {
       router.replace('/login');
     } else if (session && inAuthGroup) {
-      router.replace('/home');
+      router.replace('/(protected)/(tabs)/home');
     }
   }, [session, segments, isNavigationReady, router]);
 }

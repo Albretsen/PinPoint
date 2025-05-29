@@ -12,7 +12,7 @@ function useProtectedRoute(session: any) {
     const inAuthGroup = segments[0] === '(auth)';
 
     if (session && inAuthGroup) {
-      router.replace('/home');
+      router.replace('/(protected)/(tabs)/home');
     }
   }, [session, segments, router]);
 }

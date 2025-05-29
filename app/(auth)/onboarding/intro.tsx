@@ -39,7 +39,7 @@ export default function IntroScreen() {
       setHasLoggedInBefore(true);
       
       // Navigate to home
-      router.replace('/home');
+      router.replace('/(protected)/(tabs)/home');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     }
