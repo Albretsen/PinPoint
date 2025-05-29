@@ -1,6 +1,6 @@
 import { useThemeStore } from '@/src/store/themeStore';
 import { createContext, useContext, useEffect } from 'react';
-import { useColorScheme } from 'react-native';
+import { Platform, StatusBar, useColorScheme } from 'react-native';
 
 // Define the theme structure
 export type ThemeColors = {
@@ -124,6 +124,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []); // Empty dependency array since we only want this to run once on mount
 
   const theme = themes[themeName];
+
+  // Update status bar style based on theme
+  useEffect(() => {
+    const isDarkTheme = themeName === 'dark';
+    StatusBar.setBarStyle(isDarkTheme ? 'light-content' : 'dark-content');
+    
+    // Android-specific status bar configuration
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor('transparent');
+      StatusBar.setTranslucent(true);
+    }
+  }, [themeName]);
 
   return (
     <ThemeContext.Provider
