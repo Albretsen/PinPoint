@@ -69,9 +69,21 @@ src/
 
 ## Contributing
 
-1. Create a new branch for your feature
-2. Make your changes
-3. Submit a pull request
+We use a branch-based workflow:
+
+- `master`: latest **production release**
+- `develop`: latest **development build**
+- `feat/xx/feature-name`: feature branches (from `develop`, merged back into `develop`)  
+   > Replace `xx` with your initials
+- `rc/x.y.z`: release candidate branches (cut from `develop`, merged into `master` on release)
+
+### To contribute:
+
+1. Create a branch from `develop` using the format:  
+   `feat/xx/short-feature-name`
+2. Make your changes and commit regularly
+3. Open a pull request into `develop`
+4. Follow code style and naming conventions
 
 ## Code Style
 
