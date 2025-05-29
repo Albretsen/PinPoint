@@ -23,6 +23,13 @@ export default function ProtectedLayout() {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="link-account"
+        options={{
+          title: 'Link Account',
+          presentation: 'modal',
+        }}
+      />
     </Stack>
   );
 } 

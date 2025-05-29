@@ -1,6 +1,7 @@
 import PinText from '@/src/components/PinText';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useUserStore } from '@/src/store/userStore';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Button, Image, Modal, StyleSheet, Text, View } from 'react-native';
 
@@ -10,6 +11,7 @@ export default function ProfileScreen() {
   const userData = session?.user?.user_metadata;
   const [showModal, setShowModal] = useState(false);
   const isAnonymous = session?.user?.is_anonymous;
+  const router = useRouter();
 
   const handleSignOutPress = () => {
     if (isAnonymous) {
@@ -30,7 +32,7 @@ export default function ProfileScreen() {
 
   const handleLinkAccount = () => {
     setShowModal(false);
-    // TODO: Implement account linking
+    router.push('/link-account');
   };
 
   return (
