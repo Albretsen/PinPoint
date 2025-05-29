@@ -68,6 +68,8 @@ export const translations = {
     // Settings
     settings: {
       appearance: 'Appearance',
+      language: 'Language',
+      selectLanguage: 'Select Language',
     },
 
     // Link Account
@@ -79,6 +81,90 @@ export const translations = {
       cancel: 'Cancel',
       fillAllFields: 'Please fill in all fields',
       googleSignInFailed: 'Google sign-in was cancelled or failed',
+    },
+  },
+  no: {
+    // Auth
+    auth: {
+      signIn: 'Logg inn',
+      signUp: 'Registrer deg',
+      signOut: 'Logg ut',
+      email: 'E-post',
+      password: 'Passord',
+      username: 'Brukernavn',
+      createAccount: 'Opprett konto',
+      alreadyHaveAccount: 'Har du allerede en konto? Logg inn',
+      createProfile: 'Opprett profil',
+      chooseUsername: 'Velg et brukernavn',
+      avatarGenerated: 'Din avatar vil bli generert basert på ditt brukernavn',
+      continue: 'Fortsett',
+      needAccount: 'Trenger du en konto? Registrer deg',
+      clearStorage: 'Tøm lagring (Debug)',
+      storageCleared: 'Lagring tømt',
+      storageClearFailed: 'Kunne ikke tømme lagring',
+    },
+
+    // Home
+    home: {
+      noGroups: 'Du har ikke blitt med i noen grupper ennå',
+      guessLocation: 'Gjett plassering',
+      failedToFetchGroups: 'Kunne ikke hente grupper',
+    },
+
+    // Navigation
+    navigation: {
+      back: 'Tilbake',
+      home: 'Hjem',
+      groups: 'Grupper',
+      camera: 'Kamera',
+      settings: 'Innstillinger',
+      profile: 'Profil',
+      guessLocation: 'Gjett plassering',
+      linkAccount: 'Koble til konto',
+    },
+
+    // Profile
+    profile: {
+      signOutWarning: 'Advarsel om utlogging',
+      anonymousSignOutWarning: 'Du er logget inn som en anonym bruker. Hvis du logger ut, vil du miste tilgang til denne kontoen og all tilknyttet data.',
+      cancel: 'Avbryt',
+      linkAccount: 'Koble til konto',
+      continueSignOut: 'Fortsett utlogging',
+      anonymous: 'Anonym',
+    },
+
+    // Onboarding
+    onboarding: {
+      welcome: 'Velkommen til PinPoint',
+      description: 'PinPoint er et plasseringsbasert spill hvor du og dine venner konkurrerer om å gjette hverandres plasseringer. Slik fungerer det:',
+      howItWorks: [
+        'Ta et bilde på din nåværende plassering',
+        'Del det med gruppen din',
+        'Andre prøver å gjette hvor du er',
+        'Poeng tildeles basert på nøyaktighet',
+      ],
+      readyToStart: 'Klar til å begynne å spille?',
+      getStarted: 'Kom i gang',
+      joinOrCreateGroup: 'Bli med i eller opprett en gruppe',
+      groupDescription: 'Denne skjermen lar deg bli med i en eksisterende gruppe eller opprette en ny. For nå, bare fortsett til neste steg.',
+    },
+
+    // Settings
+    settings: {
+      appearance: 'Utseende',
+      language: 'Språk',
+      selectLanguage: 'Velg språk',
+    },
+
+    // Link Account
+    linkAccount: {
+      title: 'Koble til konto',
+      description: 'Koble til din anonyme konto for å beholde dataene og fremgangen din.',
+      linkWithEmail: 'Koble til med e-post',
+      linkWithGoogle: 'Koble til med Google',
+      cancel: 'Avbryt',
+      fillAllFields: 'Vennligst fyll ut alle felt',
+      googleSignInFailed: 'Google-innlogging ble avbrutt eller mislyktes',
     },
   },
 } as const;

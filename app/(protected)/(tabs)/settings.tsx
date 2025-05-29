@@ -1,3 +1,4 @@
+import { LanguageSelector } from '@/src/components/LanguageSelector';
 import PinText from '@/src/components/PinText';
 import { ThemeSelector } from '@/src/components/ThemeSelector';
 import { useTheme } from '@/src/context/ThemeProvider';
@@ -15,6 +16,13 @@ export default function SettingsScreen() {
           {t('settings.appearance')}
         </PinText>
         <ThemeSelector />
+      </View>
+
+      <View style={styles.section}>
+        <PinText style={[styles.sectionTitle, { color: theme.colors.text }]}>
+          {t('settings.language')}
+        </PinText>
+        <LanguageSelector />
       </View>
     </View>
   );
