@@ -1,5 +1,6 @@
 import PinText from '@/src/components/PinText';
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
 import { ResponseType, useAuthRequest } from 'expo-auth-session';
@@ -19,6 +20,7 @@ export default function LinkAccountScreen() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   const SUPABASE_CALLBACK = 'https://urcrrsoujovthztwtomd.supabase.co/auth/v1/callback'; 
 
@@ -59,7 +61,7 @@ export default function LinkAccountScreen() {
         setError(err instanceof Error ? err.message : 'An error occurred');
       }
     } else if (response?.type === 'error') {
-      setError('Google sign-in was cancelled or failed');
+      setError(t('linkAccount.googleSignInFailed'));
     }
   };
 
@@ -76,7 +78,7 @@ export default function LinkAccountScreen() {
       setError(null);
 
       if (!email || !password) {
-        throw new Error('Please fill in all fields');
+        throw new Error(t('linkAccount.fillAllFields'));
       }
 
       // Link the anonymous account with email/password
@@ -111,11 +113,11 @@ export default function LinkAccountScreen() {
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <PinText style={[styles.title, { color: theme.colors.text }]}>
-        Link Your Account
+        {t('linkAccount.title')}
       </PinText>
       
       <PinText style={[styles.description, { color: theme.colors.text }]}>
-        Link your anonymous account to keep your data and progress.
+        {t('linkAccount.description')}
       </PinText>
 
       <TextInput
@@ -127,7 +129,7 @@ export default function LinkAccountScreen() {
             borderColor: theme.colors.border,
           },
         ]}
-        placeholder="Email"
+        placeholder={t('auth.email')}
         placeholderTextColor={theme.colors.text + '80'}
         value={email}
         onChangeText={setEmail}
@@ -145,7 +147,7 @@ export default function LinkAccountScreen() {
             borderColor: theme.colors.border,
           },
         ]}
-        placeholder="Password"
+        placeholder={t('auth.password')}
         placeholderTextColor={theme.colors.text + '80'}
         value={password}
         onChangeText={setPassword}
@@ -161,12 +163,12 @@ export default function LinkAccountScreen() {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="Link with Email"
+          title={t('linkAccount.linkWithEmail')}
           onPress={handleLinkWithEmail}
           disabled={isLoading}
         />
         <Button
-          title="Cancel"
+          title={t('linkAccount.cancel')}
           onPress={() => router.back()}
           disabled={isLoading}
         />

@@ -1,5 +1,6 @@
 import PinText from '@/src/components/PinText';
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { useUserStore } from '@/src/store/userStore';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -12,6 +13,7 @@ export default function ProfileScreen() {
   const [showModal, setShowModal] = useState(false);
   const isAnonymous = session?.user?.is_anonymous;
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleSignOutPress = () => {
     if (isAnonymous) {
@@ -43,11 +45,11 @@ export default function ProfileScreen() {
           style={styles.avatar}
         />
         <PinText style={[styles.username, { color: theme.colors.text }]}>
-          {userData?.username || 'Anonymous'}
+          {userData?.username || t('profile.anonymous')}
         </PinText>
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Sign Out" onPress={handleSignOutPress} />
+        <Button title={t('auth.signOut')} onPress={handleSignOutPress} />
       </View>
 
       <Modal
@@ -59,15 +61,15 @@ export default function ProfileScreen() {
         <View style={styles.modalOverlay}>
           <View style={[styles.modalContent, { backgroundColor: theme.colors.card }]}>
             <Text style={[styles.modalTitle, { color: theme.colors.text }]}>
-              Sign Out Warning
+              {t('profile.signOutWarning')}
             </Text>
             <Text style={[styles.modalText, { color: theme.colors.text }]}>
-              You are signed in as an anonymous user. If you sign out, you will lose access to this account and all associated data.
+              {t('profile.anonymousSignOutWarning')}
             </Text>
             <View style={styles.modalButtons}>
-              <Button title="Cancel" onPress={handleCancel} />
-              <Button title="Link Account" onPress={handleLinkAccount} />
-              <Button title="Continue Sign Out" onPress={handleContinueSignOut} />
+              <Button title={t('profile.cancel')} onPress={handleCancel} />
+              <Button title={t('profile.linkAccount')} onPress={handleLinkAccount} />
+              <Button title={t('profile.continueSignOut')} onPress={handleContinueSignOut} />
             </View>
           </View>
         </View>

@@ -1,16 +1,18 @@
 import PinText from '@/src/components/PinText';
 import { ThemeSelector } from '@/src/components/ThemeSelector';
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { StyleSheet, View } from 'react-native';
 
 export default function SettingsScreen() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.section}>
         <PinText style={[styles.sectionTitle, { color: theme.colors.text }]}>
-          Appearance
+          {t('settings.appearance')}
         </PinText>
         <ThemeSelector />
       </View>

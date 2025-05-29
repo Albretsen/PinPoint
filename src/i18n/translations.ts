@@ -14,6 +14,10 @@ export const translations = {
       chooseUsername: 'Choose a username',
       avatarGenerated: 'Your avatar will be generated based on your username',
       continue: 'Continue',
+      needAccount: 'Need an account? Sign Up',
+      clearStorage: 'Clear Storage (Debug)',
+      storageCleared: 'Storage cleared successfully',
+      storageClearFailed: 'Failed to clear storage',
     },
 
     // Home
@@ -42,6 +46,7 @@ export const translations = {
       cancel: 'Cancel',
       linkAccount: 'Link Account',
       continueSignOut: 'Continue Sign Out',
+      anonymous: 'Anonymous',
     },
 
     // Onboarding
@@ -56,6 +61,24 @@ export const translations = {
       ],
       readyToStart: 'Ready to start playing?',
       getStarted: 'Get Started',
+      joinOrCreateGroup: 'Join or Create a Group',
+      groupDescription: 'This screen will allow you to join an existing group or create a new one. For now, just continue to the next step.',
+    },
+
+    // Settings
+    settings: {
+      appearance: 'Appearance',
+    },
+
+    // Link Account
+    linkAccount: {
+      title: 'Link Your Account',
+      description: 'Link your anonymous account to keep your data and progress.',
+      linkWithEmail: 'Link with Email',
+      linkWithGoogle: 'Link with Google',
+      cancel: 'Cancel',
+      fillAllFields: 'Please fill in all fields',
+      googleSignInFailed: 'Google sign-in was cancelled or failed',
     },
   },
 } as const;

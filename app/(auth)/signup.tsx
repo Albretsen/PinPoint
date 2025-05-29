@@ -1,4 +1,5 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { useUserStore } from '@/src/store/userStore';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -12,12 +13,13 @@ export default function SignUpScreen() {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const handleSignUp = async () => {
     try {
       setError(null);
       if (!username.trim()) {
-        setError('Username is required');
+        setError(t('auth.username') + ' is required');
         return;
       }
       await signUp(email, password, username);
@@ -29,7 +31,7 @@ export default function SignUpScreen() {
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <Text style={[styles.title, { color: theme.colors.text }]}>
-        Create Account
+        {t('auth.createAccount')}
       </Text>
       <TextInput
         style={[
@@ -40,7 +42,7 @@ export default function SignUpScreen() {
             borderColor: theme.colors.border,
           },
         ]}
-        placeholder="Email"
+        placeholder={t('auth.email')}
         placeholderTextColor={theme.colors.text + '80'}
         value={email}
         onChangeText={setEmail}
@@ -55,7 +57,7 @@ export default function SignUpScreen() {
             borderColor: theme.colors.border,
           },
         ]}
-        placeholder="Password"
+        placeholder={t('auth.password')}
         placeholderTextColor={theme.colors.text + '80'}
         value={password}
         onChangeText={setPassword}
@@ -70,7 +72,7 @@ export default function SignUpScreen() {
             borderColor: theme.colors.border,
           },
         ]}
-        placeholder="Username"
+        placeholder={t('auth.username')}
         placeholderTextColor={theme.colors.text + '80'}
         value={username}
         onChangeText={setUsername}
@@ -81,11 +83,11 @@ export default function SignUpScreen() {
       )}
       <View style={styles.buttonContainer}>
         <Button
-          title="Sign Up"
+          title={t('auth.signUp')}
           onPress={handleSignUp}
         />
         <Button
-          title="Already have an account? Sign In"
+          title={t('auth.alreadyHaveAccount')}
           onPress={() => router.replace('/login')}
         />
       </View>

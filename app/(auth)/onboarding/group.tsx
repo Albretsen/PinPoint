@@ -1,25 +1,26 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { useRouter } from 'expo-router';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function GroupScreen() {
   const { theme } = useTheme();
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <Text style={[styles.title, { color: theme.colors.text }]}>
-        Join or Create a Group
+        {t('onboarding.joinOrCreateGroup')}
       </Text>
       
       <Text style={[styles.description, { color: theme.colors.text }]}>
-        This screen will allow you to join an existing group or create a new one.
-        For now, just continue to the next step.
+        {t('onboarding.groupDescription')}
       </Text>
 
       <View style={styles.buttonContainer}>
         <Button
-          title="Continue"
+          title={t('auth.continue')}
           onPress={() => router.replace('/onboarding/intro')}
         />
       </View>

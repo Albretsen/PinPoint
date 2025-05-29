@@ -1,4 +1,5 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
 import { useDeviceStore } from '@/src/store/deviceStore';
 import { useOnboardingStore } from '@/src/store/onboardingStore';
@@ -12,11 +13,12 @@ export default function IntroScreen() {
   const { setHasLoggedInBefore } = useDeviceStore();
   const { username, clearOnboarding } = useOnboardingStore();
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const handleComplete = async () => {
     try {
       if (!username) {
-        throw new Error('Username is required');
+        throw new Error(t('auth.username') + ' is required');
       }
 
       // Sign in anonymously
@@ -48,17 +50,17 @@ export default function IntroScreen() {
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <Text style={[styles.title, { color: theme.colors.text }]}>
-        Welcome to PinPoint
+        {t('onboarding.welcome')}
       </Text>
       
       <Text style={[styles.description, { color: theme.colors.text }]}>
-        PinPoint is a location-based game where you and your friends compete to guess each other's locations. Here's how it works:
+        {t('onboarding.description')}
 
-        {'\n\n'}1. Take a photo at your current location
-        {'\n'}2. Share it with your group
-        {'\n'}3. Others try to guess where you are
-        {'\n'}4. Points are awarded based on accuracy
-        {'\n\n'}Ready to start playing?
+        {'\n\n'}{t('onboarding.howItWorks.0')}
+        {'\n'}{t('onboarding.howItWorks.1')}
+        {'\n'}{t('onboarding.howItWorks.2')}
+        {'\n'}{t('onboarding.howItWorks.3')}
+        {'\n\n'}{t('onboarding.readyToStart')}
       </Text>
 
       {error && (
@@ -67,7 +69,7 @@ export default function IntroScreen() {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="Get Started"
+          title={t('onboarding.getStarted')}
           onPress={handleComplete}
         />
       </View>

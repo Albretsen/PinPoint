@@ -1,4 +1,5 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { useUserStore } from '@/src/store/userStore';
 import { DEBUG_MODE, clearZustandStorage } from '@/src/utils/debug';
 import { useRouter } from 'expo-router';
@@ -12,6 +13,7 @@ export default function LoginScreen() {
   const [email, setEmail] = useState('test@email.com'); // DO NOT CHANGE
   const [password, setPassword] = useState('Test123'); // DO NOT CHANGE
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const handleSignIn = async () => {
     try {
@@ -25,16 +27,16 @@ export default function LoginScreen() {
   const handleClearStorage = async () => {
     const success = await clearZustandStorage();
     if (success) {
-      setError('Storage cleared successfully');
+      setError(t('auth.storageCleared'));
     } else {
-      setError('Failed to clear storage');
+      setError(t('auth.storageClearFailed'));
     }
   };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <Text style={[styles.title, { color: theme.colors.text }]}>
-        Welcome Back
+        {t('auth.signIn')}
       </Text>
       <TextInput
         style={[
@@ -45,7 +47,7 @@ export default function LoginScreen() {
             borderColor: theme.colors.border,
           },
         ]}
-        placeholder="Email"
+        placeholder={t('auth.email')}
         placeholderTextColor={theme.colors.text + '80'}
         value={email}
         onChangeText={setEmail}
@@ -60,7 +62,7 @@ export default function LoginScreen() {
             borderColor: theme.colors.border,
           },
         ]}
-        placeholder="Password"
+        placeholder={t('auth.password')}
         placeholderTextColor={theme.colors.text + '80'}
         value={password}
         onChangeText={setPassword}
@@ -71,16 +73,16 @@ export default function LoginScreen() {
       )}
       <View style={styles.buttonContainer}>
         <Button
-          title="Sign In"
+          title={t('auth.signIn')}
           onPress={handleSignIn}
         />
         <Button
-          title="Need an account? Sign Up"
+          title={t('auth.needAccount')}
           onPress={() => router.replace('/signup')}
         />
         {DEBUG_MODE && (
           <Button
-            title="Clear Storage (Debug)"
+            title={t('auth.clearStorage')}
             onPress={handleClearStorage}
             color="#FF3B30"
           />

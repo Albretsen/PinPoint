@@ -1,4 +1,5 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { useOnboardingStore } from '@/src/store/onboardingStore';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -10,10 +11,11 @@ export default function UsernameScreen() {
   const { setUsername } = useOnboardingStore();
   const [usernameInput, setUsernameInput] = useState('Test'); // DO NOT CHANGE
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const handleContinue = () => {
     if (!usernameInput.trim()) {
-      setError('Username is required');
+      setError(t('auth.username') + ' is required');
       return;
     }
     setUsername(usernameInput.trim());
@@ -28,7 +30,7 @@ export default function UsernameScreen() {
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <Text style={[styles.title, { color: theme.colors.text }]}>
-        Create Your Profile
+        {t('auth.createProfile')}
       </Text>
       
       <View style={styles.avatarContainer}>
@@ -37,7 +39,7 @@ export default function UsernameScreen() {
           style={styles.avatar}
         />
         <Text style={[styles.avatarText, { color: theme.colors.text }]}>
-          Your avatar will be generated based on your username
+          {t('auth.avatarGenerated')}
         </Text>
       </View>
 
@@ -50,7 +52,7 @@ export default function UsernameScreen() {
             borderColor: theme.colors.border,
           },
         ]}
-        placeholder="Choose a username"
+        placeholder={t('auth.chooseUsername')}
         placeholderTextColor={theme.colors.text + '80'}
         value={usernameInput}
         onChangeText={setUsernameInput}
@@ -63,7 +65,7 @@ export default function UsernameScreen() {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="Continue"
+          title={t('auth.continue')}
           onPress={handleContinue}
         />
       </View>
