@@ -2,7 +2,6 @@ import { useTheme } from '@/src/context/ThemeProvider';
 import { useUserStore } from '@/src/store/userStore';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { useEffect } from 'react';
-import { Platform } from 'react-native';
 
 function useProtectedRoute(session: any) {
   const segments = useSegments();
@@ -34,20 +33,20 @@ export default function AuthLayout() {
         contentStyle: {
           backgroundColor: theme.colors.background,
         },
-        animation: Platform.select({
-          ios: 'default',
-          android: 'fade',
-        }),
+        animation: 'none',
         presentation: 'card',
-        animationDuration: 200,
       }}
     >
       <Stack.Screen
         name="login"
         options={{
           title: 'Sign In',
-          animation: 'slide_from_right',
-          animationTypeForReplace: 'pop',
+        }}
+      />
+      <Stack.Screen
+        name="signup"
+        options={{
+          title: 'Sign Up',
         }}
       />
     </Stack>

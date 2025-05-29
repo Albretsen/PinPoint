@@ -1,6 +1,7 @@
 import { supabase } from '@/src/lib/supabase';
 import { Session } from '@supabase/supabase-js';
 import { create } from 'zustand';
+import { useDeviceStore } from './deviceStore';
 
 type UserState = {
   session: Session | null;
@@ -23,6 +24,11 @@ export const useUserStore = create<UserState>((set) => ({
       password,
     });
     if (error) throw error;
+    
+    // Update device state after successful sign in
+    const deviceStore = useDeviceStore.getState();
+    deviceStore.setHasLoggedInBefore(true);
+    deviceStore.setLastLoginDate(new Date().toISOString());
   },
   signUp: async (email: string, password: string, username: string) => {
     const { error } = await supabase.auth.signUp({
@@ -36,6 +42,11 @@ export const useUserStore = create<UserState>((set) => ({
       },
     });
     if (error) throw error;
+    
+    // Update device state after successful sign up
+    const deviceStore = useDeviceStore.getState();
+    deviceStore.setHasLoggedInBefore(true);
+    deviceStore.setLastLoginDate(new Date().toISOString());
   },
   signOut: async () => {
     const { error } = await supabase.auth.signOut();
