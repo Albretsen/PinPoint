@@ -2,7 +2,7 @@ import Card from '@/src/components/Card';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 type Group = {
@@ -59,84 +59,66 @@ type GroupMember = {
   };
 };
 
+async function fetchGroups(userId: string): Promise<Group[]> {
+  const { data, error } = await supabase
+    .from('group_members')
+    .select(`
+      is_admin,
+      joined_at,
+      groups (
+        id,
+        name,
+        is_public,
+        invite_code,
+        owner_id,
+        created_at,
+        daily_challenge_time,
+        is_archived,
+        description,
+        group_challenges (
+          id,
+          challenge_date,
+          started_at,
+          ended_at,
+          group_images (
+            id,
+            image_url,
+            taken_at,
+            uploader_id
+          )
+        )
+      )
+    `)
+    .eq('user_id', userId);
+
+  if (error) throw error;
+
+  return (data as unknown as GroupMember[]).map(member => {
+    const currentChallenge = member.groups.group_challenges?.[0];
+    return {
+      ...member.groups,
+      is_admin: member.is_admin,
+      joined_at: member.joined_at,
+      current_challenge: currentChallenge ? {
+        id: currentChallenge.id,
+        challenge_date: currentChallenge.challenge_date,
+        started_at: currentChallenge.started_at,
+        ended_at: currentChallenge.ended_at,
+        image: currentChallenge.group_images
+      } : undefined
+    };
+  });
+}
+
 export default function HomeScreen() {
   const { theme } = useTheme();
   const { session } = useUserStore();
-  const [groups, setGroups] = useState<Group[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchGroups();
-  }, [session?.user?.id]);
-
-  const fetchGroups = async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-
-      if (!session?.user?.id) {
-        throw new Error('No user session found');
-      }
-
-      const { data, error: fetchError } = await supabase
-        .from('group_members')
-        .select(`
-          is_admin,
-          joined_at,
-          groups (
-            id,
-            name,
-            is_public,
-            invite_code,
-            owner_id,
-            created_at,
-            daily_challenge_time,
-            is_archived,
-            description,
-            group_challenges (
-              id,
-              challenge_date,
-              started_at,
-              ended_at,
-              group_images (
-                id,
-                image_url,
-                taken_at,
-                uploader_id
-              )
-            )
-          )
-        `)
-        .eq('user_id', session.user.id);
-
-      if (fetchError) throw fetchError;
-
-      // Transform the data to flatten the nested structure
-      const transformedGroups: Group[] = (data as unknown as GroupMember[]).map(member => {
-        const currentChallenge = member.groups.group_challenges?.[0]; // Get the most recent challenge
-        return {
-          ...member.groups,
-          is_admin: member.is_admin,
-          joined_at: member.joined_at,
-          current_challenge: currentChallenge ? {
-            id: currentChallenge.id,
-            challenge_date: currentChallenge.challenge_date,
-            started_at: currentChallenge.started_at,
-            ended_at: currentChallenge.ended_at,
-            image: currentChallenge.group_images
-          } : undefined
-        };
-      });
-
-      setGroups(transformedGroups);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch groups');
-      console.error('Error fetching groups:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { data: groups, isLoading, error } = useQuery({
+    queryKey: ['groups', session?.user?.id],
+    queryFn: () => fetchGroups(session!.user!.id),
+    enabled: !!session?.user?.id,
+  });
 
   if (isLoading) {
     return (
@@ -149,14 +131,16 @@ export default function HomeScreen() {
   if (error) {
     return (
       <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-        <Text style={[styles.error, { color: theme.colors.error }]}>{error}</Text>
+        <Text style={[styles.error, { color: theme.colors.error }]}>
+          {error instanceof Error ? error.message : 'Failed to fetch groups'}
+        </Text>
       </View>
     );
   }
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      {groups.length === 0 ? (
+      {!groups || groups.length === 0 ? (
         <Text style={[styles.emptyText, { color: theme.colors.text }]}>
           You haven't joined any groups yet
         </Text>
