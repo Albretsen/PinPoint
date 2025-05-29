@@ -1,8 +1,10 @@
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
+import { useRouter } from 'expo-router';
 import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import PinText from './PinText';
+import { RetryButton } from './RetryButton';
 
 interface Props {
   children: React.ReactNode;
@@ -24,7 +26,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // You can log the error to an error reporting service here
+    // Log the error to an error reporting service
     console.error('Error caught by boundary:', error, errorInfo);
   }
 
@@ -49,6 +51,13 @@ interface ErrorFallbackProps {
 function ErrorFallback({ error, onReset }: ErrorFallbackProps) {
   const { theme } = useTheme();
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const handleRetry = () => {
+    onReset();
+    // Navigate back to the previous screen
+    router.back();
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -58,7 +67,7 @@ function ErrorFallback({ error, onReset }: ErrorFallbackProps) {
       <PinText style={[styles.message, { color: theme.colors.text }]}>
         {error?.message || t('error.unknownError')}
       </PinText>
-      <Button title={t('error.tryAgain')} onPress={onReset} />
+      <RetryButton onPress={handleRetry} />
     </View>
   );
 }
