@@ -1,5 +1,6 @@
 import Card from '@/src/components/Card';
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
 import { Group, GroupMember } from '@/src/types/group';
@@ -62,6 +63,7 @@ export default function HomeScreen() {
   const { theme } = useTheme();
   const { session } = useUserStore();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const { data: groups, isLoading, error } = useQuery({
     queryKey: ['groups', session?.user?.id],
@@ -88,7 +90,7 @@ export default function HomeScreen() {
     return (
       <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
         <Text style={[styles.error, { color: theme.colors.error }]}>
-          {error instanceof Error ? error.message : 'Failed to fetch groups'}
+          {error instanceof Error ? error.message : t('home.failedToFetchGroups')}
         </Text>
       </View>
     );
@@ -98,7 +100,7 @@ export default function HomeScreen() {
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       {!groups || groups.length === 0 ? (
         <Text style={[styles.emptyText, { color: theme.colors.text }]}>
-          You haven't joined any groups yet
+          {t('home.noGroups')}
         </Text>
       ) : (
         groups.map((group) => (
@@ -110,7 +112,7 @@ export default function HomeScreen() {
             }
             header={group.name}
             subheading={group.description}
-            buttonLabel="Guess Location"
+            buttonLabel={t('home.guessLocation')}
             onButtonPress={() => {}}
             onPress={() => {
               if (group.current_challenge?.image?.image_url) {

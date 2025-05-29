@@ -1,8 +1,10 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { Stack } from 'expo-router';
 
 export default function ProtectedLayout() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <Stack
@@ -26,16 +28,16 @@ export default function ProtectedLayout() {
       <Stack.Screen
         name="link-account"
         options={{
-          title: 'Link Account',
+          title: t('navigation.linkAccount'),
           presentation: 'modal',
         }}
       />
       <Stack.Screen
         name="guess"
         options={{
-          title: 'Guess Location',
+          title: t('navigation.guessLocation'),
           headerShown: true,
-          headerBackTitle: 'Back',
+          headerBackTitle: t('navigation.back'),
         }}
       />
     </Stack>

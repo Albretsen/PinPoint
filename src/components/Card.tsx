@@ -1,4 +1,5 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import React from 'react';
 import { Image, ImageSourcePropType, StyleSheet, TouchableOpacity, View } from 'react-native';
 import PinText from './PinText';
@@ -21,6 +22,7 @@ export const Card: React.FC<CardProps> = ({
   onPress 
 }) => {
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <TouchableOpacity 
@@ -43,7 +45,9 @@ export const Card: React.FC<CardProps> = ({
               onButtonPress();
             }}
           >
-            <PinText style={[styles.buttonText, { color: theme.colors.text }]}>{buttonLabel}</PinText>
+            <PinText style={[styles.buttonText, { color: theme.colors.text }]}>
+              {t('home.guessLocation')}
+            </PinText>
           </TouchableOpacity>
         )}
       </View>
