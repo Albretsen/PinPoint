@@ -30,6 +30,14 @@ export default function ProtectedLayout() {
           presentation: 'modal',
         }}
       />
+      <Stack.Screen
+        name="guess"
+        options={{
+          title: 'Guess Location',
+          headerShown: true,
+          headerBackTitle: 'Back',
+        }}
+      />
     </Stack>
   );
 } 

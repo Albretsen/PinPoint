@@ -4,6 +4,7 @@ import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
 import { Group, GroupMember } from '@/src/types/group';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'expo-router';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 async function fetchGroups(userId: string): Promise<Group[]> {
@@ -60,12 +61,20 @@ async function fetchGroups(userId: string): Promise<Group[]> {
 export default function HomeScreen() {
   const { theme } = useTheme();
   const { session } = useUserStore();
+  const router = useRouter();
 
   const { data: groups, isLoading, error } = useQuery({
     queryKey: ['groups', session?.user?.id],
     queryFn: () => fetchGroups(session!.user!.id),
     enabled: !!session?.user?.id,
   });
+
+  const handleCardPress = (imageUrl: string) => {
+    router.push({
+      pathname: '/(protected)/guess',
+      params: { imageUrl }
+    });
+  };
 
   if (isLoading) {
     return (
@@ -97,12 +106,17 @@ export default function HomeScreen() {
             key={group.id}
             image={group.current_challenge?.image?.image_url 
               ? { uri: group.current_challenge.image.image_url }
-              : require('@/assets/images/partial-react-logo.png')
+              : { uri: "" }
             }
             header={group.name}
             subheading={group.description}
             buttonLabel="Guess Location"
             onButtonPress={() => {}}
+            onPress={() => {
+              if (group.current_challenge?.image?.image_url) {
+                handleCardPress(group.current_challenge.image.image_url);
+              }
+            }}
           />
         ))
       )}

@@ -9,13 +9,24 @@ interface CardProps {
   subheading: string;
   buttonLabel?: string;
   onButtonPress?: () => void;
+  onPress?: () => void;
 }
 
-export const Card: React.FC<CardProps> = ({ image, header, subheading, buttonLabel, onButtonPress }) => {
+export const Card: React.FC<CardProps> = ({ 
+  image, 
+  header, 
+  subheading, 
+  buttonLabel, 
+  onButtonPress,
+  onPress 
+}) => {
   const { theme } = useTheme();
 
   return (
-    <View style={[styles.card, { borderColor: theme.colors.frameBorder, backgroundColor: theme.colors.card }]}> 
+    <TouchableOpacity 
+      style={[styles.card, { borderColor: theme.colors.frameBorder, backgroundColor: theme.colors.card }]}
+      onPress={onPress}
+    > 
       <View style={styles.imageContainer}>
         <Image source={image} style={styles.image} resizeMode="cover" />
         {buttonLabel && onButtonPress && (
@@ -27,7 +38,10 @@ export const Card: React.FC<CardProps> = ({ image, header, subheading, buttonLab
                 borderColor: theme.colors.text,
               },
             ]}
-            onPress={onButtonPress}
+            onPress={(e) => {
+              e.stopPropagation();
+              onButtonPress();
+            }}
           >
             <PinText style={[styles.buttonText, { color: theme.colors.text }]}>{buttonLabel}</PinText>
           </TouchableOpacity>
@@ -37,7 +51,7 @@ export const Card: React.FC<CardProps> = ({ image, header, subheading, buttonLab
         <PinText style={[styles.header, { color: theme.colors.text }]}>{header}</PinText>
         <PinText style={[styles.subheading, { color: theme.colors.text }]}>{subheading}</PinText>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
