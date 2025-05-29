@@ -1,50 +1,95 @@
-# Welcome to your Expo app 👋
+# PinPoint
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A location-based game where you and your friends compete to guess each other's locations.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Take photos at your current location
+- Share them with your group
+- Others try to guess where you are
+- Points are awarded based on accuracy
+- Support for multiple languages (English, Norwegian)
+- Dark/Light theme support
 
+## Tech Stack
+
+- React Native with Expo
+- TypeScript
+- Supabase for backend
+- Zustand for state management
+- React Query for data fetching
+- i18n for internationalization
+
+## Prerequisites
+
+- Node.js (v18 or later)
+- npm or yarn
+- Expo CLI
+- iOS Simulator (for Mac) or Android Emulator
+- Supabase account
+
+## Environment Setup
+
+1. Clone the repository
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
+3. Create a `.env` file in the root directory with the following variables:
+   ```
+   EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
+   EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   EXPO_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
    ```
 
-In the output, you'll find options to open the app in a
+## Development
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. Start the development server:
+   ```bash
+   npm start
+   ```
+2. Press 'i' for iOS simulator or 'a' for Android emulator
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Project Structure
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+app/
+  ├── (auth)/           # Authentication related screens
+  ├── (protected)/      # Protected screens requiring authentication
+  └── _layout.tsx       # Root layout
+src/
+  ├── components/       # Reusable components
+  ├── context/         # React Context providers
+  ├── i18n/            # Internationalization
+  ├── lib/             # Third-party library configurations
+  ├── store/           # Zustand stores
+  ├── types/           # TypeScript type definitions
+  └── utils/           # Utility functions
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Contributing
 
-## Learn more
+1. Create a new branch for your feature
+2. Make your changes
+3. Submit a pull request
 
-To learn more about developing your project with Expo, look at the following resources:
+## Code Style
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Use TypeScript for type safety
+- Follow the existing file structure
+- Use the provided components (PinText, Card, etc.)
+- Follow the established naming conventions
+- Use the translation system for all text
+- Use the theme system for colors and styling
 
-## Join the community
+## Testing
 
-Join our community of developers creating universal apps.
+```bash
+npm test
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Building for Production
+
+```bash
+npm run build
+```

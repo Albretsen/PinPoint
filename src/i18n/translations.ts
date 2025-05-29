@@ -82,6 +82,18 @@ export const translations = {
       fillAllFields: 'Please fill in all fields',
       googleSignInFailed: 'Google sign-in was cancelled or failed',
     },
+
+    // Error
+    error: {
+      somethingWentWrong: 'Something went wrong',
+      unknownError: 'An unknown error occurred',
+      tryAgain: 'Try Again',
+      networkError: 'Network error. Please check your connection.',
+      serverError: 'Server error. Please try again later.',
+      notFound: 'Not found',
+      unauthorized: 'Unauthorized',
+      forbidden: 'Forbidden',
+    },
   },
   no: {
     // Auth
@@ -165,6 +177,18 @@ export const translations = {
       cancel: 'Avbryt',
       fillAllFields: 'Vennligst fyll ut alle felt',
       googleSignInFailed: 'Google-innlogging ble avbrutt eller mislyktes',
+    },
+
+    // Error
+    error: {
+      somethingWentWrong: 'Noe gikk galt',
+      unknownError: 'En ukjent feil oppstod',
+      tryAgain: 'Prøv igjen',
+      networkError: 'Nettverksfeil. Sjekk internettilkoblingen din.',
+      serverError: 'Serverfeil. Vennligst prøv igjen senere.',
+      notFound: 'Ikke funnet',
+      unauthorized: 'Ikke autorisert',
+      forbidden: 'Forbudt',
     },
   },
 } as const;
