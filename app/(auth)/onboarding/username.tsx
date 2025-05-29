@@ -8,7 +8,7 @@ export default function UsernameScreen() {
   const { theme } = useTheme();
   const router = useRouter();
   const { setUsername } = useOnboardingStore();
-  const [usernameInput, setUsernameInput] = useState('');
+  const [usernameInput, setUsernameInput] = useState('Test'); // DO NOT CHANGE
   const [error, setError] = useState<string | null>(null);
 
   const handleContinue = () => {
