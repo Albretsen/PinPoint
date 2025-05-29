@@ -2,62 +2,9 @@ import Card from '@/src/components/Card';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
+import { Group, GroupMember } from '@/src/types/group';
 import { useQuery } from '@tanstack/react-query';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-
-type Group = {
-  id: string;
-  name: string;
-  is_public: boolean;
-  invite_code: string | null;
-  owner_id: string;
-  created_at: string;
-  daily_challenge_time: string;
-  is_archived: boolean;
-  description: string;
-  is_admin: boolean;
-  joined_at: string;
-  current_challenge?: {
-    id: string;
-    challenge_date: string;
-    started_at: string;
-    ended_at: string | null;
-    image: {
-      id: string;
-      image_url: string;
-      taken_at: string | null;
-      uploader_id: string;
-    };
-  };
-};
-
-type GroupMember = {
-  is_admin: boolean;
-  joined_at: string;
-  groups: {
-    id: string;
-    name: string;
-    is_public: boolean;
-    invite_code: string | null;
-    owner_id: string;
-    created_at: string;
-    daily_challenge_time: string;
-    is_archived: boolean;
-    description: string;
-    group_challenges: {
-      id: string;
-      challenge_date: string;
-      started_at: string;
-      ended_at: string | null;
-      group_images: {
-        id: string;
-        image_url: string;
-        taken_at: string | null;
-        uploader_id: string;
-      };
-    }[];
-  };
-};
 
 async function fetchGroups(userId: string): Promise<Group[]> {
   const { data, error } = await supabase

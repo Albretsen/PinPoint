@@ -1,4 +1,5 @@
-import { ThemeName, themes, useTheme } from '@/src/context/ThemeProvider';
+import { useTheme } from '@/src/context/ThemeProvider';
+import { ThemeName, themes } from '@/src/types/theme';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 export function ThemeSelector() {

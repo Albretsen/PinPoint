@@ -1,12 +1,7 @@
-import { ThemeName } from '@/src/context/ThemeProvider';
+import { ThemeState } from '@/src/types/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-
-type ThemeState = {
-  themeName: ThemeName;
-  setTheme: (themeName: ThemeName) => void;
-};
 
 export const useThemeStore = create<ThemeState>()(
   persist(
