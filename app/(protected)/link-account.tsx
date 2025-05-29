@@ -1,22 +1,110 @@
 import PinText from '@/src/components/PinText';
 import { useTheme } from '@/src/context/ThemeProvider';
+import { supabase } from '@/src/lib/supabase';
+import { useUserStore } from '@/src/store/userStore';
+import { ResponseType, useAuthRequest } from 'expo-auth-session';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import * as WebBrowser from 'expo-web-browser';
+import { useEffect, useState } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
+
+// Initialize WebBrowser for auth
+WebBrowser.maybeCompleteAuthSession();
 
 export default function LinkAccountScreen() {
   const { theme } = useTheme();
   const router = useRouter();
+  const { session } = useUserStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLinkAccount = async () => {
+  const SUPABASE_CALLBACK = 'https://urcrrsoujovthztwtomd.supabase.co/auth/v1/callback'; 
+
+  const redirectUri = SUPABASE_CALLBACK;
+
+  const [request, response, promptAsync] = useAuthRequest(
+    {
+      clientId: process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID || '',
+      redirectUri,
+      responseType: ResponseType.Code,
+      scopes: ['profile', 'email'],
+    },
+    {
+      authorizationEndpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
+      tokenEndpoint: 'https://oauth2.googleapis.com/token',
+    }
+  );
+
+  // Handle the OAuth response
+  const handleGoogleResponse = async (response: any) => {
+    if (response?.type === 'success') {
+      try {
+        const { code } = response.params;
+        
+        // Exchange the code for a session
+        const { data, error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo: redirectUri,
+          },
+        });
+
+        if (error) throw error;
+
+        // Navigate back to profile on success
+        router.back();
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      }
+    } else if (response?.type === 'error') {
+      setError('Google sign-in was cancelled or failed');
+    }
+  };
+
+  // Watch for response changes
+  useEffect(() => {
+    if (response) {
+      handleGoogleResponse(response);
+    }
+  }, [response]);
+
+  const handleLinkWithEmail = async () => {
     try {
-      // TODO: Implement account linking logic
-      setError('Account linking not implemented yet');
+      setIsLoading(true);
+      setError(null);
+
+      if (!email || !password) {
+        throw new Error('Please fill in all fields');
+      }
+
+      // Link the anonymous account with email/password
+      const { error: linkError } = await supabase.auth.updateUser({
+        email,
+        password,
+      });
+
+      if (linkError) throw linkError;
+
+      // Navigate back to profile on success
+      router.back();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleLinkWithGoogle = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      await promptAsync();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -27,8 +115,22 @@ export default function LinkAccountScreen() {
       </PinText>
       
       <PinText style={[styles.description, { color: theme.colors.text }]}>
-        Link your anonymous account to an email to keep your data and progress.
+        Link your anonymous account to keep your data and progress.
       </PinText>
+
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Link with Google"
+          onPress={handleLinkWithGoogle}
+          disabled={isLoading || !request}
+        />
+      </View>
+
+      <View style={styles.divider}>
+        <View style={[styles.dividerLine, { backgroundColor: theme.colors.border }]} />
+        <PinText style={[styles.dividerText, { color: theme.colors.text }]}>or</PinText>
+        <View style={[styles.dividerLine, { backgroundColor: theme.colors.border }]} />
+      </View>
 
       <TextInput
         style={[
@@ -45,6 +147,7 @@ export default function LinkAccountScreen() {
         onChangeText={setEmail}
         autoCapitalize="none"
         keyboardType="email-address"
+        editable={!isLoading}
       />
 
       <TextInput
@@ -61,6 +164,7 @@ export default function LinkAccountScreen() {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        editable={!isLoading}
       />
 
       {error && (
@@ -71,12 +175,14 @@ export default function LinkAccountScreen() {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="Link Account"
-          onPress={handleLinkAccount}
+          title="Link with Email"
+          onPress={handleLinkWithEmail}
+          disabled={isLoading}
         />
         <Button
           title="Cancel"
           onPress={() => router.back()}
+          disabled={isLoading}
         />
       </View>
     </View>
@@ -114,5 +220,18 @@ const styles = StyleSheet.create({
   error: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+  divider: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  dividerLine: {
+    flex: 1,
+    height: 1,
+  },
+  dividerText: {
+    marginHorizontal: 10,
+    opacity: 0.7,
   },
 }); 
