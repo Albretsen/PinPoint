@@ -1,4 +1,5 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useDeviceStore } from '@/src/store/deviceStore';
 import { useUserStore } from '@/src/store/userStore';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { useEffect } from 'react';
@@ -19,8 +20,17 @@ function useProtectedRoute(session: any) {
 export default function AuthLayout() {
   const { session } = useUserStore();
   const { theme } = useTheme();
+  const { hasLoggedInBefore } = useDeviceStore();
+  const router = useRouter();
 
   useProtectedRoute(session);
+
+  // Redirect to signup if user has never logged in before
+  useEffect(() => {
+    if (!hasLoggedInBefore) {
+      router.replace('/onboarding/username');
+    }
+  }, [hasLoggedInBefore, router]);
 
   return (
     <Stack
@@ -44,9 +54,24 @@ export default function AuthLayout() {
         }}
       />
       <Stack.Screen
-        name="signup"
+        name="onboarding/username"
         options={{
-          title: 'Sign Up',
+          title: 'Create Profile',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="onboarding/group"
+        options={{
+          title: 'Join or Create Group',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="onboarding/intro"
+        options={{
+          title: 'Welcome to PinPoint',
+          headerShown: false,
         }}
       />
     </Stack>

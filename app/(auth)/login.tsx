@@ -1,5 +1,6 @@
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useUserStore } from '@/src/store/userStore';
+import { DEBUG_MODE, clearZustandStorage } from '@/src/utils/debug';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -18,6 +19,15 @@ export default function LoginScreen() {
       await signIn(email, password);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
+    }
+  };
+
+  const handleClearStorage = async () => {
+    const success = await clearZustandStorage();
+    if (success) {
+      setError('Storage cleared successfully');
+    } else {
+      setError('Failed to clear storage');
     }
   };
 
@@ -68,6 +78,13 @@ export default function LoginScreen() {
           title="Need an account? Sign Up"
           onPress={() => router.replace('/signup')}
         />
+        {DEBUG_MODE && (
+          <Button
+            title="Clear Storage (Debug)"
+            onPress={handleClearStorage}
+            color="#FF3B30"
+          />
+        )}
       </View>
     </View>
   );
