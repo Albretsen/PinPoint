@@ -118,20 +118,6 @@ export default function LinkAccountScreen() {
         Link your anonymous account to keep your data and progress.
       </PinText>
 
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Link with Google"
-          onPress={handleLinkWithGoogle}
-          disabled={isLoading || !request}
-        />
-      </View>
-
-      <View style={styles.divider}>
-        <View style={[styles.dividerLine, { backgroundColor: theme.colors.border }]} />
-        <PinText style={[styles.dividerText, { color: theme.colors.text }]}>or</PinText>
-        <View style={[styles.dividerLine, { backgroundColor: theme.colors.border }]} />
-      </View>
-
       <TextInput
         style={[
           styles.input,
