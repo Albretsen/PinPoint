@@ -9,6 +9,9 @@ export type ThemeColors = {
   success: string;
   frameBorder: string;
   frameBackground: string;
+  inputBorder: string;
+  buttonFilledBackground: string;
+  buttonFilledText: string;
 };
 
 export type Theme = {
@@ -40,6 +43,9 @@ export const themes = {
       success: '#34C759',
       frameBorder: '#1A1A2E',
       frameBackground: '#F5F5F5',
+      inputBorder: '#1C1C1C',
+      buttonFilledBackground: '#000022',
+      buttonFilledText: '#FDFDFD',
     },
     fontFamily: 'Satoshi',
   },
@@ -56,6 +62,9 @@ export const themes = {
       success: '#32D74B',
       frameBorder: '#1A1A2E',
       frameBackground: '#1C1C1E',
+      inputBorder: '#1C1C1C',
+      buttonFilledBackground: '#222244',
+      buttonFilledText: '#FDFDFD',
     },
     fontFamily: 'Satoshi',
   },
@@ -72,6 +81,9 @@ export const themes = {
       success: '#2ED573',
       frameBorder: '#1A1A2E',
       frameBackground: '#FFF0F0',
+      inputBorder: '#1C1C1C',
+      buttonFilledBackground: '#FF6B6B',
+      buttonFilledText: '#FFFFFF',
     },
     fontFamily: 'Satoshi',
   },
@@ -88,6 +100,9 @@ export const themes = {
       success: '#28A745',
       frameBorder: '#1A1A2E',
       frameBackground: '#FFFFFF',
+      inputBorder: '#1C1C1C',
+      buttonFilledBackground: '#212529',
+      buttonFilledText: '#FDFDFD',
     },
     fontFamily: 'Satoshi',
   },
