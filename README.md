@@ -29,9 +29,10 @@ npm start
 1. Clone the repo
 2. Create `.env` in root:
    ```
-   EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
-   EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-   EXPO_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
+   EXPO_PUBLIC_DEBUG=true
+   EXPO_PUBLIC_SUPABASE_URL=supabase_url
+   EXPO_PUBLIC_SUPABASE_ANON_KEY=supabase_anon_key
+   EXPO_PUBLIC_GOOGLE_CLIENT_ID=google_client_id
    ```
 3. Run `npm install`
 4. Start with `npm start`
