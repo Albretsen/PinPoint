@@ -25,27 +25,35 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const systemColorScheme = useColorScheme();
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Initialize theme based on system preference if no theme is stored
+  // Set initial theme and status bar
   useEffect(() => {
-    if (!themeName) {
-      setTheme(systemColorScheme === 'dark' ? 'dark' : 'light');
+    const initialTheme = themeName || (systemColorScheme === 'dark' ? 'dark' : 'light');
+    setTheme(initialTheme);
+    
+    // Set initial status bar style
+    const isDarkTheme = initialTheme === 'dark';
+    StatusBar.setBarStyle(isDarkTheme ? 'light-content' : 'dark-content', true);
+    
+    // Android-specific status bar configuration
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor(isDarkTheme ? '#000000' : '#FFFFFF');
+      StatusBar.setTranslucent(false);
     }
+    
     setIsInitialized(true);
   }, []); // Empty dependency array since we only want this to run once on mount
 
   const theme = themes[themeName || 'light'];
 
-  // Update status bar style based on theme
+  // Update status bar style when theme changes
   useEffect(() => {
     if (!isInitialized) return;
 
     const isDarkTheme = themeName === 'dark';
-    StatusBar.setBarStyle(isDarkTheme ? 'light-content' : 'dark-content');
+    StatusBar.setBarStyle(isDarkTheme ? 'light-content' : 'dark-content', true);
     
-    // Android-specific status bar configuration
     if (Platform.OS === 'android') {
-      StatusBar.setBackgroundColor('transparent');
-      StatusBar.setTranslucent(true);
+      StatusBar.setBackgroundColor(isDarkTheme ? '#000000' : '#FFFFFF');
     }
   }, [themeName, isInitialized]);
 

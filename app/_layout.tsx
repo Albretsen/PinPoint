@@ -4,7 +4,6 @@ import { AuthProvider } from '@/src/context/AuthProvider';
 import { ThemeProvider } from '@/src/context/ThemeProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import { Platform } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { enableScreens } from 'react-native-screens';
@@ -30,7 +29,6 @@ export default function RootLayout() {
           <ThemeProvider>
             <AuthProvider>
               <PinToastProvider>
-                <StatusBar style="auto" />
                 <Stack
                   screenOptions={{
                     headerShown: false,
