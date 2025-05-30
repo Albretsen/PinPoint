@@ -14,10 +14,23 @@ export type ThemeColors = {
   buttonFilledText: string;
 };
 
+export type ThemeSpacing = {
+  spacing2: number;
+  spacing4: number;
+  spacing8: number;
+  spacing12: number;
+  spacing16: number;
+  spacing24: number;
+  spacing32: number;
+  spacing40: number;
+  spacing48: number;
+};
+
 export type Theme = {
   name: string;
   colors: ThemeColors;
   fontFamily: string;
+  spacing: ThemeSpacing;
 };
 
 export type ThemeName = 'light' | 'dark' | 'fun' | 'professional';
@@ -48,6 +61,17 @@ export const themes = {
       buttonFilledText: '#FDFDFD',
     },
     fontFamily: 'Satoshi',
+    spacing: {
+      spacing2: 2,
+      spacing4: 4,
+      spacing8: 8,
+      spacing12: 12,
+      spacing16: 16,
+      spacing24: 24,
+      spacing32: 32,
+      spacing40: 40,
+      spacing48: 48,
+    },
   },
   dark: {
     name: 'Dark',
@@ -67,6 +91,17 @@ export const themes = {
       buttonFilledText: '#FDFDFD',
     },
     fontFamily: 'Satoshi',
+    spacing: {
+      spacing2: 2,
+      spacing4: 4,
+      spacing8: 8,
+      spacing12: 12,
+      spacing16: 16,
+      spacing24: 24,
+      spacing32: 32,
+      spacing40: 40,
+      spacing48: 48,
+    },
   },
   fun: {
     name: 'Fun',
@@ -86,6 +121,17 @@ export const themes = {
       buttonFilledText: '#FFFFFF',
     },
     fontFamily: 'Satoshi',
+    spacing: {
+      spacing2: 2,
+      spacing4: 4,
+      spacing8: 8,
+      spacing12: 12,
+      spacing16: 16,
+      spacing24: 24,
+      spacing32: 32,
+      spacing40: 40,
+      spacing48: 48,
+    },
   },
   professional: {
     name: 'Professional',
@@ -105,5 +151,16 @@ export const themes = {
       buttonFilledText: '#FDFDFD',
     },
     fontFamily: 'Satoshi',
+    spacing: {
+      spacing2: 2,
+      spacing4: 4,
+      spacing8: 8,
+      spacing12: 12,
+      spacing16: 16,
+      spacing24: 24,
+      spacing32: 32,
+      spacing40: 40,
+      spacing48: 48,
+    },
   },
 } as const; 

@@ -41,13 +41,13 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>  
+    <View style={[styles.container, { backgroundColor: theme.colors.background, padding: theme.spacing.spacing24 }]}>  
       <View style={styles.titleContainer}>
-        <Text style={[styles.title, { color: theme.colors.text }]}>PinPoint</Text>
+        <Text style={[styles.title, { color: theme.colors.text, marginBottom: theme.spacing.spacing32 }]}>PinPoint</Text>
       </View>
       <View style={styles.formContainer}>
         <View style={styles.formInner}>
-          <View style={styles.inputsContainer}>
+          <View style={[styles.inputsContainer, { marginBottom: theme.spacing.spacing24 }] }>
             <PinTextInput
               label={t('auth.email')}
               placeholder={t('auth.email')}
@@ -63,15 +63,15 @@ export default function LoginScreen() {
               onChangeText={setPassword}
               secureTextEntry
             />
-            <TouchableOpacity onPress={() => {}} style={styles.forgotPasswordButton}>
-              <Text style={[styles.forgotPasswordText, { color: theme.colors.text }]}>Forgot password?</Text>
+            <TouchableOpacity onPress={() => {}} style={[styles.forgotPasswordButton] }>
+              <PinText style={[styles.forgotPasswordText, { color: theme.colors.text }]}>Forgot password?</PinText>
             </TouchableOpacity>
             {error && (
-              <Text style={[styles.error, { color: theme.colors.error }]}>{error}</Text>
+              <PinText style={[styles.error, { color: theme.colors.error, marginBottom: theme.spacing.spacing8 }]}>{error}</PinText>
             )}
           </View>
-          <View style={styles.buttonContainer}>
-            <View style={styles.signInGroup}>
+          <View style={[styles.buttonContainer, { gap: theme.spacing.spacing16 }] }>
+            <View style={[styles.signInGroup, { gap: theme.spacing.spacing8 }] }>
               <PinButton
                 onPress={handleSignIn}
                 loading={loading}
@@ -79,17 +79,13 @@ export default function LoginScreen() {
               >
                 {t('auth.signIn')}
               </PinButton>
-              <View style={styles.signupRow}>
+              <View style={[styles.signupRow] }>
                 <PinText style={[styles.signupText, { color: theme.colors.text }]}>No account? </PinText>
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity onPress={() => router.replace('/signup')}>
                   <PinText style={[styles.signupLink, { color: theme.colors.text }]}>Sign up</PinText>
                 </TouchableOpacity>
               </View>
             </View>
-            <Button
-              title={t('auth.needAccount')}
-              onPress={() => router.replace('/signup')}
-            />
             {DEBUG_MODE && (
               <Button
                 title={t('auth.clearStorage')}
@@ -108,7 +104,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    padding: 20,
   },
   titleContainer: {
     flex: 0.7,
@@ -127,7 +122,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   inputsContainer: {
-    marginBottom: 24,
   },
   forgotPasswordButton: {
     alignSelf: 'flex-end',
@@ -136,23 +130,22 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   buttonContainer: {
-    gap: 10,
   },
   signInGroup: {
-    gap: 8,
   },
   signupRow: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   signupText: {
+    fontSize: 14,
   },
   signupLink: {
+    fontSize: 14,
     textDecorationLine: 'underline',
     fontWeight: '500',
   },
   error: {
-    marginBottom: 15,
     textAlign: 'center',
   },
 }); 

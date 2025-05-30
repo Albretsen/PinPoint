@@ -22,15 +22,18 @@ export default function AuthLayout() {
   const { theme } = useTheme();
   const { hasLoggedInBefore } = useDeviceStore();
   const router = useRouter();
+  const segments = useSegments();
 
   useProtectedRoute(session);
 
-  // Redirect to signup if user has never logged in before
+  // Redirect to onboarding if user has never logged in before, but allow onboarding and signup routes
   useEffect(() => {
-    if (!hasLoggedInBefore) {
+    const inOnboarding = segments.includes('onboarding');
+    const inSignup = segments.includes('signup');
+    if (!hasLoggedInBefore && !inOnboarding && !inSignup) {
       router.replace('/onboarding/username');
     }
-  }, [hasLoggedInBefore, router]);
+  }, [hasLoggedInBefore, router, segments]);
 
   return (
     <Stack
