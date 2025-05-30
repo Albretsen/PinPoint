@@ -1,107 +1,57 @@
-# PinPoint
+# PinPoint 📍
+
+[![Expo](https://img.shields.io/badge/Expo-000000?style=flat&logo=expo&logoColor=white)](https://expo.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React Native](https://img.shields.io/badge/React_Native-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactnative.dev)
 
 A location-based game where you and your friends compete to guess each other's locations.
 
-## Features
+## Quick Start
 
-- Take photos at your current location
-- Share them with your group
-- Others try to guess where you are
-- Points are awarded based on accuracy
-- Support for multiple languages (English, Norwegian)
-- Dark/Light theme support
+```bash
+# Install dependencies
+npm install
 
-## Tech Stack
+# Start the development server
+npm start
+```
 
-- React Native with Expo
-- TypeScript
-- Supabase for backend
-- Zustand for state management
-- React Query for data fetching
-- i18n for internationalization
+## 🛠 Tech Stack
 
-## Prerequisites
+- **Frontend**: React Native (Expo)
+- **Backend**: Supabase
+- **State**: Zustand + React Query
+- **Languages**: TypeScript
+- **i18n**: Built-in localization
 
-- Node.js (v18 or later)
-- npm or yarn
-- Expo CLI
-- iOS Simulator (for Mac) or Android Emulator
-- Supabase account
+## 🔧 Setup
 
-## Environment Setup
-
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file in the root directory with the following variables:
+1. Clone the repo
+2. Create `.env` in root:
    ```
    EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
    EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
    EXPO_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
    ```
+3. Run `npm install`
+4. Start with `npm start`
 
-## Development
-
-1. Start the development server:
-   ```bash
-   npm start
-   ```
-2. Press 'i' for iOS simulator or 'a' for Android emulator
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-app/
-  ├── (auth)/           # Authentication related screens
-  ├── (protected)/      # Protected screens requiring authentication
-  └── _layout.tsx       # Root layout
+app/                  # App screens and navigation
+├── (auth)/          # Authentication screens
+├── (protected)/     # Protected screens
+└── _layout.tsx      # Root layout
 src/
-  ├── components/       # Reusable components
-  ├── context/         # React Context providers
-  ├── i18n/            # Internationalization
-  ├── lib/             # Third-party library configurations
-  ├── store/           # Zustand stores
-  ├── types/           # TypeScript type definitions
-  └── utils/           # Utility functions
+├── components/      # Shared components
+├── lib/            # Configurations
+├── store/          # State management
+└── utils/          # Helpers
 ```
 
-## Contributing
+## 🤝 Contributing
 
-We use a branch-based workflow:
-
-- `master`: latest **production release**
-- `develop`: latest **development build**
-- `feat/xx/feature-name`: feature branches (from `develop`, merged back into `develop`)  
-   > Replace `xx` with your initials
-- `rc/x.y.z`: release candidate branches (cut from `develop`, merged into `master` on release)
-
-### To contribute:
-
-1. Create a branch from `develop` using the format:  
-   `feat/xx/short-feature-name`
-2. Make your changes and commit regularly
-3. Open a pull request into `develop`
-4. Follow code style and naming conventions
-
-## Code Style
-
-- Use TypeScript for type safety
-- Follow the existing file structure
-- Use the provided components (PinText, Card, etc.)
-- Follow the established naming conventions
-- Use the translation system for all text
-- Use the theme system for colors and styling
-
-## Testing
-
-```bash
-npm test
-```
-
-## Building for Production
-
-```bash
-npm run build
-```
+1. Branch from `develop`: `feat/xx/feature-name`
+2. Make changes
+3. PR to `develop`

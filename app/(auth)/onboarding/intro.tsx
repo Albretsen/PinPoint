@@ -29,9 +29,6 @@ export default function IntroScreen() {
         },
       }});
 
-      console.log("data", data);
-      console.log("signInError", signInError);
-      
       if (signInError) {
         throw signInError;
       }
