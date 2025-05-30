@@ -9,7 +9,7 @@ export default function UsernameScreen() {
   const { theme } = useTheme();
   const router = useRouter();
   const { setUsername } = useOnboardingStore();
-  const [usernameInput, setUsernameInput] = useState('Test'); // DO NOT CHANGE
+  const [usernameInput, setUsernameInput] = useState(''); // DO NOT CHANGE
   const [error, setError] = useState<string | null>(null);
   const { t } = useTranslation();
 
@@ -38,9 +38,6 @@ export default function UsernameScreen() {
           source={{ uri: avatarUrl }}
           style={styles.avatar}
         />
-        <Text style={[styles.avatarText, { color: theme.colors.text }]}>
-          {t('auth.avatarGenerated')}
-        </Text>
       </View>
 
       <TextInput
