@@ -18,6 +18,15 @@ export const translations = {
       clearStorage: 'Clear Storage (Debug)',
       storageCleared: 'Storage cleared successfully',
       storageClearFailed: 'Failed to clear storage',
+      required: 'is required',
+      supabase: {
+        invalidCredentials: 'Invalid email or password',
+        emailNotConfirmed: 'Please confirm your email before signing in',
+        userNotFound: 'User not found',
+        emailAlreadyRegistered: 'Email is already registered',
+        networkError: 'Network error. Please try again.',
+        unknown: 'An unknown error occurred',
+      },
     },
 
     // Home
@@ -114,6 +123,15 @@ export const translations = {
       clearStorage: 'Tøm lagring (Debug)',
       storageCleared: 'Lagring tømt',
       storageClearFailed: 'Kunne ikke tømme lagring',
+      required: 'er påkrevd',
+      supabase: {
+        invalidCredentials: 'Ugyldig e-post eller passord',
+        emailNotConfirmed: 'Vennligst bekreft e-posten din før du logger inn',
+        userNotFound: 'Bruker ikke funnet',
+        emailAlreadyRegistered: 'E-post er allerede registrert',
+        networkError: 'Nettverksfeil. Prøv igjen.',
+        unknown: 'En ukjent feil oppstod',
+      },
     },
 
     // Home

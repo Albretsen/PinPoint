@@ -1,4 +1,5 @@
 import { ErrorBoundary } from '@/src/components/ErrorBoundary';
+import { PinToastProvider } from '@/src/components/PinToast';
 import { AuthProvider } from '@/src/context/AuthProvider';
 import { ThemeProvider } from '@/src/context/ThemeProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -28,31 +29,33 @@ export default function RootLayout() {
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>
             <AuthProvider>
-              <StatusBar style="auto" />
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                  animation: Platform.select({
-                    ios: 'default',
-                    android: 'fade',
-                  }),
-                  animationDuration: 200,
-                  presentation: 'card',
-                }}
-              >
-                <Stack.Screen
-                  name="(auth)"
-                  options={{
-                    animation: 'slide_from_left',
+              <PinToastProvider>
+                <StatusBar style="auto" />
+                <Stack
+                  screenOptions={{
+                    headerShown: false,
+                    animation: Platform.select({
+                      ios: 'default',
+                      android: 'fade',
+                    }),
+                    animationDuration: 200,
+                    presentation: 'card',
                   }}
-                />
-                <Stack.Screen
-                  name="(protected)"
-                  options={{
-                    animation: 'slide_from_right',
-                  }}
-                />
-              </Stack>
+                >
+                  <Stack.Screen
+                    name="(auth)"
+                    options={{
+                      animation: 'slide_from_left',
+                    }}
+                  />
+                  <Stack.Screen
+                    name="(protected)"
+                    options={{
+                      animation: 'slide_from_right',
+                    }}
+                  />
+                </Stack>
+              </PinToastProvider>
             </AuthProvider>
           </ThemeProvider>
         </QueryClientProvider>

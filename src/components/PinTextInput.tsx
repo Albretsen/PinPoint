@@ -5,9 +5,10 @@ import PinText from './PinText';
 
 interface PinTextInputProps extends TextInputProps {
   label: string;
+  error?: string;
 }
 
-export function PinTextInput({ label, style, ...props }: PinTextInputProps) {
+export function PinTextInput({ label, style, error, ...props }: PinTextInputProps) {
   const { theme } = useTheme();
 
   return (
@@ -20,7 +21,7 @@ export function PinTextInput({ label, style, ...props }: PinTextInputProps) {
           styles.input,
           {
             color: theme.colors.text,
-            borderColor: theme.colors.inputBorder,
+            borderColor: error ? theme.colors.error : theme.colors.inputBorder,
             fontFamily: 'Satoshi',
           },
           style,
@@ -28,6 +29,9 @@ export function PinTextInput({ label, style, ...props }: PinTextInputProps) {
         placeholderTextColor={theme.colors.text + '80'}
         {...props}
       />
+      {error && (
+        <PinText style={[styles.error, { color: theme.colors.error }]}>{error}</PinText>
+      )}
     </View>
   );
 }
@@ -46,5 +50,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 2,
     paddingHorizontal: 15,
+  },
+  error: {
+    marginTop: 4,
+    fontSize: 13,
   },
 }); 

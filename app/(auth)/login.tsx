@@ -1,6 +1,7 @@
 import { PinButton } from '@/src/components/PinButton';
 import PinText from '@/src/components/PinText';
 import { PinTextInput } from '@/src/components/PinTextInput';
+import { usePinToast } from '@/src/components/PinToast';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
 import { useUserStore } from '@/src/store/userStore';
@@ -9,23 +10,55 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+function getSupabaseErrorKey(message: string) {
+  if (!message) return 'auth.supabase.unknown';
+  const msg = message.toLowerCase();
+  if (msg.includes('invalid login credentials') || msg.includes('invalid email or password')) return 'auth.supabase.invalidCredentials';
+  if (msg.includes('email not confirmed')) return 'auth.supabase.emailNotConfirmed';
+  if (msg.includes('user not found')) return 'auth.supabase.userNotFound';
+  if (msg.includes('already registered')) return 'auth.supabase.emailAlreadyRegistered';
+  if (msg.includes('network')) return 'auth.supabase.networkError';
+  return 'auth.supabase.unknown';
+}
+
 export default function LoginScreen() {
   const { theme } = useTheme();
   const { signIn } = useUserStore();
   const router = useRouter();
-  const [email, setEmail] = useState(''); // DO NOT CHANGE
-  const [password, setPassword] = useState(''); // DO NOT CHANGE
+  const { showToast } = usePinToast();
+  const [email, setEmail] = useState('test@email.com'); // DO NOT CHANGE
+  const [password, setPassword] = useState('Test123'); // DO NOT CHANGE
   const [error, setError] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
 
   const handleSignIn = async () => {
+    setError(null);
+    setEmailError(null);
+    setPasswordError(null);
+    let hasError = false;
+    if (!email.trim()) {
+      setEmailError(t('auth.email') + ' ' + t('auth.required'));
+      hasError = true;
+    }
+    if (!password.trim()) {
+      setPasswordError(t('auth.password') + ' ' + t('auth.required'));
+      hasError = true;
+    }
+    if (hasError) return;
     try {
-      setError(null);
       setLoading(true);
       await signIn(email, password);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      let msg = t('error.unknownError');
+      if (err instanceof Error) {
+        const key = getSupabaseErrorKey(err.message);
+        msg = t(key);
+      }
+      setError(msg);
+      showToast(msg);
     } finally {
       setLoading(false);
     }
@@ -35,8 +68,10 @@ export default function LoginScreen() {
     const success = await clearZustandStorage();
     if (success) {
       setError(t('auth.storageCleared'));
+      showToast(t('auth.storageCleared'));
     } else {
       setError(t('auth.storageClearFailed'));
+      showToast(t('auth.storageClearFailed'));
     }
   };
 
@@ -52,23 +87,28 @@ export default function LoginScreen() {
               label={t('auth.email')}
               placeholder={t('auth.email')}
               value={email}
-              onChangeText={setEmail}
+              onChangeText={text => {
+                setEmailError(null);
+                setEmail(text);
+              }}
               autoCapitalize="none"
               keyboardType="email-address"
+              error={emailError || undefined}
             />
             <PinTextInput
               label={t('auth.password')}
               placeholder={t('auth.password')}
               value={password}
-              onChangeText={setPassword}
+              onChangeText={text => {
+                setPasswordError(null);
+                setPassword(text);
+              }}
               secureTextEntry
+              error={passwordError || undefined}
             />
             <TouchableOpacity onPress={() => {}} style={[styles.forgotPasswordButton] }>
               <PinText style={[styles.forgotPasswordText, { color: theme.colors.text }]}>Forgot password?</PinText>
             </TouchableOpacity>
-            {error && (
-              <PinText style={[styles.error, { color: theme.colors.error, marginBottom: theme.spacing.spacing8 }]}>{error}</PinText>
-            )}
           </View>
           <View style={[styles.buttonContainer, { gap: theme.spacing.spacing16 }] }>
             <View style={[styles.signInGroup, { gap: theme.spacing.spacing8 }] }>
