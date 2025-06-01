@@ -29,6 +29,12 @@ export const translations = {
       },
     },
 
+    // Groups
+    groups: {
+      myGroups: 'My Groups',
+      discoverPublicGroups: 'Discover Public Groups',
+    },
+
     // Home
     home: {
       noGroups: 'You haven\'t joined any groups yet',
@@ -132,6 +138,12 @@ export const translations = {
         networkError: 'Nettverksfeil. Prøv igjen.',
         unknown: 'En ukjent feil oppstod',
       },
+    },
+
+    // Groups
+    groups: {
+      myGroups: 'Mine grupper',
+      discoverPublicGroups: 'Oppdag offentlige grupper',
     },
 
     // Home
