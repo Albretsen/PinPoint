@@ -12,6 +12,7 @@ export type ThemeColors = {
   inputBorder: string;
   buttonFilledBackground: string;
   buttonFilledText: string;
+  skeleton: string;
 };
 
 export type ThemeSpacing = {
@@ -59,6 +60,7 @@ export const themes = {
       inputBorder: '#1C1C1C',
       buttonFilledBackground: '#000022',
       buttonFilledText: '#FDFDFD',
+      skeleton: '#E5E5EA',
     },
     fontFamily: 'Satoshi',
     spacing: {
@@ -89,6 +91,7 @@ export const themes = {
       inputBorder: '#1C1C1C',
       buttonFilledBackground: '#222244',
       buttonFilledText: '#FDFDFD',
+      skeleton: '#38383A',
     },
     fontFamily: 'Satoshi',
     spacing: {
@@ -119,6 +122,7 @@ export const themes = {
       inputBorder: '#1C1C1C',
       buttonFilledBackground: '#FF6B6B',
       buttonFilledText: '#FFFFFF',
+      skeleton: '#FFB8B8',
     },
     fontFamily: 'Satoshi',
     spacing: {
@@ -149,6 +153,7 @@ export const themes = {
       inputBorder: '#1C1C1C',
       buttonFilledBackground: '#212529',
       buttonFilledText: '#FDFDFD',
+      skeleton: '#DEE2E6',
     },
     fontFamily: 'Satoshi',
     spacing: {

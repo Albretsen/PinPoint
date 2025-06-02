@@ -109,6 +109,14 @@ export const translations = {
       unauthorized: 'Unauthorized',
       forbidden: 'Forbidden',
     },
+
+    list: {
+      error: {
+        title: 'Something went wrong',
+        retry: 'Try Again',
+        empty: 'No items found',
+      },
+    },
   },
   no: {
     // Auth
@@ -219,6 +227,14 @@ export const translations = {
       notFound: 'Ikke funnet',
       unauthorized: 'Ikke autorisert',
       forbidden: 'Forbudt',
+    },
+
+    list: {
+      error: {
+        title: 'Noe gikk galt',
+        retry: 'Prøv igjen',
+        empty: 'Ingen elementer funnet',
+      },
     },
   },
 } as const;

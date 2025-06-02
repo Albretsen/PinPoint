@@ -1,4 +1,5 @@
 import Card from '@/src/components/Card';
+import PinList from '@/src/components/PinList';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
@@ -6,7 +7,7 @@ import { useUserStore } from '@/src/store/userStore';
 import { Group, GroupMember } from '@/src/types/group';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 async function fetchGroups(userId: string): Promise<Group[]> {
   const { data, error } = await supabase
@@ -65,7 +66,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const { t } = useTranslation();
 
-  const { data: groups, isLoading, error } = useQuery({
+  const { data: groups, isLoading, error, refetch } = useQuery({
     queryKey: ['groups', session?.user?.id],
     queryFn: () => fetchGroups(session!.user!.id),
     enabled: !!session?.user?.id,
@@ -78,50 +79,41 @@ export default function HomeScreen() {
     });
   };
 
-  if (isLoading) {
-    return (
-      <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-        <ActivityIndicator size="large" color={theme.colors.primary} />
-      </View>
-    );
-  }
+  const handleRefresh = async () => {
+    const result = await refetch();
+    return result.data || [];
+  };
 
-  if (error) {
-    return (
-      <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-        <Text style={[styles.error, { color: theme.colors.error }]}>
-          {error instanceof Error ? error.message : t('home.failedToFetchGroups')}
-        </Text>
-      </View>
-    );
-  }
+  const renderGroup = (group: Group) => (
+    <Card
+      key={group.id}
+      image={group.current_challenge?.image?.image_url 
+        ? { uri: group.current_challenge.image.image_url }
+        : { uri: "" }
+      }
+      header={group.name}
+      subheading={group.description}
+      buttonLabel={t('home.guessLocation')}
+      onButtonPress={() => {}}
+      onPress={() => {
+        if (group.current_challenge?.image?.image_url) {
+          handleCardPress(group.current_challenge.image.image_url);
+        }
+      }}
+    />
+  );
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      {!groups || groups.length === 0 ? (
-        <Text style={[styles.emptyText, { color: theme.colors.text }]}>
-          {t('home.noGroups')}
-        </Text>
-      ) : (
-        groups.map((group) => (
-          <Card
-            key={group.id}
-            image={group.current_challenge?.image?.image_url 
-              ? { uri: group.current_challenge.image.image_url }
-              : { uri: "" }
-            }
-            header={group.name}
-            subheading={group.description}
-            buttonLabel={t('home.guessLocation')}
-            onButtonPress={() => {}}
-            onPress={() => {
-              if (group.current_challenge?.image?.image_url) {
-                handleCardPress(group.current_challenge.image.image_url);
-              }
-            }}
-          />
-        ))
-      )}
+      <PinList
+        data={groups || []}
+        renderItem={renderGroup}
+        fetchData={handleRefresh}
+        isLoading={isLoading}
+        error={error as Error}
+        emptyMessage={t('home.noGroups')}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 }
@@ -129,19 +121,5 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-  },
-  error: {
-    textAlign: 'center',
-    marginTop: 20,
-  },
-  emptyText: {
-    textAlign: 'center',
-    marginTop: 20,
-    opacity: 0.7,
   },
 }); 
