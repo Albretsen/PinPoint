@@ -33,6 +33,8 @@ export const translations = {
     groups: {
       myGroups: 'My Groups',
       discoverPublicGroups: 'Discover Public Groups',
+      member: 'member',
+      members: 'members',
     },
 
     // Home
@@ -152,6 +154,8 @@ export const translations = {
     groups: {
       myGroups: 'Mine grupper',
       discoverPublicGroups: 'Oppdag offentlige grupper',
+      member: 'medlem',
+      members: 'medlemmer',
     },
 
     // Home

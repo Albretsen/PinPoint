@@ -25,6 +25,8 @@ export type Group = {
   description: string;
   is_admin: boolean;
   joined_at: string;
+  cover_image?: string;
+  member_count?: number;
   current_challenge?: {
     id: string;
     challenge_date: string;
@@ -47,6 +49,7 @@ export type GroupMember = {
     daily_challenge_time: string;
     is_archived: boolean;
     description: string;
+    cover_image?: string;
     group_challenges: GroupChallenge[];
   };
 }; 

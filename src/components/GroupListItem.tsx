@@ -1,6 +1,8 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { Ionicons } from '@expo/vector-icons';
-import { Image, StyleSheet, View } from 'react-native';
+import React from 'react';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import PinText from './PinText';
 
 type GroupStatus = 'public' | 'private' | 'trending';
@@ -11,10 +13,12 @@ interface GroupListItemProps {
   status: GroupStatus;
   lastActivity?: string;
   imageUrl?: string;
+  onPress?: () => void;
 }
 
-export function GroupListItem({ name, memberCount, status, lastActivity, imageUrl }: GroupListItemProps) {
+export function GroupListItem({ name, memberCount, status, lastActivity, imageUrl, onPress }: GroupListItemProps) {
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   const getStatusIcon = () => {
     switch (status) {
@@ -38,8 +42,12 @@ export function GroupListItem({ name, memberCount, status, lastActivity, imageUr
     }
   };
 
-  return (
-    <View style={[styles.container, { backgroundColor: theme.colors.card }]}>
+  const getMemberText = (count: number) => {
+    return count === 1 ? t('groups.member') : t('groups.members');
+  };
+
+  const content = (
+    <>
       {/* Left side - Image or Placeholder */}
       <View style={[styles.imageContainer, { backgroundColor: theme.colors.border }]}>
         {imageUrl ? (
@@ -60,7 +68,7 @@ export function GroupListItem({ name, memberCount, status, lastActivity, imageUr
         <View style={styles.statusRow}>
           <Ionicons name={getStatusIcon()} size={16} color={getStatusColor()} />
           <PinText style={[styles.memberCount, { color: theme.colors.text }]}>
-            {memberCount} members
+            {memberCount} {getMemberText(memberCount)}
           </PinText>
         </View>
 
@@ -71,6 +79,23 @@ export function GroupListItem({ name, memberCount, status, lastActivity, imageUr
           </PinText>
         )}
       </View>
+    </>
+  );
+
+  if (onPress) {
+    return (
+      <TouchableOpacity
+        style={[styles.container, { backgroundColor: theme.colors.card }]}
+        onPress={onPress}
+      >
+        {content}
+      </TouchableOpacity>
+    );
+  }
+
+  return (
+    <View style={[styles.container, { backgroundColor: theme.colors.card }]}>
+      {content}
     </View>
   );
 }

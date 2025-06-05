@@ -7,7 +7,7 @@ import { useUserStore } from '@/src/store/userStore';
 import { Group, GroupMember } from '@/src/types/group';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { ImageSourcePropType, StyleSheet, View } from 'react-native';
 
 async function fetchGroups(userId: string): Promise<Group[]> {
   const { data, error } = await supabase
@@ -25,6 +25,7 @@ async function fetchGroups(userId: string): Promise<Group[]> {
         daily_challenge_time,
         is_archived,
         description,
+        cover_image,
         group_challenges (
           id,
           challenge_date,
@@ -84,24 +85,31 @@ export default function HomeScreen() {
     return result.data || [];
   };
 
-  const renderGroup = (group: Group) => (
-    <Card
-      key={group.id}
-      image={group.current_challenge?.image?.image_url 
-        ? { uri: group.current_challenge.image.image_url }
-        : { uri: "" }
-      }
-      header={group.name}
-      subheading={group.description}
-      buttonLabel={t('home.guessLocation')}
-      onButtonPress={() => {}}
-      onPress={() => {
-        if (group.current_challenge?.image?.image_url) {
-          handleCardPress(group.current_challenge.image.image_url);
-        }
-      }}
-    />
-  );
+  const renderGroup = (group: Group) => {
+    // Determine the image source
+    let imageSource: ImageSourcePropType | undefined;
+    if (group.current_challenge?.image?.image_url) {
+      imageSource = { uri: group.current_challenge.image.image_url };
+    } else if (group.cover_image) {
+      imageSource = { uri: group.cover_image };
+    }
+
+    return (
+      <Card
+        key={group.id}
+        image={imageSource}
+        header={group.name}
+        subheading={group.description}
+        buttonLabel={t('home.guessLocation')}
+        onButtonPress={() => {}}
+        onPress={() => {
+          if (group.current_challenge?.image?.image_url) {
+            handleCardPress(group.current_challenge.image.image_url);
+          }
+        }}
+      />
+    );
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>

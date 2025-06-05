@@ -1,11 +1,12 @@
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Image, ImageSourcePropType, StyleSheet, TouchableOpacity, View } from 'react-native';
 import PinText from './PinText';
 
 interface CardProps {
-  image: ImageSourcePropType;
+  image?: ImageSourcePropType;
   header: string;
   subheading: string;
   buttonLabel?: string;
@@ -30,7 +31,13 @@ export const Card: React.FC<CardProps> = ({
       onPress={onPress}
     > 
       <View style={styles.imageContainer}>
-        <Image source={image} style={styles.image} resizeMode="cover" />
+        {image ? (
+          <Image source={image} style={styles.image} resizeMode="cover" />
+        ) : (
+          <View style={[styles.placeholderContainer, { backgroundColor: theme.colors.border }]}>
+            <Ionicons name="image-outline" size={40} color={theme.colors.text} />
+          </View>
+        )}
         {buttonLabel && onButtonPress && (
           <TouchableOpacity
             style={[
@@ -76,6 +83,12 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
+  },
+  placeholderContainer: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonOverlay: {
     position: 'absolute',

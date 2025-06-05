@@ -7,6 +7,7 @@ import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
 import { Group, GroupMember } from '@/src/types/group';
 import { useQuery } from '@tanstack/react-query';
+import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
 async function fetchGroups(userId: string): Promise<Group[]> {
@@ -31,22 +32,57 @@ async function fetchGroups(userId: string): Promise<Group[]> {
 
   if (error) throw error;
 
+  // Get member counts for all groups
+  const groups = (data as unknown as GroupMember[]).map(member => member.groups);
+  const groupIds = groups.map(group => group.id);
+
+  const memberCounts = await Promise.all(
+    groupIds.map(async (groupId) => {
+      const { count, error: countError } = await supabase
+        .from('group_members')
+        .select('*', { count: 'exact', head: true })
+        .eq('group_id', groupId);
+
+      if (countError) throw countError;
+      return { group_id: groupId, count: count || 0 };
+    })
+  );
+
   return (data as unknown as GroupMember[]).map(member => ({
     ...member.groups,
     is_admin: member.is_admin,
     joined_at: member.joined_at,
+    member_count: memberCounts.find(count => count.group_id === member.groups.id)?.count || 0,
   }));
 }
 
 async function fetchPublicGroups(): Promise<Group[]> {
-  const { data, error } = await supabase
+  const { data: groups, error } = await supabase
     .from('groups')
     .select('*')
     .eq('is_public', true)
     .order('created_at', { ascending: false });
 
   if (error) throw error;
-  return data;
+
+  // Get member counts for all public groups
+  const groupIds = groups.map(group => group.id);
+  const memberCounts = await Promise.all(
+    groupIds.map(async (groupId) => {
+      const { count, error: countError } = await supabase
+        .from('group_members')
+        .select('*', { count: 'exact', head: true })
+        .eq('group_id', groupId);
+
+      if (countError) throw countError;
+      return { group_id: groupId, count: count || 0 };
+    })
+  );
+
+  return groups.map(group => ({
+    ...group,
+    member_count: memberCounts.find(count => count.group_id === group.id)?.count || 0,
+  }));
 }
 
 export default function GroupsScreen() {
@@ -79,9 +115,10 @@ export default function GroupsScreen() {
     <GroupListItem
       key={group.id}
       name={group.name}
-      memberCount={0} // TODO: Add member count to the group type and fetch
+      memberCount={group.member_count || 0}
       status={group.is_public ? 'public' : 'private'}
       imageUrl={undefined}
+      onPress={() => router.push(`/group/${group.id}`)}
     />
   );
 
