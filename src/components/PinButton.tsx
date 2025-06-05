@@ -3,7 +3,7 @@ import React from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View, ViewStyle } from 'react-native';
 import PinText from './PinText';
 
-export type PinButtonVariant = 'filled' | 'outlined';
+export type PinButtonVariant = 'primary' | 'secondary' | 'outline' | 'pill';
 
 interface PinButtonProps {
   children: React.ReactNode;
@@ -14,27 +14,63 @@ interface PinButtonProps {
   style?: ViewStyle;
 }
 
-export const PinButton: React.FC<PinButtonProps> = ({
-  children,
-  onPress,
-  variant = 'filled',
+export function PinButton({ 
+  children, 
+  onPress, 
+  variant = 'primary', 
   loading = false,
   disabled = false,
-  style,
-}) => {
+  style 
+}: PinButtonProps) {
   const { theme } = useTheme();
-  const isFilled = variant === 'filled';
 
-  const backgroundColor = isFilled
-    ? theme.colors.buttonFilledBackground
-    : 'transparent';
-  const textColor = isFilled
-    ? theme.colors.buttonFilledText
-    : theme.colors.text;
-  const borderColor = isFilled
-    ? theme.colors.buttonFilledBackground
-    : theme.colors.text;
-  const borderWidth = isFilled ? 0 : 2;
+  const getButtonStyle = () => {
+    switch (variant) {
+      case 'primary':
+        return {
+          backgroundColor: theme.colors.buttonFilledBackground,
+          borderColor: theme.colors.buttonFilledBackground,
+        };
+      case 'secondary':
+        return {
+          backgroundColor: theme.colors.secondary,
+          borderColor: theme.colors.secondary,
+        };
+      case 'outline':
+        return {
+          backgroundColor: 'transparent',
+          borderColor: theme.colors.text,
+        };
+      case 'pill':
+        return {
+          backgroundColor: theme.colors.primary,
+          borderColor: theme.colors.primary,
+          borderRadius: 16,
+          paddingHorizontal: 12,
+          paddingVertical: 4,
+        };
+      default:
+        return {};
+    }
+  };
+
+  const getTextStyle = () => {
+    switch (variant) {
+      case 'primary':
+      case 'secondary':
+      case 'pill':
+        return {
+          color: theme.colors.buttonFilledText,
+          fontSize: 14,
+        };
+      case 'outline':
+        return {
+          color: theme.colors.text,
+        };
+      default:
+        return {};
+    }
+  };
 
   return (
     <Pressable
@@ -42,31 +78,29 @@ export const PinButton: React.FC<PinButtonProps> = ({
       disabled={disabled || loading}
       style={({ pressed }) => [
         styles.button,
+        getButtonStyle(),
         {
-          backgroundColor: disabled ? '#ccc' : backgroundColor,
-          borderColor: borderColor,
-          borderWidth: borderWidth,
           opacity: pressed || disabled ? 0.7 : 1,
         },
-        isFilled ? styles.filled : styles.outlined,
+        disabled && styles.disabled,
         style,
       ]}
     >
       <View style={styles.contentRow}>
-        <PinText style={[styles.text, { color: textColor }]}> 
-          {children}
-        </PinText>
-        {loading && (
+        {loading ? (
           <ActivityIndicator
-            size={18}
-            color={textColor}
-            style={{ marginLeft: 8 }}
+            size="small"
+            color={variant === 'outline' ? theme.colors.text : theme.colors.buttonFilledText}
           />
+        ) : (
+          <PinText style={[styles.text, getTextStyle()]}>
+            {children}
+          </PinText>
         )}
       </View>
     </Pressable>
   );
-};
+}
 
 const styles = StyleSheet.create({
   button: {
@@ -77,12 +111,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexDirection: 'row',
   },
-  filled: {
-    // No extra styles needed
-  },
-  outlined: {
-    backgroundColor: 'transparent',
-  },
   text: {
     fontSize: 16,
     fontWeight: '600',
@@ -92,5 +120,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  disabled: {
+    opacity: 0.5,
   },
 }); 

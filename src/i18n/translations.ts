@@ -33,8 +33,11 @@ export const translations = {
     groups: {
       myGroups: 'My Groups',
       discoverPublicGroups: 'Discover Public Groups',
+      noGroups: 'You are not a member of any groups yet',
+      noPublicGroups: 'No public groups available',
       member: 'member',
       members: 'members',
+      join: 'Join',
     },
 
     // Home
@@ -154,8 +157,11 @@ export const translations = {
     groups: {
       myGroups: 'Mine grupper',
       discoverPublicGroups: 'Oppdag offentlige grupper',
+      noGroups: 'Du har ikke blitt med i noen grupper ennå',
+      noPublicGroups: 'Ingen offentlige grupper tilgjengelig',
       member: 'medlem',
       members: 'medlemmer',
+      join: 'Bli med',
     },
 
     // Home

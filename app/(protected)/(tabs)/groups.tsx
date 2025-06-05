@@ -60,7 +60,7 @@ async function fetchGroups(userId: string): Promise<Group[]> {
   }));
 }
 
-async function fetchPublicGroups(): Promise<Group[]> {
+async function fetchPublicGroups(userId: string): Promise<Group[]> {
   const { data: groups, error } = await supabase
     .from('groups')
     .select('*')
@@ -83,9 +83,19 @@ async function fetchPublicGroups(): Promise<Group[]> {
     })
   );
 
+  // Get user's membership status for each group
+  const { data: userMemberships, error: membershipError } = await supabase
+    .from('group_members')
+    .select('group_id')
+    .eq('user_id', userId)
+    .in('group_id', groupIds);
+
+  if (membershipError) throw membershipError;
+
   return groups.map(group => ({
     ...group,
     member_count: memberCounts.find(count => count.group_id === group.id)?.count || 0,
+    is_member: userMemberships?.some(m => m.group_id === group.id) || false,
   }));
 }
 
@@ -101,8 +111,9 @@ export default function GroupsScreen() {
   });
 
   const { data: publicGroups, isLoading: isLoadingPublicGroups, error: publicGroupsError, refetch: refetchPublicGroups } = useQuery({
-    queryKey: ['publicGroups'],
-    queryFn: fetchPublicGroups,
+    queryKey: ['publicGroups', session?.user?.id],
+    queryFn: () => fetchPublicGroups(session!.user!.id),
+    enabled: !!session?.user?.id,
   });
 
   const handleRefreshMyGroups = async () => {
@@ -115,13 +126,15 @@ export default function GroupsScreen() {
     return result.data || [];
   };
 
-  const renderGroup = (group: Group) => (
+  const renderMyGroup = (group: Group) => (
     <GroupListItem
       key={group.id}
+      id={group.id}
       name={group.name}
       memberCount={group.member_count || 0}
       status={group.is_public ? 'public' : 'private'}
-      imageUrl={group.cover_image}
+      imageUrl={group.cover_image || undefined}
+      isMember={true} // Always true for my groups
       onPress={() => router.push({
         pathname: '/(protected)/group/[id]',
         params: { 
@@ -135,6 +148,33 @@ export default function GroupsScreen() {
     />
   );
 
+  const renderPublicGroup = (group: Group) => (
+    <GroupListItem
+      key={group.id}
+      id={group.id}
+      name={group.name}
+      memberCount={group.member_count || 0}
+      status={group.is_public ? 'public' : 'private'}
+      imageUrl={group.cover_image || undefined}
+      isMember={group.is_member}
+      onPress={() => router.push({
+        pathname: '/(protected)/group/[id]',
+        params: { 
+          id: group.id,
+          initialData: JSON.stringify({
+            ...group,
+            member_count: group.member_count || 0
+          })
+        }
+      })}
+      onJoinSuccess={() => {
+        // Refetch groups to update the list
+        refetchMyGroups();
+        refetchPublicGroups();
+      }}
+    />
+  );
+
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>  
       {/* My Groups Section */}
@@ -144,7 +184,7 @@ export default function GroupsScreen() {
         </PinText>
         <PinList
           data={myGroups || []}
-          renderItem={renderGroup}
+          renderItem={renderMyGroup}
           fetchData={handleRefreshMyGroups}
           isLoading={isLoadingMyGroups}
           error={myGroupsError as Error}
@@ -163,7 +203,7 @@ export default function GroupsScreen() {
         </PinText>
         <PinList
           data={publicGroups || []}
-          renderItem={renderGroup}
+          renderItem={renderPublicGroup}
           fetchData={handleRefreshPublicGroups}
           isLoading={isLoadingPublicGroups}
           error={publicGroupsError as Error}
