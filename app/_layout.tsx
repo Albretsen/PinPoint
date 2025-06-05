@@ -2,6 +2,7 @@ import { ErrorBoundary } from '@/src/components/ErrorBoundary';
 import { PinToastProvider } from '@/src/components/PinToast';
 import { AuthProvider } from '@/src/context/AuthProvider';
 import { ThemeProvider } from '@/src/context/ThemeProvider';
+import { useRemoteConfig } from '@/src/hooks/useRemoteConfig';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import { Platform } from 'react-native';
@@ -22,6 +23,9 @@ const queryClient = new QueryClient({
 });
 
 export default function RootLayout() {
+  // Initialize remote config
+  useRemoteConfig();
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ErrorBoundary>

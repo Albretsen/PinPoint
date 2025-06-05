@@ -40,7 +40,7 @@ async function fetchGroupDetails(groupId: string): Promise<Group> {
 }
 
 export default function GroupDetailsScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, initialData } = useLocalSearchParams<{ id: string; initialData?: string }>();
   const { theme } = useTheme();
   const { t } = useTranslation();
 
@@ -48,6 +48,7 @@ export default function GroupDetailsScreen() {
     queryKey: ['group', id],
     queryFn: () => fetchGroupDetails(id),
     enabled: !!id,
+    initialData: initialData ? JSON.parse(initialData) : undefined,
   });
 
   const getMemberText = (count: number) => {
@@ -62,7 +63,7 @@ export default function GroupDetailsScreen() {
           headerBackTitle: t('navigation.back'),
         }}
       />
-      {isLoading ? (
+      {isLoading && !initialData ? (
         <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
           <PinText>Loading...</PinText>
         </View>

@@ -25,7 +25,11 @@ async function fetchGroups(userId: string): Promise<Group[]> {
         created_at,
         daily_challenge_time,
         is_archived,
-        description
+        description,
+        cover_image,
+        group_members (
+          user_id
+        )
       )
     `)
     .eq('user_id', userId);
@@ -117,8 +121,17 @@ export default function GroupsScreen() {
       name={group.name}
       memberCount={group.member_count || 0}
       status={group.is_public ? 'public' : 'private'}
-      imageUrl={undefined}
-      onPress={() => router.push(`/group/${group.id}`)}
+      imageUrl={group.cover_image}
+      onPress={() => router.push({
+        pathname: '/(protected)/group/[id]',
+        params: { 
+          id: group.id,
+          initialData: JSON.stringify({
+            ...group,
+            member_count: group.member_count || 0
+          })
+        }
+      })}
     />
   );
 
