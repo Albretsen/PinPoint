@@ -6,8 +6,10 @@ import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
 import { Group, GroupMember } from '@/src/types/group';
+import { useFocusEffect } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import { router } from 'expo-router';
+import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 async function fetchGroups(userId: string): Promise<Group[]> {
@@ -115,6 +117,14 @@ export default function GroupsScreen() {
     queryFn: () => fetchPublicGroups(session!.user!.id),
     enabled: !!session?.user?.id,
   });
+
+  // Refresh both lists when the screen comes into focus
+  useFocusEffect(
+    useCallback(() => {
+      refetchMyGroups();
+      refetchPublicGroups();
+    }, [refetchMyGroups, refetchPublicGroups])
+  );
 
   const handleRefreshMyGroups = async () => {
     const result = await refetchMyGroups();

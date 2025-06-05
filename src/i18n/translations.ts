@@ -33,11 +33,18 @@ export const translations = {
     groups: {
       myGroups: 'My Groups',
       discoverPublicGroups: 'Discover Public Groups',
-      noGroups: 'You are not a member of any groups yet',
-      noPublicGroups: 'No public groups available',
       member: 'member',
       members: 'members',
+      memberCount: '{{count}} members',
+      public: 'Public',
+      private: 'Private',
       join: 'Join',
+      leaveGroup: 'Leave group',
+      leaving: 'Leaving...',
+      leftGroup: 'Successfully left the group',
+      errorLeavingGroup: 'Error leaving group',
+      noGroups: 'You are not a member of any groups yet',
+      noPublicGroups: 'No public groups available',
     },
 
     // Home
@@ -157,11 +164,18 @@ export const translations = {
     groups: {
       myGroups: 'Mine grupper',
       discoverPublicGroups: 'Oppdag offentlige grupper',
-      noGroups: 'Du har ikke blitt med i noen grupper ennå',
-      noPublicGroups: 'Ingen offentlige grupper tilgjengelig',
       member: 'medlem',
       members: 'medlemmer',
+      memberCount: '{{count}} medlemmer',
+      public: 'Offentlig',
+      private: 'Privat',
       join: 'Bli med',
+      leaveGroup: 'Forlat gruppe',
+      leaving: 'Forlater...',
+      leftGroup: 'Forlot gruppen',
+      errorLeavingGroup: 'Kunne ikke forlate gruppen',
+      noGroups: 'Du er ikke medlem av noen grupper ennå',
+      noPublicGroups: 'Ingen offentlige grupper tilgjengelig',
     },
 
     // Home

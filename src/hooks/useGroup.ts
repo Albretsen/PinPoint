@@ -5,6 +5,7 @@ import { useState } from 'react';
 export function useGroup() {
   const { session } = useUserStore();
   const [isJoining, setIsJoining] = useState(false);
+  const [isLeaving, setIsLeaving] = useState(false);
 
   const joinGroup = async (groupId: string) => {
     if (!session?.user?.id) return false;
@@ -32,8 +33,31 @@ export function useGroup() {
     }
   };
 
+  const leaveGroup = async (groupId: string) => {
+    if (!session?.user?.id) return false;
+    
+    setIsLeaving(true);
+    try {
+      const { error } = await supabase
+        .from('group_members')
+        .delete()
+        .eq('group_id', groupId)
+        .eq('user_id', session.user.id);
+
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      console.error('Error leaving group:', error);
+      return false;
+    } finally {
+      setIsLeaving(false);
+    }
+  };
+
   return {
     isJoining,
+    isLeaving,
     joinGroup,
+    leaveGroup,
   };
 } 
