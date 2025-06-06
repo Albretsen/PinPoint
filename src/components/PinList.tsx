@@ -3,13 +3,13 @@ import { useTranslation } from '@/src/i18n/useTranslation';
 import { ContentStyle, FlashList } from '@shopify/flash-list';
 import React, { useCallback, useRef, useState } from 'react';
 import {
-    ActivityIndicator,
-    RefreshControl,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-    ViewStyle,
+  ActivityIndicator,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
 } from 'react-native';
 
 interface SkeletonStyle {
@@ -142,7 +142,6 @@ export default function PinList<T>({
         renderItem={({ item }: { item: T }) => renderItem(item)}
         keyExtractor={keyExtractor}
         contentContainerStyle={{
-          padding: 20,
           ...contentContainerStyle,
         }}
         refreshControl={

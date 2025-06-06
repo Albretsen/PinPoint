@@ -1,3 +1,4 @@
+import { GroupChallenge } from '@/src/components/GroupChallenge';
 import PinText from '@/src/components/PinText';
 import { usePinToast } from '@/src/components/PinToast';
 import { useTheme } from '@/src/context/ThemeProvider';
@@ -191,6 +192,12 @@ export default function GroupDetailsScreen() {
             </View>
           </View>
         </View>
+
+        {/* Daily Challenge */}
+        <GroupChallenge
+          groupId={group.id}
+          dailyChallengeTime={group.daily_challenge_time || '12:00:00'}
+        />
       </View>
     </>
   );

@@ -95,20 +95,20 @@ export default function HomeScreen() {
     }
 
     return (
-      <Card
-        key={group.id}
+    <Card
+      key={group.id}
         image={imageSource}
-        header={group.name}
-        subheading={group.description}
-        buttonLabel={t('home.guessLocation')}
-        onButtonPress={() => {}}
-        onPress={() => {
-          if (group.current_challenge?.image?.image_url) {
-            handleCardPress(group.current_challenge.image.image_url);
-          }
-        }}
-      />
-    );
+      header={group.name}
+      subheading={group.description}
+      buttonLabel={t('home.guessLocation')}
+      onButtonPress={() => {}}
+      onPress={() => {
+        if (group.current_challenge?.image?.image_url) {
+          handleCardPress(group.current_challenge.image.image_url);
+        }
+      }}
+    />
+  );
   };
 
   return (

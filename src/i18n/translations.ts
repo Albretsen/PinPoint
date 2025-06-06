@@ -129,6 +129,18 @@ export const translations = {
         empty: 'No items found',
       },
     },
+
+    // Challenge
+    challenge: {
+      ended: 'Challenge ended',
+      noChallengeToday: 'No challenge today',
+      yourGuess: 'Your guess',
+      guessLocation: 'Guess Location',
+      topGuesses: 'Top Guesses',
+      timeRemaining: 'Time remaining',
+      meters: 'meters',
+      loading: 'Loading challenge...',
+    },
   },
   no: {
     // Auth
@@ -259,6 +271,18 @@ export const translations = {
         retry: 'Prøv igjen',
         empty: 'Ingen elementer funnet',
       },
+    },
+
+    // Challenge
+    challenge: {
+      ended: 'Utfordring avsluttet',
+      noChallengeToday: 'Ingen utfordring i dag',
+      yourGuess: 'Din gjetning',
+      guessLocation: 'Gjett plassering',
+      topGuesses: 'Topp gjetninger',
+      timeRemaining: 'Gjenstående tid',
+      meters: 'meter',
+      loading: 'Laster utfordring...',
     },
   },
 } as const;

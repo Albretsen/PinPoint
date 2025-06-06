@@ -15,8 +15,8 @@ interface PinButtonProps {
 }
 
 export function PinButton({ 
-  children, 
-  onPress, 
+  children,
+  onPress,
   variant = 'primary', 
   loading = false,
   disabled = false,
