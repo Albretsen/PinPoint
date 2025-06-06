@@ -13,29 +13,32 @@ export type GroupChallenge = {
   group_images: GroupImage;
 };
 
-export type Group = {
+export interface Group {
   id: string;
   name: string;
   is_public: boolean;
   invite_code: string | null;
   owner_id: string;
   created_at: string;
-  daily_challenge_time: string | null;
+  daily_challenge_time: string;
   is_archived: boolean;
-  description: string | null;
+  description: string;
   cover_image: string | null;
+  member_count?: number;
   is_admin?: boolean;
   joined_at?: string;
-  member_count?: number;
   is_member?: boolean;
-  current_challenge?: {
+  group_challenges?: {
     id: string;
+    image_id: string;
     challenge_date: string;
-    started_at: string | null;
-    ended_at: string | null;
-    image?: GroupImage;
-  };
-};
+    started_at: string;
+    ended_at: string;
+    group_images: {
+      image_url: string;
+    };
+  }[];
+}
 
 export type GroupMember = {
   is_admin: boolean;

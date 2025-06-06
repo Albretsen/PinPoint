@@ -13,6 +13,7 @@ import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 async function fetchGroups(userId: string): Promise<Group[]> {
+  const today = new Date().toISOString().split('T')[0];
   const { data, error } = await supabase
     .from('group_members')
     .select(`
@@ -31,15 +32,26 @@ async function fetchGroups(userId: string): Promise<Group[]> {
         cover_image,
         group_members (
           user_id
+        ),
+        group_challenges (
+          id,
+          image_id,
+          challenge_date,
+          started_at,
+          ended_at,
+          group_images (
+            image_url
+          )
         )
       )
     `)
-    .eq('user_id', userId);
+    .eq('user_id', userId)
+    .eq('groups.group_challenges.challenge_date', today);
 
   if (error) throw error;
 
   // Get member counts for all groups
-  const groups = (data as unknown as GroupMember[]).map(member => member.groups);
+  const groups = (data as unknown as GroupMember[]).map(member => member.groups).filter(Boolean);
   const groupIds = groups.map(group => group.id);
 
   const memberCounts = await Promise.all(
@@ -54,19 +66,36 @@ async function fetchGroups(userId: string): Promise<Group[]> {
     })
   );
 
-  return (data as unknown as GroupMember[]).map(member => ({
-    ...member.groups,
-    is_admin: member.is_admin,
-    joined_at: member.joined_at,
-    member_count: memberCounts.find(count => count.group_id === member.groups.id)?.count || 0,
-  }));
+  return (data as unknown as GroupMember[])
+    .filter(member => member.groups) // Filter out any null groups
+    .map(member => ({
+      ...member.groups,
+      cover_image: member.groups.cover_image || null, // Ensure cover_image is string | null
+      is_admin: member.is_admin,
+      joined_at: member.joined_at,
+      member_count: memberCounts.find(count => count.group_id === member.groups.id)?.count || 0,
+    }));
 }
 
 async function fetchPublicGroups(userId: string): Promise<Group[]> {
+  const today = new Date().toISOString().split('T')[0];
   const { data: groups, error } = await supabase
     .from('groups')
-    .select('*')
+    .select(`
+      *,
+      group_challenges (
+        id,
+        image_id,
+        challenge_date,
+        started_at,
+        ended_at,
+        group_images (
+          image_url
+        )
+      )
+    `)
     .eq('is_public', true)
+    .eq('group_challenges.challenge_date', today)
     .order('created_at', { ascending: false });
 
   if (error) throw error;
@@ -151,7 +180,8 @@ export default function GroupsScreen() {
           id: group.id,
           initialData: JSON.stringify({
             ...group,
-            member_count: group.member_count || 0
+            member_count: group.member_count || 0,
+            group_challenges: group.group_challenges || []
           })
         }
       })}
@@ -173,7 +203,8 @@ export default function GroupsScreen() {
           id: group.id,
           initialData: JSON.stringify({
             ...group,
-            member_count: group.member_count || 0
+            member_count: group.member_count || 0,
+            group_challenges: group.group_challenges || []
           })
         }
       })}

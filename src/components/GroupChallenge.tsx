@@ -11,6 +11,16 @@ import { Animated, Image, StyleSheet, View } from 'react-native';
 interface GroupChallengeProps {
   groupId: string;
   dailyChallengeTime: string;
+  preloadedChallenge?: {
+    id: string;
+    image_id: string;
+    challenge_date: string;
+    started_at: string;
+    ended_at: string;
+    group_images: {
+      image_url: string;
+    };
+  };
 }
 
 interface ChallengeGuess {
@@ -74,33 +84,32 @@ function SkeletonLoader() {
   );
 }
 
-export function GroupChallenge({ groupId, dailyChallengeTime }: GroupChallengeProps) {
+export function GroupChallenge({ groupId, dailyChallengeTime, preloadedChallenge }: GroupChallengeProps) {
   const { theme } = useTheme();
   const { t } = useTranslation();
   const { session } = useUserStore();
-  const [challenge, setChallenge] = useState<GroupChallenge | null>(null);
+  const [challenge, setChallenge] = useState<GroupChallenge | null>(preloadedChallenge || null);
   const [userGuess, setUserGuess] = useState<ChallengeGuess | null>(null);
   const [topGuesses, setTopGuesses] = useState<ChallengeGuess[]>([]);
   const [timeUntilNext, setTimeUntilNext] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!preloadedChallenge);
 
   useEffect(() => {
-    fetchChallenge();
+    verifyChallenge();
     const interval = setInterval(updateTimeUntilNext, 1000);
     return () => clearInterval(interval);
   }, [groupId]);
 
-  const fetchChallenge = async () => {
+  const verifyChallenge = async () => {
     try {
       // Get today's challenge
       const today = new Date().toISOString().split('T')[0];
       const { data: challengeData, error: challengeError } = await supabase
         .from('group_challenges')
         .select(`
-          *,
-          group_images (
-            image_url
-          )
+          id,
+          started_at,
+          ended_at
         `)
         .eq('group_id', groupId)
         .eq('challenge_date', today)
@@ -116,49 +125,77 @@ export function GroupChallenge({ groupId, dailyChallengeTime }: GroupChallengePr
         throw challengeError;
       }
 
-      setChallenge(challengeData);
-
-      if (challengeData) {
-        // Get user's guess if they've made one
-        const { data: guessData, error: guessError } = await supabase
-          .from('challenge_guesses')
-          .select(`
-            *,
-            profiles (
-              username,
-              avatar_url
-            )
-          `)
-          .eq('challenge_id', challengeData.id)
-          .eq('user_id', session?.user?.id)
-          .single();
-
-        if (!guessError) {
-          setUserGuess(guessData);
-        }
-
-        // Get top 3 guesses
-        const { data: topGuessesData, error: topGuessesError } = await supabase
-          .from('challenge_guesses')
-          .select(`
-            *,
-            profiles (
-              username,
-              avatar_url
-            )
-          `)
-          .eq('challenge_id', challengeData.id)
-          .order('distance_meters', { ascending: true })
-          .limit(3);
-
-        if (!topGuessesError) {
-          setTopGuesses(topGuessesData);
-        }
+      // If we have preloaded data and the challenge hasn't changed, keep using it
+      if (preloadedChallenge && 
+          challengeData.id === preloadedChallenge.id && 
+          challengeData.started_at === preloadedChallenge.started_at && 
+          challengeData.ended_at === preloadedChallenge.ended_at) {
+        setIsLoading(false);
+        return;
       }
+
+      // If the challenge has changed, fetch the full data
+      const { data: fullChallengeData, error: fullError } = await supabase
+        .from('group_challenges')
+        .select(`
+          *,
+          group_images (
+            image_url
+          )
+        `)
+        .eq('id', challengeData.id)
+        .single();
+
+      if (fullError) throw fullError;
+      setChallenge(fullChallengeData);
+
+      // Fetch user's guess and top guesses
+      await Promise.all([
+        fetchUserGuess(fullChallengeData.id),
+        fetchTopGuesses(fullChallengeData.id)
+      ]);
     } catch (error) {
-      console.error('Error fetching challenge:', error);
+      console.error('Error verifying challenge:', error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchUserGuess = async (challengeId: string) => {
+    const { data: guessData, error: guessError } = await supabase
+      .from('challenge_guesses')
+      .select(`
+        *,
+        profiles (
+          username,
+          avatar_url
+        )
+      `)
+      .eq('challenge_id', challengeId)
+      .eq('user_id', session?.user?.id)
+      .single();
+
+    if (!guessError) {
+      setUserGuess(guessData);
+    }
+  };
+
+  const fetchTopGuesses = async (challengeId: string) => {
+    const { data: topGuessesData, error: topGuessesError } = await supabase
+      .from('challenge_guesses')
+      .select(`
+        *,
+        profiles (
+          username,
+          avatar_url
+        )
+      `)
+      .eq('challenge_id', challengeId)
+      .order('distance_meters', { ascending: true })
+      .limit(3);
+
+    if (!topGuessesError) {
+      setTopGuesses(topGuessesData);
     }
   };
 

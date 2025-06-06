@@ -18,15 +18,27 @@ const { Popover } = renderers;
 const { width } = Dimensions.get('window');
 
 async function fetchGroupDetails(groupId: string): Promise<Group> {
+  const today = new Date().toISOString().split('T')[0];
   const { data, error } = await supabase
     .from('groups')
     .select(`
       *,
       group_members (
         user_id
+      ),
+      group_challenges!inner (
+        id,
+        image_id,
+        challenge_date,
+        started_at,
+        ended_at,
+        group_images (
+          image_url
+        )
       )
     `)
     .eq('id', groupId)
+    .eq('group_challenges.challenge_date', today)
     .single();
 
   if (error) throw error;
@@ -197,6 +209,7 @@ export default function GroupDetailsScreen() {
         <GroupChallenge
           groupId={group.id}
           dailyChallengeTime={group.daily_challenge_time || '12:00:00'}
+          preloadedChallenge={group.group_challenges?.[0]}
         />
       </View>
     </>
