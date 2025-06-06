@@ -84,6 +84,27 @@ function SkeletonLoader() {
   );
 }
 
+function calculateTimeUntilNext(dailyChallengeTime: string): string {
+  const now = new Date();
+  const [hours, minutes, seconds] = dailyChallengeTime.split(':').map(Number);
+  
+  // Create a Date object for today's challenge time
+  const challengeTime = new Date(now);
+  challengeTime.setUTCHours(hours, minutes, seconds, 0);
+
+  // If the challenge time has already passed today, calculate for tomorrow
+  if (now > challengeTime) {
+    challengeTime.setUTCDate(challengeTime.getUTCDate() + 1);
+  }
+
+  const diff = challengeTime.getTime() - now.getTime();
+  const remainingHours = Math.floor(diff / (1000 * 60 * 60));
+  const remainingMinutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const remainingSeconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  return `${remainingHours.toString().padStart(2, '0')}:${remainingMinutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
 export function GroupChallenge({ groupId, dailyChallengeTime, preloadedChallenge }: GroupChallengeProps) {
   const { theme } = useTheme();
   const { t } = useTranslation();
@@ -91,14 +112,16 @@ export function GroupChallenge({ groupId, dailyChallengeTime, preloadedChallenge
   const [challenge, setChallenge] = useState<GroupChallenge | null>(preloadedChallenge || null);
   const [userGuess, setUserGuess] = useState<ChallengeGuess | null>(null);
   const [topGuesses, setTopGuesses] = useState<ChallengeGuess[]>([]);
-  const [timeUntilNext, setTimeUntilNext] = useState<string>('');
+  const [timeUntilNext, setTimeUntilNext] = useState<string>(() => calculateTimeUntilNext(dailyChallengeTime));
   const [isLoading, setIsLoading] = useState(!preloadedChallenge);
 
   useEffect(() => {
     verifyChallenge();
-    const interval = setInterval(updateTimeUntilNext, 1000);
+    const interval = setInterval(() => {
+      setTimeUntilNext(calculateTimeUntilNext(dailyChallengeTime));
+    }, 1000);
     return () => clearInterval(interval);
-  }, [groupId]);
+  }, [groupId, dailyChallengeTime]);
 
   const verifyChallenge = async () => {
     try {
@@ -197,31 +220,6 @@ export function GroupChallenge({ groupId, dailyChallengeTime, preloadedChallenge
     if (!topGuessesError) {
       setTopGuesses(topGuessesData);
     }
-  };
-
-  const updateTimeUntilNext = () => {
-    if (!dailyChallengeTime) return;
-
-    const now = new Date();
-    const [hours, minutes, seconds] = dailyChallengeTime.split(':').map(Number);
-    
-    // Create a Date object for today's challenge time
-    const challengeTime = new Date(now);
-    challengeTime.setUTCHours(hours, minutes, seconds, 0);
-
-    // If the challenge time has already passed today, calculate for tomorrow
-    if (now > challengeTime) {
-      challengeTime.setUTCDate(challengeTime.getUTCDate() + 1);
-    }
-
-    const diff = challengeTime.getTime() - now.getTime();
-    const remainingHours = Math.floor(diff / (1000 * 60 * 60));
-    const remainingMinutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const remainingSeconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    setTimeUntilNext(
-      `${remainingHours.toString().padStart(2, '0')}:${remainingMinutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
-    );
   };
 
   const handleGuess = () => {

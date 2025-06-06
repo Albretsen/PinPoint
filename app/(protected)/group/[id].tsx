@@ -63,10 +63,11 @@ export default function GroupDetailsScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const { session } = useUserStore();
-  const { isLeaving, leaveGroup } = useGroup();
+  const { isLeaving, leaveGroup, isJoining, joinGroup } = useGroup();
   const { showToast } = usePinToast();
 
   const [group, setGroup] = useState<Group | null>(initialData ? JSON.parse(initialData) : null);
+  const [isMember, setIsMember] = useState<boolean>(false);
 
   useEffect(() => {
     if (id) {
@@ -98,10 +99,24 @@ export default function GroupDetailsScreen() {
       return;
     }
 
+    // Check if user is a member
+    const { data: membership, error: membershipError } = await supabase
+      .from('group_members')
+      .select('*')
+      .eq('group_id', id)
+      .eq('user_id', session?.user?.id)
+      .single();
+
+    if (membershipError && membershipError.code !== 'PGRST116') {
+      console.error('Error checking membership:', membershipError);
+      return;
+    }
+
     setGroup({
       ...groupData,
       member_count: count || 0
     });
+    setIsMember(!!membership);
   };
 
   const handleLeaveGroup = async () => {
@@ -110,6 +125,17 @@ export default function GroupDetailsScreen() {
     const success = await leaveGroup(id);
     if (success) {
       router.back();
+    }
+  };
+
+  const handleJoinGroup = async () => {
+    if (!id) return;
+    
+    const success = await joinGroup(id);
+    if (success) {
+      setIsMember(true);
+      // Refetch group to update member count
+      fetchGroup();
     }
   };
 
@@ -149,17 +175,31 @@ export default function GroupDetailsScreen() {
                   padding: 8,
                 },
               }}>
-                <MenuOption onSelect={handleLeaveGroup} disabled={isLeaving} customStyles={{
-                  optionWrapper: {
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 8,
-                  },
-                }}>
-                  <PinText style={{ color: theme.colors.text }}>
-                    {isLeaving ? t('groups.leaving') : t('groups.leaveGroup')}
-                  </PinText>
-                </MenuOption>
+                {isMember ? (
+                  <MenuOption onSelect={handleLeaveGroup} disabled={isLeaving} customStyles={{
+                    optionWrapper: {
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: 8,
+                    },
+                  }}>
+                    <PinText style={{ color: theme.colors.text }}>
+                      {isLeaving ? t('groups.leaving') : t('groups.leaveGroup')}
+                    </PinText>
+                  </MenuOption>
+                ) : (
+                  <MenuOption onSelect={handleJoinGroup} disabled={isJoining} customStyles={{
+                    optionWrapper: {
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: 8,
+                    },
+                  }}>
+                    <PinText style={{ color: theme.colors.text }}>
+                      {isJoining ? t('groups.joining') : t('groups.joinGroup')}
+                    </PinText>
+                  </MenuOption>
+                )}
               </MenuOptions>
             </Menu>
           ),
