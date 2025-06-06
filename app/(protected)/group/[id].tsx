@@ -253,7 +253,7 @@ export default function GroupDetailsScreen() {
         />
 
         {/* Leaderboard Section */}
-        <LeaderboardSection />
+        <LeaderboardSection groupId={group.id} />
       </ScrollView>
     </>
   );
