@@ -1,43 +1,22 @@
+import { usePinToast } from '@/src/components/PinToast';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
 import { useState } from 'react';
 
 export function useGroup() {
   const { session } = useUserStore();
-  const [isJoining, setIsJoining] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
-
-  const joinGroup = async (groupId: string) => {
-    if (!session?.user?.id) return false;
-    
-    setIsJoining(true);
-    try {
-      const { error } = await supabase
-        .from('group_members')
-        .insert([
-          {
-            group_id: groupId,
-            user_id: session.user.id,
-            is_admin: false,
-            joined_at: new Date().toISOString(),
-          },
-        ]);
-
-      if (error) throw error;
-      return true;
-    } catch (error) {
-      console.error('Error joining group:', error);
-      return false;
-    } finally {
-      setIsJoining(false);
-    }
-  };
+  const [isJoining, setIsJoining] = useState(false);
+  const [isKicking, setIsKicking] = useState(false);
+  const { showToast } = usePinToast();
+  const { t } = useTranslation();
 
   const leaveGroup = async (groupId: string) => {
     if (!session?.user?.id) return false;
-    
-    setIsLeaving(true);
+
     try {
+      setIsLeaving(true);
       const { error } = await supabase
         .from('group_members')
         .delete()
@@ -54,10 +33,56 @@ export function useGroup() {
     }
   };
 
+  const joinGroup = async (groupId: string) => {
+    if (!session?.user?.id) return false;
+
+    try {
+      setIsJoining(true);
+      const { error } = await supabase
+        .from('group_members')
+        .insert({
+          group_id: groupId,
+          user_id: session.user.id,
+          is_admin: false,
+        });
+
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      console.error('Error joining group:', error);
+      return false;
+    } finally {
+      setIsJoining(false);
+    }
+  };
+
+  const kickMember = async (groupId: string, userId: string) => {
+    if (!session?.user?.id) return false;
+
+    try {
+      setIsKicking(true);
+      const { error } = await supabase
+        .from('group_members')
+        .delete()
+        .eq('group_id', groupId)
+        .eq('user_id', userId);
+
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      console.error('Error kicking member:', error);
+      return false;
+    } finally {
+      setIsKicking(false);
+    }
+  };
+
   return {
-    isJoining,
     isLeaving,
-    joinGroup,
+    isJoining,
+    isKicking,
     leaveGroup,
+    joinGroup,
+    kickMember,
   };
 } 

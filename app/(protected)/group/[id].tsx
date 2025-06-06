@@ -9,8 +9,9 @@ import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
 import { Group } from '@/src/types/group';
 import { Ionicons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
 import { Menu, MenuOption, MenuOptions, MenuTrigger, renderers } from 'react-native-popup-menu';
 
@@ -69,12 +70,6 @@ export default function GroupDetailsScreen() {
   const [group, setGroup] = useState<Group | null>(initialData ? JSON.parse(initialData) : null);
   const [isMember, setIsMember] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (id) {
-      fetchGroup();
-    }
-  }, [id]);
-
   const fetchGroup = async () => {
     // First get the group details
     const { data: groupData, error: groupError } = await supabase
@@ -119,6 +114,22 @@ export default function GroupDetailsScreen() {
     setIsMember(!!membership);
   };
 
+  // Refresh data when screen comes into focus
+  useFocusEffect(
+    useCallback(() => {
+      if (id) {
+        fetchGroup();
+      }
+    }, [id])
+  );
+
+  // Initial fetch
+  useEffect(() => {
+    if (id) {
+      fetchGroup();
+    }
+  }, [id]);
+
   const handleLeaveGroup = async () => {
     if (!id) return;
     
@@ -150,6 +161,20 @@ export default function GroupDetailsScreen() {
   const memberCount = group.member_count || 0;
   const memberText = memberCount === 1 ? t('groups.member') : t('groups.members');
 
+  const menuOptions = [
+    {
+      label: t('groups.viewMembers'),
+      icon: 'people-outline',
+      onPress: () => router.push(`/(protected)/group/members?id=${id}`),
+    },
+    {
+      label: t('groups.leaveGroup'),
+      icon: 'exit-outline',
+      onPress: handleLeaveGroup,
+      destructive: true,
+    },
+  ];
+
   return (
     <>
       <Stack.Screen
@@ -176,17 +201,29 @@ export default function GroupDetailsScreen() {
                 },
               }}>
                 {isMember ? (
-                  <MenuOption onSelect={handleLeaveGroup} disabled={isLeaving} customStyles={{
-                    optionWrapper: {
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: 8,
-                    },
-                  }}>
-                    <PinText style={{ color: theme.colors.text }}>
-                      {isLeaving ? t('groups.leaving') : t('groups.leaveGroup')}
-                    </PinText>
-                  </MenuOption>
+                  menuOptions.map((option, index) => (
+                    <MenuOption
+                      key={index}
+                      onSelect={option.onPress}
+                      disabled={isLeaving}
+                      customStyles={{
+                        optionWrapper: {
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          gap: 8,
+                        },
+                      }}
+                    >
+                      <Ionicons
+                        name={option.icon as any}
+                        size={20}
+                        color={option.destructive ? theme.colors.error : theme.colors.text}
+                      />
+                      <PinText style={{ color: option.destructive ? theme.colors.error : theme.colors.text }}>
+                        {option.label}
+                      </PinText>
+                    </MenuOption>
+                  ))
                 ) : (
                   <MenuOption onSelect={handleJoinGroup} disabled={isJoining} customStyles={{
                     optionWrapper: {
@@ -195,6 +232,7 @@ export default function GroupDetailsScreen() {
                       gap: 8,
                     },
                   }}>
+                    <Ionicons name="add-circle-outline" size={20} color={theme.colors.text} />
                     <PinText style={{ color: theme.colors.text }}>
                       {isJoining ? t('groups.joining') : t('groups.joinGroup')}
                     </PinText>
