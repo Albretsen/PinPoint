@@ -75,6 +75,17 @@ export const translations = {
       profile: 'Profile',
       guessLocation: 'Guess Location',
       linkAccount: 'Link Account',
+      previewAndShare: 'Preview & Share',
+      noImageSelected: 'No image selected',
+      upload: {
+        success: 'Image uploaded successfully',
+        error: {
+          unauthorized: 'You are not authorized to upload images to these groups',
+          storage: 'Failed to upload image to storage',
+          database: 'Failed to save image information',
+          unknown: 'An error occurred while uploading the image'
+        }
+      }
     },
 
     // Profile
@@ -239,6 +250,17 @@ export const translations = {
       profile: 'Profil',
       guessLocation: 'Gjett plassering',
       linkAccount: 'Koble til konto',
+      previewAndShare: 'Forhåndsvis & Del',
+      noImageSelected: 'Ingen bilde valgt',
+      upload: {
+        success: 'Bildet ble lastet opp',
+        error: {
+          unauthorized: 'Du har ikke tillatelse til å laste opp bilder til disse gruppene',
+          storage: 'Kunne ikke laste opp bildet til lagring',
+          database: 'Kunne ikke lagre bildeinformasjon',
+          unknown: 'En feil oppstod under opplasting av bildet'
+        }
+      }
     },
 
     // Profile
