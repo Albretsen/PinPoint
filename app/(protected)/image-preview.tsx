@@ -161,14 +161,18 @@ export default function ImagePreviewScreen() {
       const base64 = await FileSystem.readAsStringAsync(saved.uri, {
         encoding: FileSystem.EncodingType.Base64,
       });
+      const base64Data = Buffer.from(base64, 'base64');
 
       // 3. Generate a unique filename
-      const filename = `${session.user.id}/${Date.now()}.jpg`;
+      const timestamp = Date.now();
+      const random = Math.floor(Math.random() * 1000000);
+      const filename = `${timestamp}-${random}.jpg`;
+      const filePath = `challenge_uploads/${filename}`;
 
       // 4. Upload to Supabase storage
       const { data: storageData, error: storageError } = await supabase.storage
         .from('photos')
-        .upload(`user_uploads/${filename}`, Buffer.from(base64, 'base64'), {
+        .upload(filePath, base64Data, {
           contentType: 'image/jpeg',
           upsert: true,
         });
@@ -183,9 +187,9 @@ export default function ImagePreviewScreen() {
       const { error: dbError } = await supabase.from('group_images').insert(
         Array.from(selectedGroups).map((groupId: string) => ({
           group_id: groupId,
-          image_url: `${process.env.EXPO_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/user_uploads/${filename}`,
-          storage_path: `photos/user_uploads/${filename}`,
+          storage_path: filePath,
           uploader_id: session.user.id,
+          taken_at: new Date().toISOString(),
         }))
       );
 

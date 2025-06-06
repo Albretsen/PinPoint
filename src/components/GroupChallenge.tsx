@@ -13,12 +13,14 @@ interface GroupChallengeProps {
   dailyChallengeTime: string;
   preloadedChallenge?: {
     id: string;
-    image_id: string;
     challenge_date: string;
     started_at: string;
-    ended_at: string;
+    ended_at: string | null;
     group_images: {
-      image_url: string;
+      id: string;
+      storage_path: string;
+      taken_at: string | null;
+      uploader_id: string;
     };
   };
 }
@@ -36,12 +38,14 @@ interface ChallengeGuess {
 
 interface GroupChallenge {
   id: string;
-  image_id: string;
   challenge_date: string;
   started_at: string;
-  ended_at: string;
+  ended_at: string | null;
   group_images: {
-    image_url: string;
+    id: string;
+    storage_path: string;
+    taken_at: string | null;
+    uploader_id: string;
   };
 }
 
@@ -114,6 +118,7 @@ export function GroupChallenge({ groupId, dailyChallengeTime, preloadedChallenge
   const [topGuesses, setTopGuesses] = useState<ChallengeGuess[]>([]);
   const [timeUntilNext, setTimeUntilNext] = useState<string>(() => calculateTimeUntilNext(dailyChallengeTime));
   const [isLoading, setIsLoading] = useState(!preloadedChallenge);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
     verifyChallenge();
@@ -122,6 +127,15 @@ export function GroupChallenge({ groupId, dailyChallengeTime, preloadedChallenge
     }, 1000);
     return () => clearInterval(interval);
   }, [groupId, dailyChallengeTime]);
+
+  useEffect(() => {
+    if (challenge?.group_images?.storage_path) {
+      const { data } = supabase.storage
+        .from('photos')
+        .getPublicUrl(challenge.group_images.storage_path);
+      setImageUrl(data.publicUrl);
+    }
+  }, [challenge?.group_images?.storage_path]);
 
   const verifyChallenge = async () => {
     try {
@@ -163,7 +177,7 @@ export function GroupChallenge({ groupId, dailyChallengeTime, preloadedChallenge
         .select(`
           *,
           group_images (
-            image_url
+            storage_path
           )
         `)
         .eq('id', challengeData.id)
@@ -240,11 +254,13 @@ export function GroupChallenge({ groupId, dailyChallengeTime, preloadedChallenge
     <View style={[styles.container, { backgroundColor: theme.colors.card }]}>
       {/* Challenge Image */}
       <View style={styles.imageContainer}>
-        <Image
-          source={{ uri: challenge.group_images.image_url }}
-          style={styles.image}
-          resizeMode="cover"
-        />
+        {imageUrl && (
+          <Image
+            source={{ uri: imageUrl }}
+            style={styles.image}
+            resizeMode="cover"
+          />
+        )}
       </View>
 
       {/* Timer */}

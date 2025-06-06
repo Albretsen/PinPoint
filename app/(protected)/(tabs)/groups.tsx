@@ -37,7 +37,7 @@ async function fetchGroups(userId: string, page = 0, pageSize = 20): Promise<{ d
           started_at,
           ended_at,
           group_images (
-            image_url
+            storage_path
           )
         )
       )
@@ -108,7 +108,7 @@ async function fetchPublicGroups(userId: string, page = 0, pageSize = 20): Promi
         started_at,
         ended_at,
         group_images (
-          image_url
+          storage_path
         )
       )
     `, { count: 'exact' })

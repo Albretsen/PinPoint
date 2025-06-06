@@ -1,6 +1,6 @@
 export type GroupImage = {
   id: string;
-  image_url: string;
+  storage_path: string;
   taken_at: string | null;
   uploader_id: string;
 };
@@ -28,16 +28,14 @@ export interface Group {
   is_admin?: boolean;
   joined_at?: string;
   is_member?: boolean;
-  group_challenges?: {
+  current_challenge?: {
     id: string;
-    image_id: string;
     challenge_date: string;
     started_at: string;
-    ended_at: string;
-    group_images: {
-      image_url: string;
-    };
-  }[];
+    ended_at: string | null;
+    image: GroupImage;
+  };
+  group_challenges?: GroupChallenge[];
 }
 
 export type GroupMember = {

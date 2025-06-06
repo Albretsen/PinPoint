@@ -29,12 +29,14 @@ async function fetchGroupDetails(groupId: string): Promise<Group> {
       ),
       group_challenges!inner (
         id,
-        image_id,
         challenge_date,
         started_at,
         ended_at,
         group_images (
-          image_url
+          id,
+          storage_path,
+          taken_at,
+          uploader_id
         )
       )
     `)
@@ -287,7 +289,13 @@ export default function GroupDetailsScreen() {
         <GroupChallenge
           groupId={group.id}
           dailyChallengeTime={group.daily_challenge_time || '12:00:00'}
-          preloadedChallenge={group.group_challenges?.[0]}
+          preloadedChallenge={group.group_challenges?.[0] ? {
+            id: group.group_challenges[0].id,
+            challenge_date: group.group_challenges[0].challenge_date,
+            started_at: group.group_challenges[0].started_at,
+            ended_at: group.group_challenges[0].ended_at,
+            group_images: group.group_challenges[0].group_images
+          } : undefined}
         />
 
         {/* Leaderboard Section */}
