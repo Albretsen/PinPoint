@@ -1,4 +1,5 @@
 import { GroupChallenge } from '@/src/components/GroupChallenge';
+import { LeaderboardSection } from '@/src/components/LeaderboardSection';
 import PinText from '@/src/components/PinText';
 import { usePinToast } from '@/src/components/PinToast';
 import { useTheme } from '@/src/context/ThemeProvider';
@@ -10,11 +11,10 @@ import { Group } from '@/src/types/group';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
 import { Menu, MenuOption, MenuOptions, MenuTrigger, renderers } from 'react-native-popup-menu';
 
 const { Popover } = renderers;
-
 const { width } = Dimensions.get('window');
 
 async function fetchGroupDetails(groupId: string): Promise<Group> {
@@ -205,7 +205,7 @@ export default function GroupDetailsScreen() {
           ),
         }}
       />
-      <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
         {/* Cover Image */}
         <View style={styles.coverContainer}>
           {group.cover_image ? (
@@ -251,7 +251,10 @@ export default function GroupDetailsScreen() {
           dailyChallengeTime={group.daily_challenge_time || '12:00:00'}
           preloadedChallenge={group.group_challenges?.[0]}
         />
-      </View>
+
+        {/* Leaderboard Section */}
+        <LeaderboardSection />
+      </ScrollView>
     </>
   );
 }

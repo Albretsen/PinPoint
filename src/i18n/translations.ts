@@ -143,6 +143,16 @@ export const translations = {
       meters: 'meters',
       loading: 'Loading challenge...',
     },
+
+    leaderboard: {
+      title: 'Leaderboard',
+      today: 'Today',
+      thisWeek: 'This Week',
+      thisMonth: 'This Month',
+      allTime: 'All Time',
+      noData: 'No data available',
+      loading: 'Loading leaderboard...',
+    },
   },
   no: {
     // Auth
@@ -287,6 +297,16 @@ export const translations = {
       timeRemaining: 'Gjenstående tid',
       meters: 'meter',
       loading: 'Laster utfordring...',
+    },
+
+    leaderboard: {
+      title: 'Toppliste',
+      today: 'I dag',
+      thisWeek: 'Denne uken',
+      thisMonth: 'Denne måneden',
+      allTime: 'All tid',
+      noData: 'Ingen data tilgjengelig',
+      loading: 'Laster toppliste...',
     },
   },
 } as const;
