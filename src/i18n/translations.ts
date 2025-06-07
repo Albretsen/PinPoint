@@ -32,7 +32,7 @@ export const translations = {
     // Groups
     groups: {
       myGroups: 'My Groups',
-      discoverPublicGroups: 'Discover Public Groups',
+      discoverPublicGroups: 'Public Groups',
       member: 'member',
       members: 'Members',
       memberCount: '{{count}} members',
@@ -56,6 +56,12 @@ export const translations = {
       errorJoiningGroup: 'Error joining group',
       notAdmin: 'You must be an admin to perform this action',
       errorKickingMember: 'Error kicking member from group',
+      searchPlaceholder: 'Search groups...',
+      sort: {
+        trending: 'Trending',
+        members: 'Most Members',
+        new: 'Newest',
+      },
     },
 
     // Home
@@ -211,7 +217,7 @@ export const translations = {
     // Groups
     groups: {
       myGroups: 'Mine grupper',
-      discoverPublicGroups: 'Oppdag offentlige grupper',
+      discoverPublicGroups: 'Offentlige grupper',
       member: 'medlem',
       members: 'Medlemmer',
       memberCount: '{{count}} medlemmer',
@@ -235,6 +241,12 @@ export const translations = {
       errorJoiningGroup: 'Kunne ikke bli med i gruppen',
       notAdmin: 'Du må være admin for å utføre denne handlingen',
       errorKickingMember: 'Kunne ikke kaste ut medlem fra gruppen',
+      searchPlaceholder: 'Søk i grupper...',
+      sort: {
+        trending: 'Populære',
+        members: 'Flest medlemmer',
+        new: 'Nyeste',
+      },
     },
 
     // Home

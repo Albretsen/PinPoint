@@ -1,15 +1,18 @@
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
+import { Ionicons } from '@expo/vector-icons';
 import { ContentStyle, FlashList } from '@shopify/flash-list';
 import React, { useCallback, useRef, useState } from 'react';
 import {
   ActivityIndicator,
+  Modal,
   RefreshControl,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
-  ViewStyle,
+  ViewStyle
 } from 'react-native';
 
 interface SkeletonStyle {
@@ -19,6 +22,12 @@ interface SkeletonStyle {
   marginVertical?: number;
   marginHorizontal?: number;
 }
+
+export type SortOption = {
+  id: string;
+  label: string;
+  icon: keyof typeof Ionicons.glyphMap;
+};
 
 interface PinListProps<T> {
   data: T[];
@@ -36,6 +45,12 @@ interface PinListProps<T> {
   estimatedItemSize?: number;
   skeletonStyle?: SkeletonStyle;
   onRetry?: () => void;
+  enableSearch?: boolean;
+  enableSorting?: boolean;
+  sortOptions?: SortOption[];
+  onSearch?: (query: string) => void;
+  onSort?: (sortOption: SortOption) => void;
+  searchPlaceholder?: string;
 }
 
 const SkeletonLoader = ({ style }: { style?: SkeletonStyle }) => {
@@ -55,6 +70,100 @@ const SkeletonLoader = ({ style }: { style?: SkeletonStyle }) => {
   );
 };
 
+const SearchAndSortHeader = ({
+  enableSearch,
+  enableSorting,
+  sortOptions,
+  onSearch,
+  onSort,
+  searchPlaceholder,
+  selectedSortOption,
+}: {
+  enableSearch?: boolean;
+  enableSorting?: boolean;
+  sortOptions?: SortOption[];
+  onSearch?: (query: string) => void;
+  onSort?: (sortOption: SortOption) => void;
+  searchPlaceholder?: string;
+  selectedSortOption?: SortOption;
+}) => {
+  const { theme } = useTheme();
+  const { t } = useTranslation();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSortModal, setShowSortModal] = useState(false);
+
+  const handleSearch = (text: string) => {
+    setSearchQuery(text);
+    onSearch?.(text);
+  };
+
+  const handleSortSelect = (option: SortOption) => {
+    onSort?.(option);
+    setShowSortModal(false);
+  };
+
+  return (
+    <View style={styles.searchSortContainer}>
+      {enableSearch && (
+        <View style={[styles.searchContainer, { backgroundColor: theme.colors.card }]}>
+          <Ionicons name="search" size={20} color={theme.colors.text} style={styles.searchIcon} />
+          <TextInput
+            style={[styles.searchInput, { color: theme.colors.text }]}
+            placeholder={searchPlaceholder}
+            placeholderTextColor={theme.colors.secondary}
+            value={searchQuery}
+            onChangeText={handleSearch}
+          />
+        </View>
+      )}
+      {enableSorting && sortOptions && (
+        <>
+          <TouchableOpacity
+            style={[styles.sortButton, { backgroundColor: theme.colors.card }]}
+            onPress={() => setShowSortModal(true)}
+          >
+            <Ionicons name={selectedSortOption?.icon || 'funnel-outline'} size={20} color={theme.colors.text} />
+            <Text style={[styles.sortButtonText, { color: theme.colors.text }]}>
+              {selectedSortOption?.label || t('list.sort')}
+            </Text>
+          </TouchableOpacity>
+
+          <Modal
+            visible={showSortModal}
+            transparent
+            animationType="fade"
+            onRequestClose={() => setShowSortModal(false)}
+          >
+            <TouchableOpacity
+              style={styles.modalOverlay}
+              activeOpacity={1}
+              onPress={() => setShowSortModal(false)}
+            >
+              <View style={[styles.modalContent, { backgroundColor: theme.colors.card }]}>
+                {sortOptions.map((option) => (
+                  <TouchableOpacity
+                    key={option.id}
+                    style={[
+                      styles.sortOption,
+                      selectedSortOption?.id === option.id && { backgroundColor: theme.colors.primary + '20' }
+                    ]}
+                    onPress={() => handleSortSelect(option)}
+                  >
+                    <Ionicons name={option.icon} size={20} color={theme.colors.text} />
+                    <Text style={[styles.sortOptionText, { color: theme.colors.text }]}>
+                      {option.label}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </TouchableOpacity>
+          </Modal>
+        </>
+      )}
+    </View>
+  );
+};
+
 export default function PinList<T>({
   data,
   renderItem,
@@ -71,10 +180,19 @@ export default function PinList<T>({
   estimatedItemSize = 100,
   skeletonStyle,
   onRetry,
+  enableSearch,
+  enableSorting,
+  sortOptions,
+  onSearch,
+  onSort,
+  searchPlaceholder,
 }: PinListProps<T>) {
   const { theme } = useTheme();
   const { t } = useTranslation();
   const [refreshing, setRefreshing] = useState(false);
+  const [selectedSortOption, setSelectedSortOption] = useState<SortOption | undefined>(
+    sortOptions?.[0]
+  );
   const listRef = useRef<FlashList<T>>(null);
 
   const onRefresh = useCallback(async () => {
@@ -86,13 +204,10 @@ export default function PinList<T>({
     }
   }, [fetchData]);
 
-  const scrollToTop = useCallback(() => {
-    listRef.current?.scrollToOffset({ offset: 0, animated: true });
-  }, []);
-
-  const scrollToIndex = useCallback((index: number, animated = true) => {
-    listRef.current?.scrollToIndex({ index, animated });
-  }, []);
+  const handleSort = useCallback((option: SortOption) => {
+    setSelectedSortOption(option);
+    onSort?.(option);
+  }, [onSort]);
 
   if (isLoading && !refreshing) {
     return (
@@ -159,7 +274,22 @@ export default function PinList<T>({
             {emptyMessage || t('list.error.empty')}
           </Text>
         }
-        ListHeaderComponent={ListHeaderComponent}
+        ListHeaderComponent={
+          <>
+            {(enableSearch || enableSorting) && (
+              <SearchAndSortHeader
+                enableSearch={enableSearch}
+                enableSorting={enableSorting}
+                sortOptions={sortOptions}
+                onSearch={onSearch}
+                onSort={handleSort}
+                searchPlaceholder={searchPlaceholder}
+                selectedSortOption={selectedSortOption}
+              />
+            )}
+            {ListHeaderComponent}
+          </>
+        }
         estimatedItemSize={estimatedItemSize}
         ListFooterComponent={
           hasMore ? (
@@ -182,7 +312,6 @@ const styles = StyleSheet.create({
   },
   listContent: {
     flexGrow: 1,
-    padding: 20,
   },
   errorContainer: {
     flex: 1,
@@ -215,5 +344,59 @@ const styles = StyleSheet.create({
   },
   footerLoader: {
     marginVertical: 20,
+  },
+  searchSortContainer: {
+    flexDirection: 'row',
+    gap: 8,
+    paddingVertical: 16,
+  },
+  searchContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    height: 40,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    height: '100%',
+    fontSize: 16,
+  },
+  sortButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    height: 40,
+    gap: 4,
+  },
+  sortButtonText: {
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    width: '80%',
+    borderRadius: 12,
+    padding: 16,
+  },
+  sortOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    borderRadius: 8,
+    gap: 8,
+  },
+  sortOptionText: {
+    fontSize: 16,
   },
 }); 

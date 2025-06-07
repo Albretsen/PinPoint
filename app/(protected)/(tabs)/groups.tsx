@@ -1,156 +1,60 @@
 import { GroupListItem } from '@/src/components/GroupListItem';
-import PinList from '@/src/components/PinList';
+import PinList, { SortOption } from '@/src/components/PinList';
 import PinText from '@/src/components/PinText';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
-import { Group, GroupMember } from '@/src/types/group';
+import { Group } from '@/src/types/group';
 import { useFocusEffect } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import { router } from 'expo-router';
-import { useCallback, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { useCallback, useMemo, useState } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
-async function fetchGroups(userId: string, page = 0, pageSize = 20): Promise<{ data: Group[], hasMore: boolean }> {
-  const today = new Date().toISOString().split('T')[0];
-  const { data, error, count } = await supabase
-    .from('group_members')
-    .select(`
-      is_admin,
-      joined_at,
-      groups (
-        id,
-        name,
-        is_public,
-        invite_code,
-        owner_id,
-        created_at,
-        daily_challenge_time,
-        is_archived,
-        description,
-        cover_image,
-        group_challenges (
-          id,
-          image_id,
-          challenge_date,
-          started_at,
-          ended_at,
-          group_images (
-            storage_path
-          )
-        )
-      )
-    `, { count: 'exact' })
-    .eq('user_id', userId)
-    .range(page * pageSize, (page + 1) * pageSize - 1);
+async function fetchGroups(
+  userId: string,
+  page = 0,
+  pageSize = 20,
+  search?: string,
+  sortBy: string = 'trending'
+): Promise<{ data: Group[], hasMore: boolean }> {
+  const { data, error } = await supabase.rpc('get_my_groups', {
+    p_user_id: userId,
+    p_search: search || null,
+    p_sort_by: sortBy,
+    p_page: page,
+    p_page_size: pageSize
+  });
 
   if (error) throw error;
 
-  // Get member counts for all groups in a single query
-  const groups = (data as unknown as GroupMember[]).map(member => member.groups).filter(Boolean);
-  const groupIds = groups.map(group => group.id);
-
-  const { data: memberCounts, error: countError } = await supabase.rpc('get_group_member_counts', {
-    group_ids: groupIds
-  });
-
-  if (countError) throw countError;
-
-  // Ensure memberCounts is an array and has the correct shape
-  const memberCountArray = Array.isArray(memberCounts) ? memberCounts : [];
-  const memberCountMap = new Map(
-    memberCountArray.map((count: { group_id: string; member_count: number }) => [
-      count.group_id,
-      count.member_count
-    ])
-  );
-
-  const transformedData = (data as unknown as GroupMember[])
-    .filter(member => member.groups)
-    .map(member => {
-      const groupId = member.groups.id;
-      const memberCount = memberCountMap.get(groupId);
-      return {
-        ...member.groups,
-        cover_image: member.groups.cover_image || null,
-        is_admin: member.is_admin,
-        joined_at: member.joined_at,
-        member_count: typeof memberCount === 'number' ? memberCount : 0,
-      };
-    });
-
   return {
-    data: transformedData as unknown as Group[],
-    hasMore: count ? count > (page + 1) * pageSize : false
+    data: data as Group[],
+    hasMore: data.length === pageSize
   };
 }
 
-async function fetchPublicGroups(userId: string, page = 0, pageSize = 20): Promise<{ data: Group[], hasMore: boolean }> {
-  const today = new Date().toISOString().split('T')[0];
-  const { data: groups, error, count } = await supabase
-    .from('groups')
-    .select(`
-      id,
-      name,
-      is_public,
-      invite_code,
-      owner_id,
-      created_at,
-      daily_challenge_time,
-      is_archived,
-      description,
-      cover_image,
-      group_challenges (
-        id,
-        image_id,
-        challenge_date,
-        started_at,
-        ended_at,
-        group_images (
-          storage_path
-        )
-      )
-    `, { count: 'exact' })
-    .eq('is_public', true)
-    .order('created_at', { ascending: false })
-    .range(page * pageSize, (page + 1) * pageSize - 1);
+async function fetchPublicGroups(
+  userId: string,
+  page = 0,
+  pageSize = 20,
+  search?: string,
+  sortBy: string = 'trending'
+): Promise<{ data: Group[], hasMore: boolean }> {
+  const { data, error } = await supabase.rpc('get_public_groups', {
+    p_user_id: userId,
+    p_search: search || null,
+    p_sort_by: sortBy,
+    p_page: page,
+    p_page_size: pageSize
+  });
 
   if (error) throw error;
 
-  // Get member counts and user's membership status in a single query
-  const groupIds = groups.map(group => group.id);
-  const { data: memberData, error: memberError } = await supabase.rpc('get_group_member_counts_and_status', {
-    group_ids: groupIds,
-    target_user_id: userId
-  });
-
-  if (memberError) throw memberError;
-
-  // Ensure memberData is an array and has the correct shape
-  const memberDataArray = Array.isArray(memberData) ? memberData : [];
-  const memberMap = new Map(
-    memberDataArray.map((data: { group_id: string; member_count: number; is_member: boolean }) => [
-      data.group_id,
-      {
-        count: data.member_count,
-        isMember: data.is_member
-      }
-    ])
-  );
-
-  const transformedData = groups.map(group => {
-    const memberInfo = memberMap.get(group.id);
-    return {
-      ...group,
-      member_count: memberInfo?.count ?? 0,
-      is_member: memberInfo?.isMember ?? false,
-    };
-  });
-
   return {
-    data: transformedData as unknown as Group[],
-    hasMore: count ? count > (page + 1) * pageSize : false
+    data: data as Group[],
+    hasMore: data.length === pageSize
   };
 }
 
@@ -158,18 +62,43 @@ export default function GroupsScreen() {
   const { theme } = useTheme();
   const { t } = useTranslation();
   const { session } = useUserStore();
+  const [activeTab, setActiveTab] = useState<'my' | 'public'>('my');
   const [myGroupsPage, setMyGroupsPage] = useState(0);
   const [publicGroupsPage, setPublicGroupsPage] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedSort, setSelectedSort] = useState<SortOption>({
+    id: 'trending',
+    label: t('groups.sort.trending'),
+    icon: 'trending-up',
+  });
+
+  const sortOptions: SortOption[] = useMemo(() => [
+    {
+      id: 'trending',
+      label: t('groups.sort.trending'),
+      icon: 'trending-up',
+    },
+    {
+      id: 'members',
+      label: t('groups.sort.members'),
+      icon: 'people',
+    },
+    {
+      id: 'new',
+      label: t('groups.sort.new'),
+      icon: 'time',
+    },
+  ], [t]);
 
   const { data: myGroupsData, isLoading: isLoadingMyGroups, error: myGroupsError, refetch: refetchMyGroups } = useQuery({
-    queryKey: ['myGroups', session?.user?.id, myGroupsPage],
-    queryFn: () => fetchGroups(session!.user!.id, myGroupsPage),
+    queryKey: ['myGroups', session?.user?.id, myGroupsPage, searchQuery, selectedSort.id],
+    queryFn: () => fetchGroups(session!.user!.id, myGroupsPage, 20, searchQuery, selectedSort.id),
     enabled: !!session?.user?.id,
   });
 
   const { data: publicGroupsData, isLoading: isLoadingPublicGroups, error: publicGroupsError, refetch: refetchPublicGroups } = useQuery({
-    queryKey: ['publicGroups', session?.user?.id, publicGroupsPage],
-    queryFn: () => fetchPublicGroups(session!.user!.id, publicGroupsPage),
+    queryKey: ['publicGroups', session?.user?.id, publicGroupsPage, searchQuery, selectedSort.id],
+    queryFn: () => fetchPublicGroups(session!.user!.id, publicGroupsPage, 20, searchQuery, selectedSort.id),
     enabled: !!session?.user?.id,
   });
 
@@ -205,6 +134,18 @@ export default function GroupsScreen() {
     if (publicGroupsData?.hasMore) {
       setPublicGroupsPage(prev => prev + 1);
     }
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setMyGroupsPage(0);
+    setPublicGroupsPage(0);
+  };
+
+  const handleSort = (option: SortOption) => {
+    setSelectedSort(option);
+    setMyGroupsPage(0);
+    setPublicGroupsPage(0);
   };
 
   const renderMyGroup = (group: Group) => (
@@ -258,44 +199,84 @@ export default function GroupsScreen() {
   );
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>  
-      {/* My Groups Section */}
-      <View style={styles.section}>
-        <PinText style={[styles.sectionTitle, { color: theme.colors.text }]}>
-          {t('groups.myGroups')}
-        </PinText>
-        <PinList
-          data={myGroupsData?.data || []}
-          renderItem={renderMyGroup}
-          fetchData={handleRefreshMyGroups}
-          isLoading={isLoadingMyGroups}
-          error={myGroupsError as Error}
-          emptyMessage={t('groups.noGroups')}
-          keyExtractor={(item) => item.id}
-          onEndReached={handleLoadMoreMyGroups}
-          hasMore={myGroupsData?.hasMore}
-        />
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      {/* Tab Bar */}
+      <View style={[styles.tabBar, { backgroundColor: theme.colors.card }]}>
+        <TouchableOpacity
+          style={[
+            styles.tab,
+            activeTab === 'my' && { borderBottomColor: theme.colors.primary }
+          ]}
+          onPress={() => setActiveTab('my')}
+        >
+          <PinText
+            style={[
+              styles.tabText,
+              { color: activeTab === 'my' ? theme.colors.primary : theme.colors.text }
+            ]}
+          >
+            {t('groups.myGroups')}
+          </PinText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.tab,
+            activeTab === 'public' && { borderBottomColor: theme.colors.primary }
+          ]}
+          onPress={() => setActiveTab('public')}
+        >
+          <PinText
+            style={[
+              styles.tabText,
+              { color: activeTab === 'public' ? theme.colors.primary : theme.colors.text }
+            ]}
+          >
+            {t('groups.discoverPublicGroups')}
+          </PinText>
+        </TouchableOpacity>
       </View>
 
-      {/* Divider */}
-      <View style={[styles.divider, { backgroundColor: theme.colors.border }]} />
-
-      {/* Discover Public Groups Section */}
-      <View style={styles.section}>
-        <PinText style={[styles.sectionTitle, { color: theme.colors.text }]}>
-          {t('groups.discoverPublicGroups')}
-        </PinText>
-        <PinList
-          data={publicGroupsData?.data || []}
-          renderItem={renderPublicGroup}
-          fetchData={handleRefreshPublicGroups}
-          isLoading={isLoadingPublicGroups}
-          error={publicGroupsError as Error}
-          emptyMessage={t('groups.noPublicGroups')}
-          keyExtractor={(item) => item.id}
-          onEndReached={handleLoadMorePublicGroups}
-          hasMore={publicGroupsData?.hasMore}
-        />
+      {/* Content */}
+      <View style={styles.content}>
+        {activeTab === 'my' ? (
+          <PinList
+            data={myGroupsData?.data || []}
+            renderItem={renderMyGroup}
+            fetchData={handleRefreshMyGroups}
+            isLoading={isLoadingMyGroups}
+            error={myGroupsError as Error}
+            emptyMessage={t('groups.noGroups')}
+            keyExtractor={(item) => item.id}
+            onEndReached={handleLoadMoreMyGroups}
+            hasMore={myGroupsData?.hasMore}
+            enableSearch={true}
+            enableSorting={true}
+            sortOptions={sortOptions}
+            onSearch={handleSearch}
+            onSort={handleSort}
+            searchPlaceholder={t('groups.searchPlaceholder')}
+            contentContainerStyle={styles.listContent}
+          />
+        ) : (
+          <PinList
+            data={publicGroupsData?.data || []}
+            renderItem={renderPublicGroup}
+            fetchData={handleRefreshPublicGroups}
+            isLoading={isLoadingPublicGroups}
+            error={publicGroupsError as Error}
+            emptyMessage={t('groups.noPublicGroups')}
+            keyExtractor={(item) => item.id}
+            onEndReached={handleLoadMorePublicGroups}
+            hasMore={publicGroupsData?.hasMore}
+            enableSearch={true}
+            enableSorting={true}
+            sortOptions={sortOptions}
+            onSearch={handleSearch}
+            onSort={handleSort}
+            searchPlaceholder={t('groups.searchPlaceholder')}
+            contentContainerStyle={styles.listContent}
+          />
+        )}
       </View>
     </View>
   );
@@ -305,17 +286,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  section: {
+  tabBar: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  tab: {
     flex: 1,
-    padding: 20,
+    paddingVertical: 16,
+    alignItems: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: 'transparent',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  tabText: {
+    fontSize: 16,
+    fontWeight: '600',
   },
-  divider: {
-    height: 1,
-    marginHorizontal: 20,
+  content: {
+    flex: 1,
+  },
+  listContent: {
+    paddingHorizontal: 16,
   },
 }); 
