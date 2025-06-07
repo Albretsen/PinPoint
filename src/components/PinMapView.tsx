@@ -91,6 +91,7 @@ export function PinMapView({
         loadingEnabled={true}
         loadingIndicatorColor={theme.colors.text}
         loadingBackgroundColor={theme.colors.background}
+        poiClickEnabled={false}
       >
         {selectedLocation && allowMarkerPlacement && (
           <Marker
