@@ -22,7 +22,7 @@ export function useTranslation() {
     }
   }, [language, systemLanguage, setLanguage]);
 
-  const t = (key: string) => {
+  const t = (key: string, params?: Record<string, string | number>) => {
     const keys = key.split('.');
     let value: any = translations[language];
     
@@ -31,7 +31,16 @@ export function useTranslation() {
       value = value[k];
     }
     
-    return value || key;
+    if (!value) return key;
+
+    // Replace parameters in the translation string
+    if (params) {
+      return Object.entries(params).reduce((str, [key, val]) => {
+        return str.replace(new RegExp(`{{${key}}}`, 'g'), String(val));
+      }, value);
+    }
+    
+    return value;
   };
 
   return {

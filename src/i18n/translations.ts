@@ -77,6 +77,10 @@ export const translations = {
       linkAccount: 'Link Account',
       previewAndShare: 'Preview & Share',
       noImageSelected: 'No image selected',
+      shareWithGroups: 'Share with Groups',
+      selectAll: 'Select All',
+      deselectAll: 'Deselect All',
+      shareWithX: 'Share with {{count}} groups',
       upload: {
         success: 'Image uploaded successfully',
         error: {
@@ -85,7 +89,7 @@ export const translations = {
           database: 'Failed to save image information',
           unknown: 'An error occurred while uploading the image'
         }
-      }
+      },
     },
 
     // Profile
@@ -252,6 +256,10 @@ export const translations = {
       linkAccount: 'Koble til konto',
       previewAndShare: 'Forhåndsvis & Del',
       noImageSelected: 'Ingen bilde valgt',
+      shareWithGroups: 'Del med grupper',
+      selectAll: 'Velg alle',
+      deselectAll: 'Fjern alle',
+      shareWithX: 'Del med {{count}} grupper',
       upload: {
         success: 'Bildet ble lastet opp',
         error: {
@@ -260,7 +268,7 @@ export const translations = {
           database: 'Kunne ikke lagre bildeinformasjon',
           unknown: 'En feil oppstod under opplasting av bildet'
         }
-      }
+      },
     },
 
     // Profile
