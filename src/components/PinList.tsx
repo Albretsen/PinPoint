@@ -275,7 +275,7 @@ export default function PinList<T>({
           </Text>
         }
         ListHeaderComponent={
-          <>
+          <View>
             {(enableSearch || enableSorting) && (
               <SearchAndSortHeader
                 enableSearch={enableSearch}
@@ -287,8 +287,10 @@ export default function PinList<T>({
                 selectedSortOption={selectedSortOption}
               />
             )}
-            {ListHeaderComponent}
-          </>
+            {typeof ListHeaderComponent === 'function'
+              ? <ListHeaderComponent />
+              : ListHeaderComponent}
+          </View>
         }
         estimatedItemSize={estimatedItemSize}
         ListFooterComponent={

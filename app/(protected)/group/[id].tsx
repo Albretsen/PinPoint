@@ -293,8 +293,13 @@ export default function GroupDetailsScreen() {
             id: group.group_challenges[0].id,
             challenge_date: group.group_challenges[0].challenge_date,
             started_at: group.group_challenges[0].started_at,
-            ended_at: group.group_challenges[0].ended_at,
-            group_images: group.group_challenges[0].group_images
+            ended_at: group.group_challenges[0].ended_at || null,
+            group_images: {
+              id: group.group_challenges[0].group_images?.[0]?.id || '',
+              storage_path: group.group_challenges[0].group_images?.[0]?.storage_path || '',
+              taken_at: group.group_challenges[0].group_images?.[0]?.taken_at || null,
+              uploader_id: group.group_challenges[0].group_images?.[0]?.uploader_id || ''
+            }
           } : undefined}
         />
 

@@ -9,7 +9,19 @@ import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
 import { ImageSourcePropType, StyleSheet, View } from 'react-native';
 
-async function fetchGroups(userId: string): Promise<Group[]> {
+interface ExtendedGroup extends Group {
+  current_challenge?: {
+    id: string;
+    challenge_date: string;
+    started_at: string;
+    ended_at: string;
+    image?: {
+      storage_path: string;
+    };
+  };
+}
+
+async function fetchGroups(userId: string): Promise<ExtendedGroup[]> {
   const { data, error } = await supabase
     .from('group_members')
     .select(`
@@ -56,7 +68,7 @@ async function fetchGroups(userId: string): Promise<Group[]> {
         challenge_date: currentChallenge.challenge_date,
         started_at: currentChallenge.started_at,
         ended_at: currentChallenge.ended_at,
-        image: currentChallenge.group_images
+        image: currentChallenge.group_images?.[0]
       } : undefined
     };
   });
@@ -90,7 +102,7 @@ export default function HomeScreen() {
     return result.data || [];
   };
 
-  const renderGroup = (group: Group) => {
+  const renderGroup = (group: ExtendedGroup) => {
     // Determine the image source
     let imageSource: ImageSourcePropType | undefined;
     

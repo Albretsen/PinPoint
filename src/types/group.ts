@@ -1,5 +1,8 @@
 export interface GroupImage {
+  id: string;
   storage_path: string;
+  taken_at: string | null;
+  uploader_id: string;
 }
 
 export interface GroupChallenge {
