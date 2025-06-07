@@ -19,6 +19,10 @@ interface ExtendedGroup extends Group {
       storage_path: string;
     };
   };
+  id: string;
+  name: string;
+  description: string;
+  cover_image: string | null;
 }
 
 async function fetchGroups(userId: string): Promise<ExtendedGroup[]> {
@@ -141,7 +145,9 @@ export default function HomeScreen() {
         isLoading={isLoading}
         error={error as Error}
         emptyMessage={t('home.noGroups')}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item: ExtendedGroup) => item.id}
+        onEndReached={() => {}}
+        hasMore={false}
       />
     </View>
   );

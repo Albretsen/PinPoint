@@ -1,6 +1,7 @@
 import { GroupListItem } from '@/src/components/GroupListItem';
-import PinList, { SortOption } from '@/src/components/PinList';
+import PinList from '@/src/components/PinList';
 import PinText from '@/src/components/PinText';
+import SearchAndSortHeader, { SortOption } from '@/src/components/SearchAndSortHeader';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
@@ -200,7 +201,6 @@ export default function GroupsScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      {/* Tab Bar */}
       <View style={[styles.tabBar, { backgroundColor: theme.colors.card }]}>
         <TouchableOpacity
           style={[
@@ -236,8 +236,17 @@ export default function GroupsScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Content */}
       <View style={styles.content}>
+        <SearchAndSortHeader
+          enableSearch={true}
+          enableSorting={true}
+          sortOptions={sortOptions}
+          onSearch={handleSearch}
+          onSort={handleSort}
+          searchPlaceholder={t('groups.searchPlaceholder')}
+          selectedSortOption={selectedSort}
+          searchQuery={searchQuery}
+        />
         {activeTab === 'my' ? (
           <PinList
             data={myGroupsData?.data || []}
@@ -245,16 +254,14 @@ export default function GroupsScreen() {
             fetchData={handleRefreshMyGroups}
             isLoading={isLoadingMyGroups}
             error={myGroupsError as Error}
-            emptyMessage={t('groups.noGroups')}
+            emptyMessage={
+              searchQuery || selectedSort.id !== 'trending'
+                ? t('groups.noGroupsFound')
+                : t('groups.noGroupsJoined')
+            }
             keyExtractor={(item) => item.id}
             onEndReached={handleLoadMoreMyGroups}
             hasMore={myGroupsData?.hasMore}
-            enableSearch={true}
-            enableSorting={true}
-            sortOptions={sortOptions}
-            onSearch={handleSearch}
-            onSort={handleSort}
-            searchPlaceholder={t('groups.searchPlaceholder')}
             contentContainerStyle={styles.listContent}
           />
         ) : (
@@ -264,16 +271,14 @@ export default function GroupsScreen() {
             fetchData={handleRefreshPublicGroups}
             isLoading={isLoadingPublicGroups}
             error={publicGroupsError as Error}
-            emptyMessage={t('groups.noPublicGroups')}
+            emptyMessage={
+              searchQuery || selectedSort.id !== 'trending'
+                ? t('groups.noGroupsFound')
+                : t('groups.noPublicGroups')
+            }
             keyExtractor={(item) => item.id}
             onEndReached={handleLoadMorePublicGroups}
             hasMore={publicGroupsData?.hasMore}
-            enableSearch={true}
-            enableSorting={true}
-            sortOptions={sortOptions}
-            onSearch={handleSearch}
-            onSort={handleSort}
-            searchPlaceholder={t('groups.searchPlaceholder')}
             contentContainerStyle={styles.listContent}
           />
         )}
