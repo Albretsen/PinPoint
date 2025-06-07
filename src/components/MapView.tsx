@@ -54,13 +54,13 @@ export function PinMapView({
     longitude: number;
   } | null>(null);
 
-  const region = initialRegion || DEFAULT_REGION;
-
   const handleMapPress = (event: MapPressEvent) => {
     const coordinate = event.nativeEvent.coordinate;
     setSelectedLocation(coordinate);
     onLocationSelect?.(coordinate);
   };
+
+  const region = initialRegion || DEFAULT_REGION;
 
   const mapStyle: ViewStyle = {
     ...styles.map,
@@ -125,7 +125,7 @@ PinMapView.defaultProps = {
 const styles = StyleSheet.create({
   container: {
     overflow: "hidden",
-    borderRadius: 20,
+    borderRadius: 12,
   },
   map: {
     width: "100%",
