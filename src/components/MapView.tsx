@@ -1,6 +1,12 @@
 import { useTheme } from "@/src/context/ThemeProvider";
 import React, { useState } from "react";
-import { Platform, StyleSheet, View, ViewStyle } from "react-native";
+import {
+  DimensionValue,
+  Platform,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
 import MapView, {
   MapPressEvent,
   Marker,
@@ -21,6 +27,8 @@ interface MapViewProps {
     latitude: number;
     longitude: number;
   };
+  width?: DimensionValue;
+  height?: DimensionValue;
 }
 
 const DEFAULT_REGION = {
@@ -37,6 +45,8 @@ export function PinMapView({
   onLocationSelect,
   allowMarkerPlacement,
   correctLocation,
+  width,
+  height,
 }: MapViewProps) {
   const { theme } = useTheme();
   const [selectedLocation, setSelectedLocation] = useState<{
@@ -52,10 +62,22 @@ export function PinMapView({
     onLocationSelect?.(coordinate);
   };
 
+  const mapStyle: ViewStyle = {
+    ...styles.map,
+    width: width || "100%",
+    height: height || "100%",
+  };
+
+  const containerStyle: ViewStyle = {
+    ...styles.container,
+    width: width || "100%",
+    height: height || "100%",
+  };
+
   return (
-    <View style={[styles.container, style]}>
+    <View style={[containerStyle, style]}>
       <MapView
-        style={styles.map}
+        style={mapStyle}
         provider={Platform.select({
           ios: PROVIDER_GOOGLE,
           android: PROVIDER_GOOGLE,
@@ -96,11 +118,12 @@ PinMapView.defaultProps = {
   onLocationSelect: () => {},
   allowMarkerPlacement: false,
   correctLocation: null,
+  width: "100%",
+  height: "100%",
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     overflow: "hidden",
     borderRadius: 20,
   },
