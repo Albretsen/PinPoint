@@ -58,6 +58,7 @@ export const translations = {
       errorJoiningGroup: 'Error joining group',
       notAdmin: 'You must be an admin to perform this action',
       errorKickingMember: 'Error kicking member from group',
+      deleteGroup: 'Delete Group',
       searchPlaceholder: 'Search groups...',
       sort: {
         trending: 'Trending',
@@ -280,6 +281,7 @@ export const translations = {
       errorJoiningGroup: 'Kunne ikke bli med i gruppen',
       notAdmin: 'Du må være admin for å utføre denne handlingen',
       errorKickingMember: 'Kunne ikke kaste ut medlem fra gruppen',
+      deleteGroup: 'Slett gruppe',
       searchPlaceholder: 'Søk i grupper...',
       sort: {
         trending: 'Populære',

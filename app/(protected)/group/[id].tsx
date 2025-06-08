@@ -66,11 +66,12 @@ export default function GroupDetailsScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const { session } = useUserStore();
-  const { isLeaving, leaveGroup, isJoining, joinGroup } = useGroup();
+  const { isLeaving, leaveGroup, isJoining, joinGroup, isDeleting, deleteGroup } = useGroup();
   const { showToast } = usePinToast();
 
   const [group, setGroup] = useState<Group | null>(initialData ? JSON.parse(initialData) : null);
   const [isMember, setIsMember] = useState<boolean>(false);
+  const [isOwner, setIsOwner] = useState<boolean>(false);
 
   const fetchGroup = async () => {
     // First get the group details
@@ -114,6 +115,7 @@ export default function GroupDetailsScreen() {
       member_count: count || 0
     });
     setIsMember(!!membership);
+    setIsOwner(groupData.owner_id === session?.user?.id);
   };
 
   // Refresh data when screen comes into focus
@@ -152,6 +154,15 @@ export default function GroupDetailsScreen() {
     }
   };
 
+  const handleDeleteGroup = async () => {
+    if (!id) return;
+    
+    const success = await deleteGroup(id);
+    if (success) {
+      router.back();
+    }
+  };
+
   if (!group) {
     return (
       <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -176,6 +187,15 @@ export default function GroupDetailsScreen() {
       destructive: true,
     },
   ];
+
+  if (isOwner) {
+    menuOptions.push({
+      label: t('groups.deleteGroup'),
+      icon: 'trash-outline',
+      onPress: handleDeleteGroup,
+      destructive: true,
+    });
+  }
 
   return (
     <>

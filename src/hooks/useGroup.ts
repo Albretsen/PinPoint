@@ -9,6 +9,7 @@ export function useGroup() {
   const [isLeaving, setIsLeaving] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
   const [isKicking, setIsKicking] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { showToast } = usePinToast();
   const { t } = useTranslation();
 
@@ -77,12 +78,35 @@ export function useGroup() {
     }
   };
 
+  const deleteGroup = async (groupId: string) => {
+    if (!session?.user?.id) return false;
+
+    try {
+      setIsDeleting(true);
+      const { error } = await supabase
+        .from('groups')
+        .delete()
+        .eq('id', groupId)
+        .eq('owner_id', session.user.id);
+
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      console.error('Error deleting group:', error);
+      return false;
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return {
     isLeaving,
     isJoining,
     isKicking,
+    isDeleting,
     leaveGroup,
     joinGroup,
     kickMember,
+    deleteGroup,
   };
 } 
