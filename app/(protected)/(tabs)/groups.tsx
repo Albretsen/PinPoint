@@ -7,6 +7,7 @@ import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
 import { Group } from '@/src/types/group';
+import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import { router } from 'expo-router';
@@ -283,6 +284,13 @@ export default function GroupsScreen() {
           />
         )}
       </View>
+
+      <TouchableOpacity
+        style={[styles.fab, { backgroundColor: theme.colors.primary }]}
+        onPress={() => router.push('/(protected)/create-group/basic-info')}
+      >
+        <Ionicons name="add" size={24} color={theme.colors.background} />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -312,5 +320,23 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingHorizontal: 16,
+  },
+  fab: {
+    position: 'absolute',
+    right: 20,
+    bottom: 20,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
 }); 

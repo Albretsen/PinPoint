@@ -1,4 +1,5 @@
 import { useTheme } from '@/src/context/ThemeProvider';
+import { useTranslation } from '@/src/i18n/useTranslation';
 import React from 'react';
 import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 import PinText from './PinText';
@@ -6,10 +7,24 @@ import PinText from './PinText';
 interface PinTextInputProps extends TextInputProps {
   label: string;
   error?: string;
+  maxLength?: number;
+  showCharacterCount?: boolean;
 }
 
-export function PinTextInput({ label, style, error, ...props }: PinTextInputProps) {
+export function PinTextInput({ 
+  label, 
+  style, 
+  error, 
+  maxLength,
+  showCharacterCount,
+  value,
+  ...props 
+}: PinTextInputProps) {
   const { theme } = useTheme();
+  const { t } = useTranslation();
+
+  const characterCount = typeof value === 'string' ? value.length : 0;
+  const remainingChars = maxLength ? maxLength - characterCount : 0;
 
   return (
     <View style={styles.container}>
@@ -27,11 +42,20 @@ export function PinTextInput({ label, style, error, ...props }: PinTextInputProp
           style,
         ]}
         placeholderTextColor={theme.colors.text + '80'}
+        maxLength={maxLength}
+        value={value}
         {...props}
       />
-      {error && (
-        <PinText style={[styles.error, { color: theme.colors.error }]}>{error}</PinText>
-      )}
+      <View style={styles.footer}>
+        {error && (
+          <PinText style={[styles.error, { color: theme.colors.error }]}>{error}</PinText>
+        )}
+        {showCharacterCount && maxLength && (
+          <PinText style={[styles.characterCount, { color: theme.colors.text }]}>
+            {t('groups.create.basicInfo.charactersLeft', { count: remainingChars })}
+          </PinText>
+        )}
+      </View>
     </View>
   );
 }
@@ -51,8 +75,18 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     paddingHorizontal: 15,
   },
-  error: {
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop: 4,
+  },
+  error: {
     fontSize: 13,
+    flex: 1,
+  },
+  characterCount: {
+    fontSize: 13,
+    opacity: 0.7,
   },
 }); 
