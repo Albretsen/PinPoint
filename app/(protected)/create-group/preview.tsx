@@ -71,10 +71,6 @@ export default function PreviewScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <PinText style={[styles.title, { color: theme.colors.text }]}>
-        {t('groups.create.preview.title')}
-      </PinText>
-
       <View style={[styles.previewCard, { backgroundColor: theme.colors.card }]}>
         <View style={[styles.coverPlaceholder, { backgroundColor: theme.colors.border }]}>
           <Ionicons name="image-outline" size={40} color={theme.colors.text} />
@@ -135,11 +131,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 30,
   },
   previewCard: {
     borderRadius: 8,

@@ -40,6 +40,34 @@ export default function ProtectedLayout() {
           headerBackTitle: t('navigation.back'),
         }}
       />
+      <Stack.Screen
+        name="create-group/basic-info"
+        options={{
+          title: t('groups.create.basicInfo.title'),
+          headerBackTitle: t('navigation.back'),
+        }}
+      />
+      <Stack.Screen
+        name="create-group/privacy"
+        options={{
+          title: t('groups.create.privacy.title'),
+          headerBackTitle: t('navigation.back'),
+        }}
+      />
+      <Stack.Screen
+        name="create-group/preview"
+        options={{
+          title: t('groups.create.preview.title'),
+          headerBackTitle: t('navigation.back'),
+        }}
+      />
+      <Stack.Screen
+        name="create-group/success"
+        options={{
+          title: t('groups.create.success.title'),
+          headerBackVisible: false,
+        }}
+      />
     </Stack>
   );
 } 

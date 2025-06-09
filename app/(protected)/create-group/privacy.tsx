@@ -48,10 +48,6 @@ export default function PrivacyScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <PinText style={[styles.title, { color: theme.colors.text }]}>
-        {t('groups.create.privacy.title')}
-      </PinText>
-
       <View style={[styles.section, { backgroundColor: theme.colors.card }]}>
         <View style={styles.sectionHeader}>
           <View>
@@ -130,11 +126,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 30,
   },
   section: {
     borderRadius: 8,

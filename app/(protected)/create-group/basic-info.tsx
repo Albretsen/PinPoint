@@ -26,10 +26,6 @@ export default function BasicInfoScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <PinText style={[styles.title, { color: theme.colors.text }]}>
-        {t('groups.create.basicInfo.title')}
-      </PinText>
-
       <PinTextInput
         label={t('groups.create.basicInfo.name')}
         placeholder={t('groups.create.basicInfo.namePlaceholder')}
@@ -82,11 +78,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 30,
   },
   descriptionInput: {
     height: 100,
