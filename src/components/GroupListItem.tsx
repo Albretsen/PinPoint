@@ -1,6 +1,8 @@
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
+import { supabase } from '@/src/lib/supabase';
 import { Ionicons } from '@expo/vector-icons';
+import { useEffect, useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useGroup } from '../hooks/useGroup';
 import { PinButton } from './PinButton';
@@ -32,6 +34,26 @@ export function GroupListItem({
   const { theme } = useTheme();
   const { t } = useTranslation();
   const { isJoining, joinGroup } = useGroup();
+  const [secureImageUrl, setSecureImageUrl] = useState<string | null>(null);
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    const fetchSecureUrl = async () => {
+      if (!imageUrl) return;
+      
+      const { data } = await supabase.storage
+        .from('photos')
+        .createSignedUrl(imageUrl, 3600);
+
+      if (data?.signedUrl) {
+        setSecureImageUrl(data.signedUrl);
+      } else {
+        setImageError(true);
+      }
+    };
+
+    fetchSecureUrl();
+  }, [imageUrl]);
 
   const handleJoin = async () => {
     const success = await joinGroup(id);
@@ -47,8 +69,12 @@ export function GroupListItem({
     >
       <View style={styles.content}>
         <View style={[styles.imageContainer, { backgroundColor: theme.colors.border }]}>
-          {imageUrl ? (
-            <Image source={{ uri: imageUrl }} style={styles.image} />
+          {secureImageUrl && !imageError ? (
+            <Image 
+              source={{ uri: secureImageUrl }} 
+              style={styles.image}
+              onError={() => setImageError(true)}
+            />
           ) : (
             <Ionicons name="image-outline" size={24} color={theme.colors.text} />
           )}
