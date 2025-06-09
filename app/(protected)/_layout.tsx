@@ -1,10 +1,28 @@
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
-import { Stack } from 'expo-router';
+import { useUserStore } from '@/src/store/userStore';
+import { Stack, useRouter, useSegments } from 'expo-router';
+import { useEffect } from 'react';
+
+function useProtectedRoute(session: any) {
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    const inProtectedGroup = segments[0] === '(protected)';
+
+    if (!session && inProtectedGroup) {
+      router.replace('/login');
+    }
+  }, [session, segments, router]);
+}
 
 export default function ProtectedLayout() {
   const { theme } = useTheme();
   const { t } = useTranslation();
+  const { session } = useUserStore();
+
+  useProtectedRoute(session);
 
   return (
     <Stack

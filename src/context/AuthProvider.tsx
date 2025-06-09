@@ -49,6 +49,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     let mounted = true;
 
+    // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (mounted) {
         setSession(session);
@@ -56,11 +57,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     });
 
+    // Listen for auth state changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (mounted) {
-        setSession(session);
+        if (event === 'SIGNED_OUT') {
+          // Clear any persisted session data
+          await supabase.auth.signOut();
+          setSession(null);
+        } else {
+          setSession(session);
+        }
         setIsLoading(false);
       }
     });
@@ -88,6 +96,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signOut = async () => {
+    // Clear local state first
+    setSession(null);
+    
+    // Then sign out from Supabase
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   };

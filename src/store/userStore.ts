@@ -1,5 +1,6 @@
 import { supabase } from '@/src/lib/supabase';
 import { UserState } from '@/src/types/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { useDeviceStore } from './deviceStore';
 
@@ -39,7 +40,27 @@ export const useUserStore = create<UserState>((set) => ({
     deviceStore.setLastLoginDate(new Date().toISOString());
   },
   signOut: async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
+    try {
+      // Clear all Supabase related storage first
+      const keys = await AsyncStorage.getAllKeys();
+      const supabaseKeys = keys.filter(key => 
+        key.startsWith('supabase.auth') || 
+        key.startsWith('sb-')
+      );
+      await AsyncStorage.multiRemove(supabaseKeys);
+
+      // Clear local state
+      set({ session: null });
+      
+      // Try to sign out from Supabase, but don't throw if it fails
+      // since we've already cleared the storage
+      await supabase.auth.signOut().catch(() => {
+        // Ignore sign out errors since we've already cleared everything
+      });
+    } catch (error) {
+      console.error('Error during sign out:', error);
+      // Don't throw the error since we want to ensure the user is signed out
+      // even if there are issues with the Supabase sign out
+    }
   },
 })); 
