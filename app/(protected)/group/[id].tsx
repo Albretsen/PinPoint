@@ -72,6 +72,22 @@ export default function GroupDetailsScreen() {
   const [group, setGroup] = useState<Group | null>(initialData ? JSON.parse(initialData) : null);
   const [isMember, setIsMember] = useState<boolean>(false);
   const [isOwner, setIsOwner] = useState<boolean>(false);
+  const [coverImageUrl, setCoverImageUrl] = useState<string | null>(null);
+
+  const fetchCoverImageUrl = async (storagePath: string) => {
+    if (!storagePath) return;
+
+    const { data, error } = await supabase.storage
+      .from('photos')
+      .createSignedUrl(storagePath, 3600); // 1 hour expiry
+
+    if (error) {
+      console.error('Error fetching cover image URL:', error);
+      return;
+    }
+
+    setCoverImageUrl(data.signedUrl);
+  };
 
   const fetchGroup = async () => {
     // First get the group details
@@ -116,6 +132,11 @@ export default function GroupDetailsScreen() {
     });
     setIsMember(!!membership);
     setIsOwner(groupData.owner_id === session?.user?.id);
+
+    // Fetch cover image URL if exists
+    if (groupData.cover_image) {
+      fetchCoverImageUrl(groupData.cover_image);
+    }
   };
 
   // Refresh data when screen comes into focus
@@ -268,9 +289,9 @@ export default function GroupDetailsScreen() {
       <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
         {/* Cover Image */}
         <View style={styles.coverContainer}>
-          {group.cover_image ? (
+          {coverImageUrl ? (
             <Image
-              source={{ uri: group.cover_image }}
+              source={{ uri: coverImageUrl }}
               style={styles.coverImage}
               resizeMode="cover"
             />
