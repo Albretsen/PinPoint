@@ -1,10 +1,11 @@
+import { PinButton } from '@/src/components/PinButton';
 import PinText from '@/src/components/PinText';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export default function SuccessScreen() {
   const { theme } = useTheme();
@@ -34,14 +35,12 @@ export default function SuccessScreen() {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: theme.colors.primary }]}
+        <PinButton
+          variant="primary"
           onPress={handleViewGroup}
         >
-          <PinText style={[styles.buttonText, { color: theme.colors.background }]}>
-            {t('groups.create.success.viewGroup')}
-          </PinText>
-        </TouchableOpacity>
+          {t('groups.create.success.viewGroup')}
+        </PinButton>
       </View>
     </View>
   );
@@ -73,15 +72,5 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 'auto',
-  },
-  button: {
-    height: 50,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: '600',
   },
 }); 

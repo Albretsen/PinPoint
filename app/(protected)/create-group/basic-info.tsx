@@ -1,3 +1,4 @@
+import { PinButton } from '@/src/components/PinButton';
 import PinText from '@/src/components/PinText';
 import { PinTextInput } from '@/src/components/PinTextInput';
 import { useTheme } from '@/src/context/ThemeProvider';
@@ -82,15 +83,13 @@ export default function BasicInfoScreen() {
       </TouchableOpacity>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: theme.colors.primary }]}
+        <PinButton
+          variant="primary"
           onPress={handleNext}
           disabled={!name.trim() || isUploading}
         >
-          <PinText style={[styles.buttonText, { color: theme.colors.background }]}>
-            {t('navigation.next')}
-          </PinText>
-        </TouchableOpacity>
+          {t('navigation.next')}
+        </PinButton>
       </View>
     </View>
   );
@@ -126,15 +125,5 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 'auto',
-  },
-  button: {
-    height: 50,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: '600',
   },
 }); 

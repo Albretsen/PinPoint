@@ -1,3 +1,4 @@
+import { PinButton } from '@/src/components/PinButton';
 import PinText from '@/src/components/PinText';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
@@ -6,8 +7,8 @@ import { useUserStore } from '@/src/store/userStore';
 import { Ionicons } from '@expo/vector-icons';
 import * as FileSystem from 'expo-file-system';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useState } from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 
 export default function PreviewScreen() {
   const { theme } = useTheme();
@@ -23,6 +24,13 @@ export default function PreviewScreen() {
     coverImage: string;
   }>();
   const [isCreating, setIsCreating] = useState(false);
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const handleCreateGroup = async () => {
     if (!session?.user?.id) return;
@@ -76,11 +84,13 @@ export default function PreviewScreen() {
         if (uploadError) throw uploadError;
       }
 
-      // If we got here, everything succeeded
-      router.push({
-        pathname: '/(protected)/create-group/success',
-        params: { groupId: group.id },
-      });
+      // If we got here, everything succeeded and component is still mounted
+      if (isMounted.current) {
+        router.push({
+          pathname: '/(protected)/create-group/success',
+          params: { groupId: group.id },
+        });
+      }
     } catch (error) {
       console.error('Error creating group:', error);
       
@@ -99,7 +109,9 @@ export default function PreviewScreen() {
       
       // TODO: Show error toast
     } finally {
-      setIsCreating(false);
+      if (isMounted.current) {
+        setIsCreating(false);
+      }
     }
   };
 
@@ -142,24 +154,21 @@ export default function PreviewScreen() {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: theme.colors.primary }]}
+        <PinButton
+          variant="primary"
           onPress={handleCreateGroup}
+          loading={isCreating}
           disabled={isCreating}
         >
-          <PinText style={[styles.buttonText, { color: theme.colors.background }]}>
-            {t('groups.create.preview.confirm')}
-          </PinText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: theme.colors.border }]}
+          {t('groups.create.preview.confirm')}
+        </PinButton>
+        <PinButton
+          variant="outline"
           onPress={() => router.back()}
           disabled={isCreating}
         >
-          <PinText style={[styles.buttonText, { color: theme.colors.text }]}>
-            {t('groups.create.preview.cancel')}
-          </PinText>
-        </TouchableOpacity>
+          {t('groups.create.preview.cancel')}
+        </PinButton>
       </View>
     </View>
   );
@@ -230,15 +239,5 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 'auto',
     gap: 12,
-  },
-  button: {
-    height: 50,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: '600',
   },
 }); 
