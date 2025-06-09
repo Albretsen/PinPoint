@@ -3,9 +3,10 @@ import { PinTextInput } from '@/src/components/PinTextInput';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
 import { Ionicons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export default function BasicInfoScreen() {
   const { theme } = useTheme();
@@ -13,6 +14,21 @@ export default function BasicInfoScreen() {
   const router = useRouter();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [coverImage, setCoverImage] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handlePickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+      base64: true,
+    });
+
+    if (result.canceled) return;
+
+    const asset = result.assets[0];
+    setCoverImage(asset.uri);
+  };
 
   const handleNext = () => {
     router.push({
@@ -20,6 +36,7 @@ export default function BasicInfoScreen() {
       params: {
         name,
         description,
+        coverImage,
       },
     });
   };
@@ -49,21 +66,26 @@ export default function BasicInfoScreen() {
 
       <TouchableOpacity
         style={[styles.coverPhotoButton, { backgroundColor: theme.colors.card }]}
-        onPress={() => {
-          // TODO: Implement image picker
-        }}
+        onPress={handlePickImage}
+        disabled={isUploading}
       >
-        <Ionicons name="image-outline" size={24} color={theme.colors.text} />
-        <PinText style={[styles.coverPhotoText, { color: theme.colors.text }]}>
-          {t('groups.create.basicInfo.selectCoverPhoto')}
-        </PinText>
+        {coverImage ? (
+          <Image source={{ uri: coverImage }} style={styles.coverImage} />
+        ) : (
+          <>
+            <Ionicons name="image-outline" size={24} color={theme.colors.text} />
+            <PinText style={[styles.coverPhotoText, { color: theme.colors.text }]}>
+              {t('groups.create.basicInfo.selectCoverPhoto')}
+            </PinText>
+          </>
+        )}
       </TouchableOpacity>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: theme.colors.primary }]}
           onPress={handleNext}
-          disabled={!name.trim()}
+          disabled={!name.trim() || isUploading}
         >
           <PinText style={[styles.buttonText, { color: theme.colors.background }]}>
             {t('navigation.next')}
@@ -91,6 +113,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 30,
+    overflow: 'hidden',
+  },
+  coverImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   coverPhotoText: {
     marginTop: 8,

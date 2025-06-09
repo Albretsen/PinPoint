@@ -4,9 +4,10 @@ import { useTranslation } from '@/src/i18n/useTranslation';
 import { supabase } from '@/src/lib/supabase';
 import { useUserStore } from '@/src/store/userStore';
 import { Ionicons } from '@expo/vector-icons';
+import * as FileSystem from 'expo-file-system';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export default function PreviewScreen() {
   const { theme } = useTheme();
@@ -19,6 +20,7 @@ export default function PreviewScreen() {
     isPublic: string;
     inviteCode: string;
     challengeTime: string;
+    coverImage: string;
   }>();
   const [isCreating, setIsCreating] = useState(false);
 
@@ -26,7 +28,10 @@ export default function PreviewScreen() {
     if (!session?.user?.id) return;
     
     setIsCreating(true);
+    let createdGroupId: string | null = null;
+
     try {
+      // First create the group
       const { data: group, error } = await supabase
         .from('groups')
         .insert({
@@ -45,6 +50,7 @@ export default function PreviewScreen() {
         .single();
 
       if (error) throw error;
+      createdGroupId = group.id;
 
       // Add the creator as an admin member
       const { error: memberError } = await supabase
@@ -57,12 +63,40 @@ export default function PreviewScreen() {
 
       if (memberError) throw memberError;
 
+      // If there's a cover image, upload it
+      if (params.coverImage) {
+        const base64 = await FileSystem.readAsStringAsync(params.coverImage, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+
+        const { error: uploadError } = await supabase.functions.invoke('upload-cover-image', {
+          body: { base64, group_id: group.id },
+        });
+
+        if (uploadError) throw uploadError;
+      }
+
+      // If we got here, everything succeeded
       router.push({
         pathname: '/(protected)/create-group/success',
         params: { groupId: group.id },
       });
     } catch (error) {
       console.error('Error creating group:', error);
+      
+      // If we created a group but something else failed, clean up
+      if (createdGroupId) {
+        try {
+          // Delete the group (this will cascade delete the member entry)
+          await supabase
+            .from('groups')
+            .delete()
+            .eq('id', createdGroupId);
+        } catch (cleanupError) {
+          console.error('Error cleaning up after failed group creation:', cleanupError);
+        }
+      }
+      
       // TODO: Show error toast
     } finally {
       setIsCreating(false);
@@ -73,7 +107,11 @@ export default function PreviewScreen() {
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={[styles.previewCard, { backgroundColor: theme.colors.card }]}>
         <View style={[styles.coverPlaceholder, { backgroundColor: theme.colors.border }]}>
-          <Ionicons name="image-outline" size={40} color={theme.colors.text} />
+          {params.coverImage ? (
+            <Image source={{ uri: params.coverImage }} style={styles.coverImage} />
+          ) : (
+            <Ionicons name="image-outline" size={40} color={theme.colors.text} />
+          )}
         </View>
 
         <View style={styles.previewContent}>
@@ -141,6 +179,12 @@ const styles = StyleSheet.create({
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
+  },
+  coverImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   previewContent: {
     padding: 16,
