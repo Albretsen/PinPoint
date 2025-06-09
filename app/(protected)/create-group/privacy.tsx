@@ -5,8 +5,8 @@ import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Clipboard from 'expo-clipboard';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useState } from 'react';
-import { StyleSheet, Switch, TouchableOpacity, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Animated, StyleSheet, Switch, TouchableOpacity, View } from 'react-native';
 
 export default function PrivacyScreen() {
   const { theme } = useTheme();
@@ -16,7 +16,22 @@ export default function PrivacyScreen() {
   const [isPublic, setIsPublic] = useState(true);
   const [inviteCode, setInviteCode] = useState(generateInviteCode());
   const [showTimePicker, setShowTimePicker] = useState(false);
-  const [challengeTime, setChallengeTime] = useState(new Date());
+  const [challengeTime, setChallengeTime] = useState(() => {
+    const now = new Date();
+    now.setHours(21, 0, 0, 0);
+    return now;
+  });
+
+  const animation = useRef(new Animated.Value(0)).current;
+  const animationTimeout = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => {
+    return () => {
+      if (animationTimeout.current) {
+        clearTimeout(animationTimeout.current);
+      }
+    };
+  }, []);
 
   function generateInviteCode() {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -27,11 +42,32 @@ export default function PrivacyScreen() {
     // TODO: Show toast
   };
 
+  const animatePicker = (toValue: number) => {
+    Animated.spring(animation, {
+      toValue,
+      useNativeDriver: false,
+      tension: 40,
+      friction: 8,
+    }).start();
+  };
+
+  const handleTimePress = () => {
+    if (animationTimeout.current) {
+      clearTimeout(animationTimeout.current);
+    }
+    setShowTimePicker(!showTimePicker);
+    animatePicker(showTimePicker ? 0 : 1);
+  };
+
   const handleTimeChange = (event: any, selectedTime?: Date) => {
-    setShowTimePicker(false);
     if (selectedTime) {
       setChallengeTime(selectedTime);
     }
+  };
+
+  const handleConfirmTime = () => {
+    setShowTimePicker(false);
+    animatePicker(0);
   };
 
   const handleNext = () => {
@@ -45,6 +81,16 @@ export default function PrivacyScreen() {
       },
     });
   };
+
+  const pickerHeight = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 200],
+  });
+
+  const pickerOpacity = animation.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0, 0.5, 1],
+  });
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -89,24 +135,43 @@ export default function PrivacyScreen() {
         </PinText>
         <TouchableOpacity
           style={[styles.timeButton, { backgroundColor: theme.colors.background }]}
-          onPress={() => setShowTimePicker(true)}
+          onPress={handleTimePress}
         >
           <PinText style={[styles.timeText, { color: theme.colors.text }]}>
             {challengeTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </PinText>
-          <Ionicons name="time-outline" size={20} color={theme.colors.text} />
+          <Ionicons 
+            name={showTimePicker ? "chevron-up-outline" : "time-outline"} 
+            size={20} 
+            color={theme.colors.text} 
+          />
         </TouchableOpacity>
+        {showTimePicker && (
+          <Animated.View style={[styles.timePickerContainer, { 
+            backgroundColor: theme.colors.background,
+            height: pickerHeight,
+            opacity: pickerOpacity,
+          }]}>
+            <DateTimePicker
+              value={challengeTime}
+              mode="time"
+              is24Hour={true}
+              display="spinner"
+              onChange={handleTimeChange}
+              textColor={theme.colors.text}
+              style={styles.timePicker}
+            />
+            <TouchableOpacity
+              style={[styles.confirmButton, { backgroundColor: theme.colors.primary }]}
+              onPress={handleConfirmTime}
+            >
+              <PinText style={[styles.confirmButtonText, { color: theme.colors.background }]}>
+                {t('common.confirm')}
+              </PinText>
+            </TouchableOpacity>
+          </Animated.View>
+        )}
       </View>
-
-      {showTimePicker && (
-        <DateTimePicker
-          value={challengeTime}
-          mode="time"
-          is24Hour={true}
-          display="spinner"
-          onChange={handleTimeChange}
-        />
-      )}
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -169,6 +234,25 @@ const styles = StyleSheet.create({
   },
   timeText: {
     fontSize: 18,
+    fontWeight: '600',
+  },
+  timePickerContainer: {
+    borderRadius: 8,
+    marginTop: 8,
+    overflow: 'hidden',
+  },
+  timePicker: {
+    height: 200,
+  },
+  confirmButton: {
+    height: 44,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  confirmButtonText: {
+    fontSize: 16,
     fontWeight: '600',
   },
   buttonContainer: {

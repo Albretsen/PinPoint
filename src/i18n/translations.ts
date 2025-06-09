@@ -111,6 +111,7 @@ export const translations = {
 
     // Navigation
     navigation: {
+      next: 'Next',
       back: 'Back',
       home: 'Home',
       groups: 'Groups',
@@ -334,6 +335,7 @@ export const translations = {
 
     // Navigation
     navigation: {
+      next: 'Neste',
       back: 'Tilbake',
       home: 'Hjem',
       groups: 'Grupper',
