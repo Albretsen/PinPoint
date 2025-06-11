@@ -1,13 +1,13 @@
 {
   "auth": {
     "signIn": "Logg inn",
-    "signUp": "Registrer",
+    "signUp": "Regist",
     "signOut": "Logg ut",
     "email": "E-post",
     "password": "Passord",
     "username": "Brukernavn",
-    "createAccount": "Opprett konto",
-    "alreadyHaveAccount": "Har du allerede en konto? Logg inn",
+    "createAccount": "Opprett ko",
+    "alreadyHaveAccount": "Har du allerede en konto? gg inn",
     "createProfile": "Opprett profil",
     "chooseUsername": "Velg et brukernavn",
     "avatarGenerated": "Din avatar vil bli generert basert på ditt brukernavn",
