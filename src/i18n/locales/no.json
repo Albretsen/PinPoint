@@ -15,7 +15,7 @@
     "needAccount": "Trenger du en konto? Registrer deg",
     "clearStorage": "Tøm lagring (Debug)",
     "storageCleared": "Lagring tømt",
-    "storageClearFailed": "Kunne ike tømme",
+    "storageClearFailed": "Kunne ikke tømme",
     "required": "er påkrevd",
     "supabase": {
       "invalidCredentials": "Ugyldig e-post eller passord",
