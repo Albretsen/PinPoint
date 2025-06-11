@@ -1,7 +1,7 @@
 {
   "auth": {
     "signIn": "Logg inn",
-    "signUp": "Registrer deg",
+    "signUp": "Registre",
     "signOut": "Logg ut",
     "email": "E-post",
     "password": "Passord",
@@ -200,4 +200,4 @@
     "noData": "Ingen data tilgjengelig",
     "loading": "Laster toppliste..."
   }
-} 
+}
