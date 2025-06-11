@@ -125,7 +125,7 @@ export default function HomeScreen() {
         image={imageSource}
         header={group.name}
         subheading={group.description}
-        buttonLabel={"Next"}
+        buttonLabel={t('home.guessLocation')}
         onButtonPress={() => {}}
         onPress={() => {
           if (group.current_challenge?.image?.storage_path) {
