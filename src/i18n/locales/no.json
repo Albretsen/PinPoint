@@ -1,12 +1,12 @@
 {
   "auth": {
     "signIn": "Logg inn",
-    "signUp": "Regist",
+    "signUp": "Registrer",
     "signOut": "Logg ut",
     "email": "E-post",
     "password": "Passord",
     "username": "Brukernavn",
-    "createAccount": "Opprett ko",
+    "createAccount": "Opprett konto",
     "alreadyHaveAccount": "Har du allerede en konto? gg inn",
     "createProfile": "Opprett profil",
     "chooseUsername": "Velg et brukernavn",
