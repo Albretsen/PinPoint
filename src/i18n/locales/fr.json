@@ -1,0 +1,203 @@
+{
+  "auth": {
+    "signIn": "Se",
+    "signUp": "S'inscrire",
+    "signOut": "Se déconnecter",
+    "email": "Email",
+    "password": "Mot de passe",
+    "username": "Nom d'utilisateur",
+    "createAccount": "Créer un compte",
+    "alreadyHaveAccount": "Vous avez déjà un compte ? Se connecter",
+    "createProfile": "Créer un profil",
+    "chooseUsername": "Choisissez un nom d'utilisateur",
+    "avatarGenerated": "Votre avatar sera généré en fonction de votre nom d'utilisateur",
+    "continue": "Continuer",
+    "needAccount": "Besoin d'un compte ? S'inscrire",
+    "clearStorage": "Effacer le stockage (Débogage)",
+    "storageCleared": "Le stockage a été effacé avec succès",
+    "storageClearFailed": "Échec de l'effacement du stockage",
+    "required": "est requis",
+    "supabase": {
+      "invalidCredentials": "Email ou mot de passe invalide",
+      "emailNotConfirmed": "Veuillez confirmer votre email avant de vous connecter",
+      "userNotFound": "Utilisateur non trouvé",
+      "emailAlreadyRegistered": "Email déjà enregistré",
+      "networkError": "Erreur réseau. Veuillez réessayer.",
+      "unknown": "Une erreur inconnue est survenue"
+    }
+  },
+  "groups": {
+    "myGroups": "Mes groupes",
+    "discoverPublicGroups": "Groupes publics",
+    "member": "membre",
+    "members": "Membres",
+    "memberCount": "{{count}} membres",
+    "public": "Public",
+    "private": "Privé",
+    "join": "Rejoindre",
+    "joinGroup": "Rejoindre le groupe",
+    "joining": "Rejoindre...",
+    "leaveGroup": "Quitter le groupe",
+    "leaving": "Quitte...",
+    "leftGroup": "Vous avez quitté le groupe avec succès",
+    "errorLeavingGroup": "Erreur lors de la sortie du groupe",
+    "noGroups": "Vous n'êtes membre d'aucun groupe pour le moment",
+    "noGroupsJoined": "Vous n'avez rejoint aucun groupe pour le moment",
+    "noGroupsFound": "Aucun groupe trouvé",
+    "noPublicGroups": "Aucun groupe public disponible",
+    "viewMembers": "Voir membres",
+    "admin": "Administrateur",
+    "kickMember": "Expulser un membre",
+    "memberKicked": "Membre expulsé du groupe",
+    "noMembers": "Aucun membre trouvé",
+    "joinedGroup": "Vous avez rejoint le groupe avec succès",
+    "errorJoiningGroup": "Erreur lors de la rejoindre le groupe",
+    "notAdmin": "Vous devez être administrateur pour effectuer cette action",
+    "errorKickingMember": "Erreur lors de l'expulsion du membre du groupe",
+    "deleteGroup": "Supprimer le groupe",
+    "searchPlaceholder": "Rechercher des groupes...",
+    "sort": {
+      "trending": "Tendance",
+      "members": "Membres les plus nombreux",
+      "new": "Le plus récent"
+    },
+    "create": {
+      "title": "Créer un nouveau groupe",
+      "basicInfo": {
+        "title": "Informations de base",
+        "name": "Nom du groupe",
+        "namePlaceholder": "Entrez le nom du groupe",
+        "description": "Description",
+        "descriptionPlaceholder": "Entrez la description du groupe",
+        "coverPhoto": "Photo de couverture",
+        "selectCoverPhoto": "Sélectionner une photo de couverture",
+        "charactersLeft": "{{count}} caractères restants"
+      },
+      "privacy": {
+        "title": "Confidentialité et règles",
+        "public": "Groupe public",
+        "publicDescription": "Tout le monde peut trouver et rejoindre ce groupe",
+        "private": "Groupe privé",
+        "privateDescription": "Seules les personnes ayant le code d'invitation peuvent rejoindre",
+        "inviteCode": "Code d'invitation",
+        "copyInviteCode": "Copier le code d'invitation",
+        "copiedToClipboard": "Copié dans le presse-papiers",
+        "dailyChallengeTime": "Heure du défi quotidien",
+        "selectTime": "Sélectionner l'heure"
+      },
+      "preview": {
+        "title": "Aperçu et confirmation",
+        "confirm": "Créer un groupe",
+        "cancel": "Retour"
+      },
+      "success": {
+        "title": "Groupe créé !",
+        "description": "Votre groupe a été créé avec succès",
+        "viewGroup": "Voir le groupe"
+      }
+    }
+  },
+  "home": {
+    "noGroups": "Vous n'avez rejoint aucun groupe pour le moment",
+    "guessLocation": "Deviner la localisation",
+    "failedToFetchGroups": "Échec de la récupération des groupes"
+  },
+  "navigation": {
+    "next": "Suivant",
+    "back": "Retour",
+    "home": "Accueil",
+    "groups": "Groupes",
+    "camera": "Appareil photo",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "guessLocation": "Deviner la localisation",
+    "linkAccount": "Lier un compte",
+    "previewAndShare": "Aperçu et partage",
+    "noImageSelected": "Aucune image sélectionnée",
+    "shareWithGroups": "Partager avec des groupes",
+    "selectAll": "Tout sélectionner",
+    "deselectAll": "Tout désélectionner",
+    "shareWithX": "Partager avec {{count}} groupes",
+    "upload": {
+      "success": "Image téléchargée avec succès",
+      "error": {
+        "unauthorized": "Vous n'êtes pas autorisé à télécharger des images dans ces groupes",
+        "storage": "Échec du téléchargement de l'image dans le stockage",
+        "database": "Échec de la sauvegarde des informations sur l'image",
+        "unknown": "Une erreur est survenue lors du téléchargement de l'image"
+      }
+    }
+  },
+  "profile": {
+    "signOutWarning": "Avertissement de déconnexion",
+    "anonymousSignOutWarning": "Vous êtes connecté en tant qu'utilisateur anonyme. Si vous vous déconnectez, vous perdrez l'accès à ce compte et toutes les données associées.",
+    "cancel": "Annuler",
+    "linkAccount": "Lier un compte",
+    "continueSignOut": "Continuer la déconnexion",
+    "anonymous": "Anonyme"
+  },
+  "onboarding": {
+    "welcome": "Bienvenue à PinPoint",
+    "description": "PinPoint est un jeu basé sur la localisation où vous et vos amis vous affrontez pour deviner la localisation des autres. Voici comment ça fonctionne :",
+    "howItWorks": [
+      "Prenez une photo à votre position actuelle",
+      "Partagez-la avec votre groupe",
+      "Les autres essaient de deviner où vous êtes",
+      "Des points sont attribués en fonction de la précision"
+    ],
+    "readyToStart": "Prêt à commencer à jouer ?",
+    "getStarted": "Commencer",
+    "joinOrCreateGroup": "Rejoindre ou créer un groupe",
+    "groupDescription": "Cet écran vous permettra de rejoindre un groupe existant ou d'en créer un nouveau. Pour l'instant, continuez simplement à l'étape suivante."
+  },
+  "settings": {
+    "appearance": "Apparence",
+    "language": "Langue",
+    "selectLanguage": "Sélectionner la langue"
+  },
+  "linkAccount": {
+    "title": "Lier votre compte",
+    "description": "Liez votre compte anonyme pour conserver vos données et vos progrès.",
+    "linkWithEmail": "Lier avec un email",
+    "linkWithGoogle": "Lier avec Google",
+    "cancel": "Annuler",
+    "fillAllFields": "Veuillez remplir tous les champs",
+    "googleSignInFailed": "L'authentification Google a été annulée ou a échoué"
+  },
+  "error": {
+    "somethingWentWrong": "Quelque chose s'est mal passé",
+    "unknownError": "Une erreur inconnue est survenue",
+    "tryAgain": "Réessayer",
+    "networkError": "Erreur réseau. Veuillez vérifier votre connexion.",
+    "serverError": "Erreur du serveur. Veuillez réessayer plus tard.",
+    "notFound": "Non trouvé",
+    "unauthorized": "Non autorisé",
+    "forbidden": "Interdit"
+  },
+  "list": {
+    "error": {
+      "title": "Quelque chose s'est mal passé",
+      "retry": "Réessayer",
+      "empty": "Aucun élément trouvé"
+    },
+    "challenge": {
+      "ended": "Défi terminé",
+      "noChallengeToday": "Aucun défi aujourd'hui",
+      "yourGuess": "Votre devinette",
+      "guessLocation": "Deviner la localisation",
+      "topGuesses": "Meilleures devinettes",
+      "timeRemaining": "Temps restant",
+      "meters": "mètres",
+      "loading": "Chargement du défi..."
+    },
+    "leaderboard": {
+      "title": "Classement",
+      "today": "Aujourd'hui",
+      "thisWeek": "Cette semaine",
+      "thisMonth": "Ce mois-ci",
+      "allTime": "De tous les temps",
+      "noData": "Aucune donnée disponible",
+      "loading": "Chargement du classement..."
+    }
+  }
+}
