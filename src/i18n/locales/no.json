@@ -1,6 +1,6 @@
 {
   "auth": {
-    "signIn": "Logg Inn",
+    "signIn": "Logg inn",
     "signUp": "Registrer",
     "signOut": "Logg Ut",
     "email": "E-post",
@@ -35,7 +35,7 @@
     "public": "Offentlig",
     "private": "Privat",
     "join": "Bli med",
-    "joinGroup": "Bli med i gruppe",
+    "joinGroup": "Bli med i gruppen",
     "joining": "Bli med...",
     "leaveGroup": "Forlat gruppe",
     "leaving": "Forlater...",
