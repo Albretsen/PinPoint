@@ -4,19 +4,19 @@
     "signUp": "Registrer deg",
     "signOut": "Logg ut",
     "email": "E-po",
-    "password": "Passord",
+    "password": "passord",
     "username": "Brukernavn",
     "createAccount": "Oppret konto",
     "alreadyHaveAccount": "Har du allerede en konto? Logg inn",
     "createProfile": "Opprett profil",
     "chooseUsername": "Velg et brukernavn",
-    "avatarGenerated": "Din avai bli generert basert på ditt brukernavn",
+    "avatarGenerated": "Din avatar vil bli generert basert på ditt brukernavn",
     "continue": "Fortsett",
     "needAccount": "Trenger du en konto? Registrer deg",
     "clearStorage": "Tøm lagring (Debug)",
     "storageCleared": "Lagring tømmet",
     "storageClearFailed": "Kunne ikke tømme lagring",
-    "required": "Er påkrevd",
+    "required": "påkrevd",
     "supabase": {
       "invalidCredentials": "Ugyldig e-post eller passord",
       "emailNotConfirmed": "Vennligst bekreft e-posten din før du logger inn",
@@ -29,7 +29,7 @@
   "groups": {
     "myGroups": "Mine Grupper",
     "discoverPublicGroups": "Offentlige grupper",
-    "member": "medlem",
+    "member": "medlemmer",
     "members": "Medlemmer",
     "memberCount": "{{count}} medlemmer",
     "public": "Offentlig",
@@ -100,7 +100,7 @@
   "home": {
     "noGroups": "Du har ikke blitt med i noen grupper ennå",
     "guessLocation": "Gjett plassering",
-    "failedToFetchGroups": "Kunne ikke hente grupper"
+    "failedToFetchGroups": "Kunne ikke hente grupper."
   },
   "navigation": {
     "next": "Neste",
