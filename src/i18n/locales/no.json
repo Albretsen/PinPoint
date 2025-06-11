@@ -1,9 +1,9 @@
 {
   "auth": {
-    "signIn": "Logg inn",
+    "signIn": "Logg Inn",
     "signUp": "Registrer deg",
     "signOut": "Logg Ut",
-    "email": "E-pt",
+    "email": "E-post",
     "password": "Passord",
     "username": "Bruknavn",
     "createAccount": "Opprett konto",
