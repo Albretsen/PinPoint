@@ -1,10 +1,10 @@
 {
   "auth": {
-    "signIn": "Logg inn",
+    "signIn": "Use a consistent term for sign in and sign out.",
     "signUp": "Regi",
     "signOut": "Logg ut",
     "email": "E-post",
-    "password": "Pa",
+    "password": "Use 'Passord'.",
     "username": "Brukernavn",
     "createAccount": "Opprett konto",
     "alreadyHaveAccount": "Har du allerede en konto? Logg inn",
