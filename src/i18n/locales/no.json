@@ -1,17 +1,17 @@
 {
   "auth": {
-    "signIn": "Logg Inn",
+    "signIn": "Logg inn",
     "signUp": "Registrer deg",
-    "signOut": "Loggt",
+    "signOut": "Logg ut",
     "email": "E-po",
-    "password": "Passrd",
-    "username": "Brukvn",
-    "createAccount": "Opprt konto",
-    "alreadyHaveAccount": "Har llerede en konto? Logg inn",
-    "createProfile": "Opprett pril",
-    "chooseUsername": "Velg et keavn",
-    "avatarGenerated": "Din ava vi bli generert basert på ditt brukernavn",
-    "continue": "Ftsett",
+    "password": "Passord",
+    "username": "Brukernavn",
+    "createAccount": "Oppret konto",
+    "alreadyHaveAccount": "Har du allerede en konto? Logg inn",
+    "createProfile": "Opprett profil",
+    "chooseUsername": "Velg et brukernavn",
+    "avatarGenerated": "Din avai bli generert basert på ditt brukernavn",
+    "continue": "Fortsett",
     "needAccount": "Trenger du en konto? Registrer deg",
     "clearStorage": "Tøm lagring (Debug)",
     "storageCleared": "Lagring tømmet",
@@ -27,7 +27,7 @@
     }
   },
   "groups": {
-    "myGroups": "Mine grupper",
+    "myGroups": "Mine Grupper",
     "discoverPublicGroups": "Offentlige grupper",
     "member": "medlem",
     "members": "Medlemmer",
@@ -131,7 +131,7 @@
   "profile": {
     "signOutWarning": "Advarsel om utlogging",
     "anonymousSignOutWarning": "Du er logget inn som en anonym bruker. Hvis du logger ut, vil du miste tilgang til denne kontoen og all tilknyttet data.",
-    "cancel": "Avbryt",
+    "cancel": "avbryt",
     "linkAccount": "Koble til konto",
     "continueSignOut": "Fortsett utlogging",
     "anonymous": "Anonym"
