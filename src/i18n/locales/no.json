@@ -1,9 +1,9 @@
 {
   "auth": {
-    "signIn": "Logg ",
-    "signUp": "Registrdeg",
-    "signOut": "Logg u",
-    "email": "E-po",
+    "signIn": "Logg inn",
+    "signUp": "Registrer deg",
+    "signOut": "Logg ut",
+    "email": "E-post",
     "password": "pasord",
     "username": "Brukeavn",
     "createAccount": "Oppret konto",
