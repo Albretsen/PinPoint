@@ -1,8 +1,8 @@
 {
   "auth": {
-    "signIn": "Logg inn",
+    "signIn": "Logg Inn",
     "signUp": "Registrer",
-    "signOut": "Logg ut",
+    "signOut": "Logg Ut",
     "email": "E-post",
     "password": "Passord",
     "username": "Brukernavn",
@@ -16,7 +16,7 @@
     "clearStorage": "Tøm lagring (Debug)",
     "storageCleared": "Lagring tømmet",
     "storageClearFailed": "Kunne ikke tømme lagring",
-    "required": "er påkrevd",
+    "required": "Er påkrevd",
     "supabase": {
       "invalidCredentials": "Ugyldig e-post eller passord",
       "emailNotConfirmed": "Vennligst bekreft e-posten din før du logger inn",
