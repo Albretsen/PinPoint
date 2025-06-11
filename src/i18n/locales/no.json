@@ -1,8 +1,8 @@
 {
   "auth": {
-    "signIn": "Loggnn",
-    "signUp": "Regisrer deg",
-    "signOut": "Loggt",
+    "signIn": "Logg inn",
+    "signUp": "Registrer deg",
+    "signOut": "Logg ut",
     "email": "E-po",
     "password": "Passo",
     "username": "Brukvn",
