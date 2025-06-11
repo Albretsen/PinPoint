@@ -1,7 +1,7 @@
 {
   "auth": {
     "signIn": "Logg inn",
-    "signUp": "Registrer",
+    "signUp": "Regist",
     "signOut": "Logg ut",
     "email": "E-post",
     "password": "Passord",
