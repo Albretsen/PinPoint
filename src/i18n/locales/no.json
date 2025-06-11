@@ -16,7 +16,7 @@
     "clearStorage": "Tøm lagring (Debug)",
     "storageCleared": "Lagring tømmet",
     "storageClearFailed": "Kunne ikke tømme lagring",
-    "required": "påkrevd",
+    "required": "er påkrevd",
     "supabase": {
       "invalidCredentials": "Ugyldig e-post eller passord",
       "emailNotConfirmed": "Vennligst bekreft e-posten din før du logger inn",
