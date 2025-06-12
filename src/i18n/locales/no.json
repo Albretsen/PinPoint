@@ -13,7 +13,7 @@
     "avatarGenerated": "Din avatar vil bli generert basert på ditt brukernavn",
     "continue": "Fortsett",
     "needAccount": "Trenger du konto? Registrer deg",
-    "clearStorage": "Replace '(Deb)' with '(Debug)' or a more clear Norwegian equivalent for 'Debug'.",
+    "clearStorage": "Tøm lagring (Feilsøking)",
     "storageCleared": "Lagring tømt",
     "storageClearFailed": "Kunne ikke tømme lagring",
     "required": "er påkrevd",
@@ -127,12 +127,12 @@
         "unknown": "En feil oppstod under opplasting av bildet"
       }
     },
-    "cancel": "Translate simply as \"Avbryt\" without instruction."
+    "cancel": "Avbryt"
   },
   "profile": {
     "signOutWarning": "Advarsel om utlogging",
     "anonymousSignOutWarning": "Du er logget inn som en anonym bruker. Hvis du logger ut, vil du miste tilgang til denne kontoen og all tilknyttet data.",
-    "cancel": "Replace with actual Norwegian word 'Avbryt' capitalized.",
+    "cancel": "Avbryt",
     "linkAccount": "Koble til konto",
     "continueSignOut": "Fortsett utlogging",
     "anonymous": "Anonym"
