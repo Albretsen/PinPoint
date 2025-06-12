@@ -15,10 +15,10 @@
     "needAccount": "Trenger du konto? Registrer deg",
     "clearStorage": "Tøm lagring (Debug)",
     "storageCleared": "Lagring tømt",
-    "storageClearFailed": "Translate properly to Norwegian like 'Kunne ikke tømme lagring'.",
+    "storageClearFailed": "Kunne ikke tømme lagring",
     "required": "er påkrevd",
     "supabase": {
-      "invalidCredentials": "Ugyld e-post eller passord",
+      "invalidCredentials": "Ugyldig e-post eller passord",
       "emailNotConfirmed": "Vennligst bekreft e-posten din før du logger inn",
       "userNotFound": "Bruker ikke funnet",
       "emailAlreadyRegistered": "E-post er allerede registrert",
