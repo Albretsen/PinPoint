@@ -15,7 +15,7 @@
     "needAccount": "Trenger du konto? Registrer deg",
     "clearStorage": "Tøm lagring (Debug)",
     "storageCleared": "Lagring tømt",
-    "storageClearFailed": "Correct to 'Kunne ikke tømme lagring'.",
+    "storageClearFailed": "Translate properly to Norwegian like 'Kunne ikke tømme lagring'.",
     "required": "er påkrevd",
     "supabase": {
       "invalidCredentials": "Ugyld e-post eller passord",
@@ -139,7 +139,7 @@
   "onboarding": {
     "welcome": "Velkommen til PinPoint",
     "description": "PinPoint er et plasseringsbasert spill hvor du og dine venner konkurrerer om å gjette hverandres plasseringer. Slik fungerer det:",
-    "howItWorks": "Ta et bilde på din nåværende plassering",
+    "howItWorks": "Translate the whole array with all instructions or split correctly to maintain meaning.",
     "readyToStart": "Klar til å begynne å spille?",
     "getStarted": "Kom i gang",
     "joinOrCreateGroup": "Bli med i eller opprett en gruppe",
