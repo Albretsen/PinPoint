@@ -126,7 +126,8 @@
         "database": "Kunne ikke lagre bildeinformasjon",
         "unknown": "En feil oppstod under opplasting av bildet"
       }
-    }
+    },
+    "cancel": "Translate simply as \"Avbryt\" without instruction."
   },
   "profile": {
     "signOutWarning": "Advarsel om utlogging",
@@ -139,7 +140,7 @@
   "onboarding": {
     "welcome": "Velkommen til PinPoint",
     "description": "PinPoint er et plasseringsbasert spill hvor du og dine venner konkurrerer om å gjette hverandres plasseringer. Slik fungerer det:",
-    "howItWorks": "Translate all instructions accurately maintaining array structure or provide equivalent Norwegian translated array.",
+    "howItWorks": "Replace placeholder with complete translation array consistent in structure and length with English.",
     "readyToStart": "Klar til å begynne å spille?",
     "getStarted": "Kom i gang",
     "joinOrCreateGroup": "Bli med i eller opprett en gruppe",
