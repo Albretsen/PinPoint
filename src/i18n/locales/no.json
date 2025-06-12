@@ -140,7 +140,12 @@
   "onboarding": {
     "welcome": "Velkommen til PinPoint",
     "description": "PinPoint er et plasseringsbasert spill hvor du og dine venner konkurrerer om å gjette hverandres plasseringer. Slik fungerer det:",
-    "howItWorks": "Ta et bilde på din nåværende plassering\nDel det med gruppen din\nAndre prøver å gjette hvor du er\nPoeng gis basert på nøyaktighet",
+    "howItWorks": [
+      "Ta et bilde på din nåværende plassering",
+      "Del det med gruppen din",
+      "Andre prøver å gjette hvor du er",
+      "Poeng gis basert på nøyaktighet"
+    ],
     "readyToStart": "Klar til å begynne å spille?",
     "getStarted": "Kom i gang",
     "joinOrCreateGroup": "Bli med i eller opprett en gruppe",
