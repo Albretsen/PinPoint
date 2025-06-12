@@ -15,7 +15,7 @@
     "needAccount": "Trenger du konto? Registrer deg",
     "clearStorage": "Tøm lagring (Debug)",
     "storageCleared": "Lagring tømt",
-    "storageClearFailed": "Kunne ik tømme lagring",
+    "storageClearFailed": "Correct to 'Kunne ikke tømme lagring'.",
     "required": "er påkrevd",
     "supabase": {
       "invalidCredentials": "Ugyld e-post eller passord",
@@ -29,7 +29,7 @@
   "groups": {
     "myGroups": "Mine Grupper",
     "discoverPublicGroups": "Offentlige grupper",
-    "member": "Translate the term properly to 'medlem'.",
+    "member": "'Medlem'",
     "members": "Medlemmer",
     "memberCount": "{{count}} medlemmer",
     "public": "Offentlig",
