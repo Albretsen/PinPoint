@@ -1,8 +1,8 @@
 {
   "auth": {
-    "signIn": "Log inn",
-    "signUp": "Registrer deg",
-    "signOut": "Log ut",
+    "signIn": "Lo inn",
+    "signUp": "Regis deg",
+    "signOut": "Lo ut",
     "email": "E-post",
     "password": "Passord",
     "username": "Brukernavn",
