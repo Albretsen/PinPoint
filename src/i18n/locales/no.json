@@ -14,13 +14,13 @@
     "continue": "Fortsett",
     "needAccount": "Trenger du konto? Registrer deg",
     "clearStorage": "Tøm lagring (Debug)",
-    "storageCleared": "Lagring tt",
-    "storageClearFailed": "Kunne ik tømme lagring",
+    "storageCleared": "Lagring tømt",
+    "storageClearFailed": "Correct to 'Kunne ikke tømme lagring'.",
     "required": "er påkrevd",
     "supabase": {
       "invalidCredentials": "Ugyld e-post eller passord",
-      "emailNotConfirmed": "Vennligst bekref-posten din før du logger inn",
-      "userNotFound": "Bruker ikke fuet",
+      "emailNotConfirmed": "Vennligst bekreft e-posten din før du logger inn",
+      "userNotFound": "Bruker ikke funnet",
       "emailAlreadyRegistered": "E-post er allerede registrert",
       "networkError": "Nettverksfeil. Prøv igjen.",
       "unknown": "En ukjent feil oppstod"
@@ -29,7 +29,7 @@
   "groups": {
     "myGroups": "Mine Grupper",
     "discoverPublicGroups": "Offentlige grupper",
-    "member": "Translate the term properly to 'medlem'.",
+    "member": "'Medlem'",
     "members": "Medlemmer",
     "memberCount": "{{count}} medlemmer",
     "public": "Offentlig",
