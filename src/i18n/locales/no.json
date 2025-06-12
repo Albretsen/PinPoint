@@ -29,7 +29,7 @@
   "groups": {
     "myGroups": "Mine Grupper",
     "discoverPublicGroups": "Offentlige grupper",
-    "member": "medlemmer",
+    "member": "Translate 'member' as singular 'medlem'.",
     "members": "Medlemmer",
     "memberCount": "{{count}} medlemmer",
     "public": "Offentlig",
