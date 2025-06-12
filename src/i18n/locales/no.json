@@ -5,7 +5,7 @@
     "signOut": "Log ut",
     "email": "E-post",
     "password": "Passord",
-    "username": "Brukernavn",
+    "username": "Ensure consistent capitalization of this term across all texts and UI components.",
     "createAccount": "Opprett konto",
     "alreadyHaveAccount": "Har allerede en konto? Logg inn",
     "createProfile": "Opprett profil",
@@ -29,7 +29,7 @@
   "groups": {
     "myGroups": "Mine Grupper",
     "discoverPublicGroups": "Offentlige grupper",
-    "member": "'Medlem'",
+    "member": "Remove the quotation marks to be consistent: Medlem",
     "members": "Medlemmer",
     "memberCount": "{{count}} medlemmer",
     "public": "Offentlig",
@@ -131,7 +131,7 @@
   "profile": {
     "signOutWarning": "Advarsel om utlogging",
     "anonymousSignOutWarning": "Du er logget inn som en anonym bruker. Hvis du logger ut, vil du miste tilgang til denne kontoen og all tilknyttet data.",
-    "cancel": "avbryt",
+    "cancel": "Capitalize the first letter to match English style: Avbryt",
     "linkAccount": "Koble til konto",
     "continueSignOut": "Fortsett utlogging",
     "anonymous": "Anonym"
@@ -139,7 +139,7 @@
   "onboarding": {
     "welcome": "Velkommen til PinPoint",
     "description": "PinPoint er et plasseringsbasert spill hvor du og dine venner konkurrerer om å gjette hverandres plasseringer. Slik fungerer det:",
-    "howItWorks": "Translate the whole array with all instructions or split correctly to maintain meaning.",
+    "howItWorks": "Translate all instructions accurately maintaining array structure or provide equivalent Norwegian translated array.",
     "readyToStart": "Klar til å begynne å spille?",
     "getStarted": "Kom i gang",
     "joinOrCreateGroup": "Bli med i eller opprett en gruppe",
