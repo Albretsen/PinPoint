@@ -12,7 +12,7 @@
     "chooseUsername": "Velg et brukernavn",
     "avatarGenerated": "Din avatar vil bli generert basert på ditt brukernavn",
     "continue": "Fortsett",
-    "needAccount": "Trenger du ento? Registrer deg",
+    "needAccount": "Trenger du konto? Registrer deg",
     "clearStorage": "Tøm lagring (Debug)",
     "storageCleared": "Lagring tømmet",
     "storageClearFailed": "Kunne ikke tømme lagring",
@@ -29,7 +29,7 @@
   "groups": {
     "myGroups": "Mine Grupper",
     "discoverPublicGroups": "Offentlige grupper",
-    "member": "medlemmer",
+    "member": "Translate 'member' as singular 'medlem'.",
     "members": "Medlemmer",
     "memberCount": "{{count}} medlemmer",
     "public": "Offentlig",
