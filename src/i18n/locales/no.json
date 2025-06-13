@@ -1,10 +1,10 @@
 {
   "auth": {
-    "signIn": "Logg inn",
-    "signUp": "Registrer deg",
+    "signIn": "Logg ",
+    "signUp": "Registr",
     "signOut": "Logg ut",
     "email": "E-post",
-    "password": "Passord",
+    "password": "Pass",
     "username": "Brrnavn",
     "createAccount": "Optt konto",
     "alreadyHaveAccount": "Har allerede en konto? Logg inn",
