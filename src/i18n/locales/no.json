@@ -2,7 +2,7 @@
   "auth": {
     "signIn": "Logg inn",
     "signUp": "Registrer deg",
-    "signOut": "Logg ut med edit",
+    "signOut": "Logg ut",
     "email": "E-pst",
     "password": "Paord",
     "username": "Brrnavn",
