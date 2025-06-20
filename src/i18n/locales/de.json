@@ -1,18 +1,18 @@
 {
   "auth": {
-    "email": "E-Mail",
+    "email": "E",
     "signIn": "Anmelden",
     "signUp": "Registrieren",
     "signOut": "Abmelden",
     "continue": "Fortfahren",
-    "password": "Passwort",
-    "required": "wird benötigt",
+    "password": "Password",
+    "required": "placeholder",
     "supabase": {
       "unknown": "Ein unbekannter Fehler ist aufgetreten",
       "networkError": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
       "userNotFound": "Benutzer nicht gefunden",
       "emailNotConfirmed": "Bitte bestätigen Sie Ihre E-Mail, bevor Sie sich anmelden",
-      "invalidCredentials": "Ungültige E-Mail oder Passwort",
+      "invalidCredentials": "Invalid email or password",
       "emailAlreadyRegistered": "E-Mail ist bereits registriert"
     },
     "username": "Benutzername",
