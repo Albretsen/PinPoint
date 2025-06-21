@@ -1,0 +1,203 @@
+{
+  "auth": {
+    "email": "Email",
+    "signIn": "Logg Inn",
+    "signUp": "Registrer Deg",
+    "signOut": "Logg Ut",
+    "continue": "Fortsett",
+    "password": "Passord",
+    "required": "er påkrevd",
+    "supabase": {
+      "unknown": "En ukjent feil oppstod",
+      "networkError": "Nettverksfeil. Vennligst prøv igjen.",
+      "userNotFound": "Bruker ikke funnet",
+      "emailNotConfirmed": "Vennligst bekreft e-posten din før du logger inn",
+      "invalidCredentials": "Ugyldig e-post eller passord",
+      "emailAlreadyRegistered": "E-posten er allerede registrert"
+    },
+    "username": "Brukernavn",
+    "needAccount": "Trenger en konto? Registrer Deg",
+    "clearStorage": "Tøm Lagring (Debug)",
+    "createAccount": "Opprett Konto",
+    "createProfile": "Opprett Profil",
+    "chooseUsername": "Velg et brukernavn",
+    "storageCleared": "Lagring tømt med suksess",
+    "avatarGenerated": "Din avatar vil bli generert basert på brukernavnet ditt",
+    "alreadyHaveAccount": "Har du allerede en konto? Logg Inn",
+    "storageClearFailed": "Mislyktes i å tømme lagringen"
+  },
+  "home": {
+    "noGroups": "Du har ikke blitt med i noen grupper ennå",
+    "guessLocation": "Gjetts Sted",
+    "failedToFetchGroups": "Mislyktes i å hente grupper"
+  },
+  "list": {
+    "error": {
+      "empty": "Ingen elementer funnet",
+      "retry": "Prøv Igjen",
+      "title": "Noe gikk galt"
+    }
+  },
+  "error": {
+    "notFound": "Ikke funnet",
+    "tryAgain": "Prøv Igjen",
+    "forbidden": "Forbudt",
+    "serverError": "Serverfeil. Vennligst prøv igjen senere.",
+    "networkError": "Nettverksfeil. Vennligst sjekk forbindelsen din.",
+    "unauthorized": "Uautorisert",
+    "unknownError": "En ukjent feil oppstod",
+    "somethingWentWrong": "Noe gikk galt"
+  },
+  "groups": {
+    "join": "Bli Med",
+    "sort": {
+      "new": "Nyeste",
+      "members": "Flest Medlemmer",
+      "trending": "Trender"
+    },
+    "admin": "Administrator",
+    "create": {
+      "title": "Opprett Ny Gruppe",
+      "preview": {
+        "title": "Forhåndsvisning & Bekreft",
+        "cancel": "Gå Tilbake",
+        "confirm": "Opprett Gruppe"
+      },
+      "privacy": {
+        "title": "Personvern & Regler",
+        "public": "Offentlig Gruppe",
+        "private": "Privat Gruppe",
+        "inviteCode": "Invitasjonskode",
+        "selectTime": "Velg Tid",
+        "copyInviteCode": "Kopier Invitasjonskode",
+        "copiedToClipboard": "Kopiert til utklippstavle",
+        "publicDescription": "Alle kan finne og bli med i denne gruppen",
+        "dailyChallengeTime": "Daglig Utfordringstid",
+        "privateDescription": "Bare personer med invitasjonskoden kan bli med"
+      },
+      "success": {
+        "title": "Gruppe Opprettet!",
+        "viewGroup": "Se Gruppe",
+        "description": "Gruppen din har blitt opprettet med suksess"
+      },
+      "basicInfo": {
+        "name": "Gruppenavn",
+        "title": "Grunnleggende Informasjon",
+        "coverPhoto": "Forsidebilde",
+        "description": "Beskrivelse",
+        "charactersLeft": "{{count}} tegn igjen",
+        "namePlaceholder": "Skriv inn gruppenavn",
+        "selectCoverPhoto": "Velg Forsidebilde",
+        "descriptionPlaceholder": "Skriv inn gruppens beskrivelse"
+      }
+    },
+    "member": "medlem",
+    "public": "Offentlig",
+    "joining": "Bli med...",
+    "leaving": "Forlater...",
+    "members": "Medlemmer",
+    "private": "Privat",
+    "myGroups": "Mine Grupper",
+    "noGroups": "Du er ikke medlem av noen grupper ennå",
+    "notAdmin": "Du må være administrator for å utføre denne handlingen",
+    "joinGroup": "Bli med i gruppen",
+    "leftGroup": "Forlot gruppen",
+    "noMembers": "Ingen medlemmer funnet",
+    "kickMember": "Kasta Ut Medlem",
+    "leaveGroup": "Forlat gruppen",
+    "deleteGroup": "Slett Gruppe",
+    "joinedGroup": "Blev med i gruppen",
+    "memberCount": "{{count}} medlemmer",
+    "viewMembers": "Se Medlemmer",
+    "memberKicked": "Medlem har blitt kastet ut fra gruppen",
+    "noGroupsFound": "Ingen grupper funnet",
+    "noGroupsJoined": "Du har ikke blitt med i noen grupper ennå",
+    "noPublicGroups": "Ingen offentlige grupper tilgjengelige",
+    "errorJoiningGroup": "Feil ved registrering i gruppe",
+    "errorLeavingGroup": "Feil ved forlatelse av gruppe",
+    "searchPlaceholder": "Søk grupper...",
+    "errorKickingMember": "Feil ved å kaste ut medlem fra gruppe",
+    "discoverPublicGroups": "Offentlige Grupper"
+  },
+  "profile": {
+    "cancel": "Avbryt",
+    "anonymous": "Anonim",
+    "linkAccount": "Knytt Konto",
+    "signOutWarning": "Logg Ut Advarsel",
+    "continueSignOut": "Fortsett Logg Ut",
+    "anonymousSignOutWarning": "Du er logget inn som en anonym bruker. Hvis du logger ut, vil du miste tilgangen til denne kontoen og all tilknyttet data."
+  },
+  "settings": {
+    "language": "Språk",
+    "appearance": "Utseende",
+    "selectLanguage": "Velg Språk"
+  },
+  "challenge": {
+    "ended": "Utfordring avsluttet",
+    "meters": "meter",
+    "loading": "Laster utfordring...",
+    "yourGuess": "Ditt gjetning",
+    "topGuesses": "Topp Gjetninger",
+    "guessLocation": "Gjetts Sted",
+    "timeRemaining": "Tid igjen",
+    "noChallengeToday": "Ingen utfordring i dag"
+  },
+  "navigation": {
+    "back": "Tilbake",
+    "home": "Hjem",
+    "next": "Neste",
+    "camera": "Kamera",
+    "groups": "Grupper",
+    "upload": {
+      "error": {
+        "storage": "Mislyktes i å laste opp bilde til lagring",
+        "unknown": "En feil oppstod under opplasting av bildet",
+        "database": "Mislyktes i å lagre bildekundinformasjon",
+        "unauthorized": "Du har ikke tillatelse til å laste opp bilder til disse gruppene"
+      },
+      "success": "Bilde lastet opp med suksess"
+    },
+    "profile": "Profil",
+    "settings": "Innstillinger",
+    "selectAll": "Velg Alle",
+    "shareWithX": "Del med {{count}} grupper",
+    "deselectAll": "Fjern valg av Alle",
+    "linkAccount": "Knytt Konto",
+    "guessLocation": "Gjetts Sted",
+    "noImageSelected": "Ingen bilde valgt",
+    "previewAndShare": "Forhåndsvisning & Del",
+    "shareWithGroups": "Del med Grupper"
+  },
+  "onboarding": {
+    "welcome": "Velkommen til PinPoint",
+    "getStarted": "Kom i Gang",
+    "howItWorks": [
+      "Ta et bilde på gjeldende sted",
+      "Del det med gruppen din",
+      "Andre prøver å gjette hvor du er",
+      "Poeng gis basert på nøyaktighet"
+    ],
+    "description": "PinPoint er et stedbasert spill der du og vennene dine konkurrerer om å gjette hverandres steder. Slik fungerer det:",
+    "readyToStart": "Klar til å begynne å spille?",
+    "groupDescription": "Denne skjermen lar deg bli med i en eksisterende gruppe eller opprette en ny. For nå, bare fortsett til neste trinn.",
+    "joinOrCreateGroup": "Bli med i eller opprett en gruppe"
+  },
+  "leaderboard": {
+    "title": "Resultatliste",
+    "today": "I Dag",
+    "noData": "Ingen data tilgjengelig",
+    "allTime": "All Tid",
+    "loading": "Laster resultatliste...",
+    "thisWeek": "Denne Uken",
+    "thisMonth": "Denne Måneden"
+  },
+  "linkAccount": {
+    "title": "Knytt Kontoen Din",
+    "cancel": "Avbryt",
+    "description": "Knytt den anonyme kontoen din for å beholde dataene og fremdriften din.",
+    "fillAllFields": "Vennligst fyll ut alle felt",
+    "linkWithEmail": "Knytt med E-post",
+    "linkWithGoogle": "Knytt med Google",
+    "googleSignInFailed": "Google pålogging ble avbrutt eller mislyktes"
+  }
+}
