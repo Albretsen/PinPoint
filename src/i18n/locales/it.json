@@ -3,32 +3,32 @@
     "email": "Email",
     "signIn": "Accedi",
     "signUp": "Registrati",
-    "signOut": "Disconnetti",
+    "signOut": "Esci",
     "continue": "Continua",
     "password": "Password",
-    "required": "è richiesto",
+    "required": "è obbligatorio",
     "supabase": {
       "unknown": "Si è verificato un errore sconosciuto",
-      "networkError": "Errore di rete. Riprova.",
+      "networkError": "Errore di rete. Per favore riprova.",
       "userNotFound": "Utente non trovato",
-      "emailNotConfirmed": "Per favore conferma la tua email prima di accedere",
+      "emailNotConfirmed": "Si prega di confermare la propria email prima di accedere",
       "invalidCredentials": "Email o password non validi",
       "emailAlreadyRegistered": "L'email è già registrata"
     },
     "username": "Nome utente",
-    "needAccount": "Hai bisogno di un'account? Registrati",
-    "clearStorage": "Cancella memorizzazione (Debug)",
-    "createAccount": "Crea un'account",
-    "createProfile": "Crea profilo",
+    "needAccount": "Hai bisogno di un account? Registrati",
+    "clearStorage": "Svuota spazio di archiviazione (Debug)",
+    "createAccount": "Crea Account",
+    "createProfile": "Crea Profilo",
     "chooseUsername": "Scegli un nome utente",
-    "storageCleared": "Memoria cancellata con successo",
+    "storageCleared": "Spazio di archiviazione svuotato con successo",
     "avatarGenerated": "Il tuo avatar sarà generato in base al tuo nome utente",
-    "alreadyHaveAccount": "Hai già un'account? Accedi",
-    "storageClearFailed": "Impossibile cancellare la memoria"
+    "alreadyHaveAccount": "Hai già un account? Accedi",
+    "storageClearFailed": "Impossibile svuotare lo spazio di archiviazione"
   },
   "home": {
-    "noGroups": "Non hai ancora partecipato a nessun gruppo",
-    "guessLocation": "Indovina Posizione",
+    "noGroups": "Non hai ancora aderito a nessun gruppo",
+    "guessLocation": "Indovina la posizione",
     "failedToFetchGroups": "Impossibile recuperare i gruppi"
   },
   "list": {
@@ -41,9 +41,9 @@
   "error": {
     "notFound": "Non trovato",
     "tryAgain": "Riprova",
-    "forbidden": "Proibito",
-    "serverError": "Errore del server. Riprova più tardi.",
-    "networkError": "Errore di rete. Controlla la tua connessione.",
+    "forbidden": "Vietato",
+    "serverError": "Errore del server. Per favore riprova più tardi.",
+    "networkError": "Errore di rete. Per favore controlla la tua connessione.",
     "unauthorized": "Non autorizzato",
     "unknownError": "Si è verificato un errore sconosciuto",
     "somethingWentWrong": "Qualcosa è andato storto"
@@ -51,70 +51,70 @@
   "groups": {
     "join": "Unisciti",
     "sort": {
-      "new": "Più recenti",
+      "new": "Più recente",
       "members": "Più membri",
-      "trending": "In tendenza"
+      "trending": "Di tendenza"
     },
     "admin": "Admin",
     "create": {
-      "title": "Crea Nuovo Gruppo",
+      "title": "Crea nuovo gruppo",
       "preview": {
         "title": "Anteprima & Conferma",
-        "cancel": "Torna Indietro",
-        "confirm": "Crea Gruppo"
+        "cancel": "Torna indietro",
+        "confirm": "Crea gruppo"
       },
       "privacy": {
         "title": "Privacy & Regole",
-        "public": "Gruppo Pubblico",
-        "private": "Gruppo Privato",
-        "inviteCode": "Codice Invito",
-        "selectTime": "Seleziona il Tempo",
-        "copyInviteCode": "Copia Codice Invito",
+        "public": "Gruppo pubblico",
+        "private": "Gruppo privato",
+        "inviteCode": "Codice di invito",
+        "selectTime": "Seleziona l'ora",
+        "copyInviteCode": "Copia codice di invito",
         "copiedToClipboard": "Copiato negli appunti",
         "publicDescription": "Chiunque può trovare e unirsi a questo gruppo",
-        "dailyChallengeTime": "Tempo Sfida Giornaliera",
-        "privateDescription": "Solo le persone con il codice invito possono unirsi"
+        "dailyChallengeTime": "Tempo per la sfida quotidiana",
+        "privateDescription": "Solo le persone con il codice di invito possono unirsi"
       },
       "success": {
-        "title": "Gruppo Creato!",
-        "viewGroup": "Visualizza Gruppo",
+        "title": "Gruppo creato!",
+        "viewGroup": "Visualizza gruppo",
         "description": "Il tuo gruppo è stato creato con successo"
       },
       "basicInfo": {
-        "name": "Nome Gruppo",
-        "title": "Informazioni di Base",
-        "coverPhoto": "Foto di Copertura",
+        "name": "Nome del gruppo",
+        "title": "Informazioni di base",
+        "coverPhoto": "Foto di copertura",
         "description": "Descrizione",
         "charactersLeft": "{{count}} caratteri rimasti",
-        "namePlaceholder": "Inserisci nome del gruppo",
-        "selectCoverPhoto": "Seleziona Foto di Copertura",
-        "descriptionPlaceholder": "Inserisci descrizione del gruppo"
+        "namePlaceholder": "Inserisci il nome del gruppo",
+        "selectCoverPhoto": "Seleziona foto di copertura",
+        "descriptionPlaceholder": "Inserisci la descrizione del gruppo"
       }
     },
     "member": "membro",
     "public": "Pubblico",
     "joining": "Unendo...",
-    "leaving": "Lasciando...",
+    "leaving": "Uscendo...",
     "members": "Membri",
     "private": "Privato",
-    "myGroups": "I Miei Gruppi",
-    "noGroups": "Non sei ancora membro di nessun gruppo",
-    "notAdmin": "Devi essere un admin per eseguire questa azione",
+    "myGroups": "I miei gruppi",
+    "noGroups": "Non sei ancora un membro di nessun gruppo",
+    "notAdmin": "Devi essere un admin per eseguire quest'azione",
     "joinGroup": "Unisciti al gruppo",
-    "leftGroup": "Uscita dal gruppo avvenuta con successo",
+    "leftGroup": "Uscito dal gruppo con successo",
     "noMembers": "Nessun membro trovato",
-    "kickMember": "Espelli Membro",
+    "kickMember": "Espelli membro",
     "leaveGroup": "Lascia il gruppo",
-    "deleteGroup": "Elimina Gruppo",
+    "deleteGroup": "Elimina gruppo",
     "joinedGroup": "Unito al gruppo con successo",
     "memberCount": "{{count}} membri",
-    "viewMembers": "Visualizza Membri",
+    "viewMembers": "Visualizza membri",
     "memberKicked": "Membro espulso dal gruppo",
     "noGroupsFound": "Nessun gruppo trovato",
-    "noGroupsJoined": "Non hai ancora partecipato a nessun gruppo",
+    "noGroupsJoined": "Non hai ancora aderito a nessun gruppo",
     "noPublicGroups": "Nessun gruppo pubblico disponibile",
-    "errorJoiningGroup": "Errore durante l'unione al gruppo",
-    "errorLeavingGroup": "Errore durante l'uscita dal gruppo",
+    "errorJoiningGroup": "Errore durante l'adesione al gruppo",
+    "errorLeavingGroup": "Errore durante la partenza dal gruppo",
     "searchPlaceholder": "Cerca gruppi...",
     "errorKickingMember": "Errore durante l'espulsione del membro dal gruppo",
     "discoverPublicGroups": "Gruppi Pubblici"
@@ -122,23 +122,23 @@
   "profile": {
     "cancel": "Annulla",
     "anonymous": "Anonimo",
-    "linkAccount": "Collega Account",
-    "signOutWarning": "Avviso di Disconnessione",
-    "continueSignOut": "Continua Disconnessione",
-    "anonymousSignOutWarning": "Sei connesso come utente anonimo. Se ti disconnetti, perderai l'accesso a questo account e a tutti i dati associati."
+    "linkAccount": "Collega account",
+    "signOutWarning": "Avviso di uscita",
+    "continueSignOut": "Continua l'uscita",
+    "anonymousSignOutWarning": "Sei connesso come utente anonimo. Se esci, perderai l'accesso a questo account e a tutti i dati associati."
   },
   "settings": {
     "language": "Lingua",
     "appearance": "Aspetto",
-    "selectLanguage": "Seleziona Lingua"
+    "selectLanguage": "Seleziona lingua"
   },
   "challenge": {
-    "ended": "Sfida conclusa",
+    "ended": "Sfida terminata",
     "meters": "metri",
     "loading": "Caricamento sfida...",
-    "yourGuess": "La tua risposta",
-    "topGuesses": "Migliori risposte",
-    "guessLocation": "Indovina Posizione",
+    "yourGuess": "La tua ipotesi",
+    "topGuesses": "Migliori ipotesi",
+    "guessLocation": "Indovina la posizione",
     "timeRemaining": "Tempo rimanente",
     "noChallengeToday": "Nessuna sfida oggi"
   },
@@ -146,24 +146,24 @@
     "back": "Indietro",
     "home": "Home",
     "next": "Avanti",
-    "camera": "Fotocamera",
+    "camera": "Camera",
     "groups": "Gruppi",
     "upload": {
       "error": {
-        "storage": "Impossibile caricare l'immagine nella memoria",
+        "storage": "Impossibile caricare l'immagine nello storage",
         "unknown": "Si è verificato un errore durante il caricamento dell'immagine",
-        "database": "Impossibile salvare le informazioni dell'immagine",
+        "database": "Impossibile salvare le informazioni sull'immagine",
         "unauthorized": "Non sei autorizzato a caricare immagini in questi gruppi"
       },
       "success": "Immagine caricata con successo"
     },
     "profile": "Profilo",
     "settings": "Impostazioni",
-    "selectAll": "Seleziona Tutto",
+    "selectAll": "Seleziona tutto",
     "shareWithX": "Condividi con {{count}} gruppi",
-    "deselectAll": "Deseleziona Tutto",
-    "linkAccount": "Collega Account",
-    "guessLocation": "Indovina Posizione",
+    "deselectAll": "Deseleziona tutto",
+    "linkAccount": "Collega account",
+    "guessLocation": "Indovina la posizione",
     "noImageSelected": "Nessuna immagine selezionata",
     "previewAndShare": "Anteprima & Condividi",
     "shareWithGroups": "Condividi con Gruppi"
@@ -172,32 +172,32 @@
     "welcome": "Benvenuto in PinPoint",
     "getStarted": "Inizia",
     "howItWorks": [
-      "Scatta una foto nella tua posizione attuale",
+      "Fai una foto nella tua posizione attuale",
       "Condividila con il tuo gruppo",
-      "Altri cercano di indovinare dove ti trovi",
+      "Altri cercano di indovinare dove sei",
       "I punti vengono assegnati in base all'accuratezza"
     ],
-    "description": "PinPoint è un gioco basato sulla posizione in cui tu e i tuoi amici competete per indovinare le posizioni degli altri. Ecco come funziona:",
+    "description": "PinPoint è un gioco basato sulla posizione in cui tu e i tuoi amici compete per indovinare le posizioni reciproche. Ecco come funziona:",
     "readyToStart": "Pronto per iniziare a giocare?",
-    "groupDescription": "Questa schermata ti permetterà di unirti a un gruppo esistente o crearne uno nuovo. Per ora, continua semplicemente al passo successivo.",
-    "joinOrCreateGroup": "Unisciti o Crea un Gruppo"
+    "groupDescription": "Questa schermata ti permetterà di unirti a un gruppo esistente o crearne uno nuovo. Per ora, continua a passare al passaggio successivo.",
+    "joinOrCreateGroup": "Unisciti o crea un gruppo"
   },
   "leaderboard": {
     "title": "Classifica",
     "today": "Oggi",
     "noData": "Nessun dato disponibile",
-    "allTime": "Di Sempre",
-    "loading": "Caricamento classifica...",
-    "thisWeek": "Questa Settimana",
-    "thisMonth": "Questo Mese"
+    "allTime": "Di tutti i tempi",
+    "loading": "Caricamento della classifica...",
+    "thisWeek": "Questa settimana",
+    "thisMonth": "Questo mese"
   },
   "linkAccount": {
-    "title": "Collega il Tuo Account",
+    "title": "Collega il tuo account",
     "cancel": "Annulla",
     "description": "Collega il tuo account anonimo per mantenere i tuoi dati e progressi.",
-    "fillAllFields": "Per favore, compila tutti i campi",
+    "fillAllFields": "Per favore compila tutti i campi",
     "linkWithEmail": "Collega con Email",
     "linkWithGoogle": "Collega con Google",
-    "googleSignInFailed": "Il login con Google è stato annullato o è fallito"
+    "googleSignInFailed": "Il sign-in di Google è stato annullato o non riuscito"
   }
 }
