@@ -1,0 +1,9 @@
+[
+  {
+    "key": "auth.password",
+    "locale": "it",
+    "suggested_fix": "Password",
+    "explanation": "The translation 'Passord' contains a typographical error. It should be 'Password'.",
+    "severity": "error"
+  }
+]
