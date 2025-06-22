@@ -1,0 +1,7 @@
+{
+  "key": "auth.password",
+  "locale": "it",
+  "suggested_fix": "Password",
+  "explanation": "The word 'Password' is incorrectly translated as 'Passord', which is a misspelling. This should be corrected.",
+  "severity": "error"
+}
