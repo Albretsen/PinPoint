@@ -1,0 +1,203 @@
+{
+  "auth": {
+    "email": "Email",
+    "signIn": "Accedi",
+    "signUp": "Registrati",
+    "signOut": "Esci",
+    "continue": "Continua",
+    "password": "Password",
+    "required": "è richiesto",
+    "supabase": {
+      "unknown": "Si è verificato un errore sconosciuto",
+      "networkError": "Errore di rete. Per favore riprova.",
+      "userNotFound": "Utente non trovato",
+      "emailNotConfirmed": "Si prega di confermare la propria email prima di accedere",
+      "invalidCredentials": "Email o password non valide",
+      "emailAlreadyRegistered": "L'email è già registrata"
+    },
+    "username": "Nome utente",
+    "needAccount": "Hai bisogno di un account? Registrati",
+    "clearStorage": "Pulisci memoria (Debug)",
+    "createAccount": "Crea un account",
+    "createProfile": "Crea profilo",
+    "chooseUsername": "Scegli un nome utente",
+    "storageCleared": "Memoria pulita con successo",
+    "avatarGenerated": "Il tuo avatar sarà generato in base al tuo nome utente",
+    "alreadyHaveAccount": "Hai già un account? Accedi",
+    "storageClearFailed": "Errore nella pulizia della memoria"
+  },
+  "home": {
+    "noGroups": "Non hai ancora unito nessun gruppo",
+    "guessLocation": "Indovina la posizione",
+    "failedToFetchGroups": "Errore nel recupero dei gruppi"
+  },
+  "list": {
+    "error": {
+      "empty": "Nessun elemento trovato",
+      "retry": "Riprova",
+      "title": "Qualcosa è andato storto"
+    }
+  },
+  "error": {
+    "notFound": "Non trovato",
+    "tryAgain": "Riprova",
+    "forbidden": " vietato",
+    "serverError": "Errore del server. Per favore riprova più tardi.",
+    "networkError": "Errore di rete. Per favore controlla la tua connessione.",
+    "unauthorized": "Non autorizzato",
+    "unknownError": "Si è verificato un errore sconosciuto",
+    "somethingWentWrong": "Qualcosa è andato storto"
+  },
+  "groups": {
+    "join": "Unisciti",
+    "sort": {
+      "new": "Nuovo",
+      "members": "Maggiori membri",
+      "trending": "Di tendenza"
+    },
+    "admin": "Admin",
+    "create": {
+      "title": "Crea un nuovo gruppo",
+      "preview": {
+        "title": "Anteprima e conferma",
+        "cancel": "Torniamo indietro",
+        "confirm": "Crea gruppo"
+      },
+      "privacy": {
+        "title": "Privacy e regole",
+        "public": "Gruppo pubblico",
+        "private": "Gruppo privato",
+        "inviteCode": "Codice invito",
+        "selectTime": "Seleziona ora",
+        "copyInviteCode": "Copia codice invito",
+        "copiedToClipboard": "Copiato negli appunti",
+        "publicDescription": "Chiunque può trovare e unirsi a questo gruppo",
+        "dailyChallengeTime": "Tempo sfida quotidiana",
+        "privateDescription": "Solo le persone con il codice invito possono unirsi"
+      },
+      "success": {
+        "title": "Gruppo creato!",
+        "viewGroup": "Visualizza gruppo",
+        "description": "Il tuo gruppo è stato creato con successo"
+      },
+      "basicInfo": {
+        "name": "Nome del gruppo",
+        "title": "Informazioni di base",
+        "coverPhoto": "Foto di copertura",
+        "description": "Descrizione",
+        "charactersLeft": "{{count}} caratteri rimasti",
+        "namePlaceholder": "Inserisci il nome del gruppo",
+        "selectCoverPhoto": "Seleziona foto di copertura",
+        "descriptionPlaceholder": "Inserisci descrizione del gruppo"
+      }
+    },
+    "member": "membro",
+    "public": "Pubblico",
+    "joining": "Unendo...",
+    "leaving": "Uscendo...",
+    "members": "Membri",
+    "private": "Privato",
+    "myGroups": "I miei gruppi",
+    "noGroups": "Non sei ancora membro di nessun gruppo",
+    "notAdmin": "Devi essere un admin per eseguire questa azione",
+    "joinGroup": "Unisci al gruppo",
+    "leftGroup": "Uscito dal gruppo con successo",
+    "noMembers": "Nessun membro trovato",
+    "kickMember": "Espelli membro",
+    "leaveGroup": "Lascia il gruppo",
+    "deleteGroup": "Elimina gruppo",
+    "joinedGroup": "Unito al gruppo con successo",
+    "memberCount": "{{count}} membri",
+    "viewMembers": "Visualizza membri",
+    "memberKicked": "Membro espulso dal gruppo",
+    "noGroupsFound": "Nessun gruppo trovato",
+    "noGroupsJoined": "Non hai ancora unito nessun gruppo",
+    "noPublicGroups": "Nessun gruppo pubblico disponibile",
+    "errorJoiningGroup": "Errore nell'unirsi al gruppo",
+    "errorLeavingGroup": "Errore nell'uscire dal gruppo",
+    "searchPlaceholder": "Cerca gruppi...",
+    "errorKickingMember": "Errore nell'espellere il membro dal gruppo",
+    "discoverPublicGroups": "Gruppi pubblici"
+  },
+  "profile": {
+    "cancel": "Annulla",
+    "anonymous": "Anonimo",
+    "linkAccount": "Collega account",
+    "signOutWarning": "Avviso di disconnessione",
+    "continueSignOut": "Continua disconnessione",
+    "anonymousSignOutWarning": "Sei connesso come utente anonimo. Se ti disconnetti, perderai l'accesso a questo account e a tutti i dati associati."
+  },
+  "settings": {
+    "language": "Lingua",
+    "appearance": "Aspetto",
+    "selectLanguage": "Seleziona lingua"
+  },
+  "challenge": {
+    "ended": "Sfida terminata",
+    "meters": "metri",
+    "loading": "Caricamento sfida...",
+    "yourGuess": "Il tuo tentativo",
+    "topGuesses": "I migliori tentativi",
+    "guessLocation": "Indovina la posizione",
+    "timeRemaining": "Tempo rimanente",
+    "noChallengeToday": "Nessuna sfida oggi"
+  },
+  "navigation": {
+    "back": "Indietro",
+    "home": "Home",
+    "next": "Avanti",
+    "camera": "Macchina fotografica",
+    "groups": "Gruppi",
+    "upload": {
+      "error": {
+        "storage": "Errore nel caricamento dell'immagine nella memoria",
+        "unknown": "Si è verificato un errore durante il caricamento dell'immagine",
+        "database": "Errore nel salvataggio delle informazioni sull'immagine",
+        "unauthorized": "Non sei autorizzato a caricare immagini in questi gruppi"
+      },
+      "success": "Immagine caricata con successo"
+    },
+    "profile": "Profilo",
+    "settings": "Impostazioni",
+    "selectAll": "Seleziona tutto",
+    "shareWithX": "Condividi con {{count}} gruppi",
+    "deselectAll": "Deseleziona tutto",
+    "linkAccount": "Collega account",
+    "guessLocation": "Indovina la posizione",
+    "noImageSelected": "Nessuna immagine selezionata",
+    "previewAndShare": "Anteprima e condividi",
+    "shareWithGroups": "Condividi con gruppi"
+  },
+  "onboarding": {
+    "welcome": "Benvenuto in PinPoint",
+    "getStarted": "Inizia",
+    "howItWorks": [
+      "Fai una foto nella tua posizione attuale",
+      "Condividila con il tuo gruppo",
+      "Gli altri cercano di indovinare dove ti trovi",
+      "I punti sono assegnati in base all'accuratezza"
+    ],
+    "description": "PinPoint è un gioco basato sulla posizione in cui tu e i tuoi amici compete per indovinare le posizioni reciproche. Ecco come funziona:",
+    "readyToStart": "Pronto per iniziare a giocare?",
+    "groupDescription": "Questa schermata ti permetterà di unirti a un gruppo esistente o crearne uno nuovo. Per ora, continua al passaggio successivo.",
+    "joinOrCreateGroup": "Unisciti o crea un gruppo"
+  },
+  "leaderboard": {
+    "title": "Classifica",
+    "today": "Oggi",
+    "noData": "Nessun dato disponibile",
+    "allTime": "Di tutti i tempi",
+    "loading": "Caricamento classifica...",
+    "thisWeek": "Questa settimana",
+    "thisMonth": "Questo mese"
+  },
+  "linkAccount": {
+    "title": "Collega il tuo account",
+    "cancel": "Annulla",
+    "description": "Collega il tuo account anonimo per conservare i tuoi dati e progressi.",
+    "fillAllFields": "Si prega di compilare tutti i campi",
+    "linkWithEmail": "Collega con email",
+    "linkWithGoogle": "Collega con Google",
+    "googleSignInFailed": "Accesso a Google annullato o non riuscito"
+  }
+}
