@@ -8,7 +8,7 @@
     "password": "Mot de passe",
     "required": "est requis",
     "supabase": {
-      "unknown": "Une erreur inconnue est survenue",
+      "unknown": "Une erreur inconnue s'est produite",
       "networkError": "Erreur réseau. Veuillez réessayer.",
       "userNotFound": "Utilisateur non trouvé",
       "emailNotConfirmed": "Veuillez confirmer votre email avant de vous connecter",
@@ -16,64 +16,64 @@
       "emailAlreadyRegistered": "L'email est déjà enregistré"
     },
     "username": "Nom d'utilisateur",
-    "needAccount": "Besoin d'un compte ? S'inscrire",
+    "needAccount": "Vous avez besoin d'un compte ? S'inscrire",
     "clearStorage": "Effacer le stockage (Débogage)",
     "createAccount": "Créer un compte",
     "createProfile": "Créer un profil",
-    "chooseUsername": "Choisir un nom d'utilisateur",
+    "chooseUsername": "Choisissez un nom d'utilisateur",
     "storageCleared": "Stockage effacé avec succès",
     "avatarGenerated": "Votre avatar sera généré en fonction de votre nom d'utilisateur",
     "alreadyHaveAccount": "Vous avez déjà un compte ? Se connecter",
     "storageClearFailed": "Échec de l'effacement du stockage"
   },
   "home": {
-    "noGroups": "Vous n'avez rejoint aucun groupe pour l'instant",
-    "guessLocation": "Deviner l'emplacement",
+    "noGroups": "Vous n'avez rejoint aucun groupe pour le moment",
+    "guessLocation": "Devinez l'emplacement",
     "failedToFetchGroups": "Échec de la récupération des groupes"
   },
   "list": {
     "error": {
       "empty": "Aucun élément trouvé",
       "retry": "Réessayer",
-      "title": "Une erreur s'est produite"
+      "title": "Quelque chose a mal tourné"
     }
   },
   "error": {
     "notFound": "Non trouvé",
     "tryAgain": "Réessayer",
     "forbidden": "Interdit",
-    "serverError": "Erreur serveur. Veuillez réessayer plus tard.",
+    "serverError": "Erreur de serveur. Veuillez réessayer plus tard.",
     "networkError": "Erreur réseau. Veuillez vérifier votre connexion.",
     "unauthorized": "Non autorisé",
-    "unknownError": "Une erreur inconnue est survenue",
-    "somethingWentWrong": "Une erreur s'est produite"
+    "unknownError": "Une erreur inconnue s'est produite",
+    "somethingWentWrong": "Quelque chose a mal tourné"
   },
   "groups": {
     "join": "Rejoindre",
     "sort": {
-      "new": "Les plus récents",
+      "new": "Plus récent",
       "members": "Le plus de membres",
       "trending": "Tendances"
     },
-    "admin": "Admin",
+    "admin": "Administrateur",
     "create": {
       "title": "Créer un nouveau groupe",
       "preview": {
-        "title": "Prévisualiser & Confirmer",
+        "title": "Aperçu & Confirmation",
         "cancel": "Retourner",
-        "confirm": "Créer un groupe"
+        "confirm": "Créer le groupe"
       },
       "privacy": {
         "title": "Confidentialité & Règles",
         "public": "Groupe public",
         "private": "Groupe privé",
         "inviteCode": "Code d'invitation",
-        "selectTime": "Sélectionner l'heure",
+        "selectTime": "Sélectionner le temps",
         "copyInviteCode": "Copier le code d'invitation",
         "copiedToClipboard": "Copié dans le presse-papiers",
         "publicDescription": "Tout le monde peut trouver et rejoindre ce groupe",
-        "dailyChallengeTime": "Heure du défi quotidien",
-        "privateDescription": "Seules les personnes avec le code d'invitation peuvent rejoindre"
+        "dailyChallengeTime": "Temps de défi quotidien",
+        "privateDescription": "Seules les personnes ayant le code d'invitation peuvent participer"
       },
       "success": {
         "title": "Groupe créé !",
@@ -87,7 +87,7 @@
         "description": "Description",
         "charactersLeft": "{{count}} caractères restants",
         "namePlaceholder": "Entrez le nom du groupe",
-        "selectCoverPhoto": "Sélectionner une photo de couverture",
+        "selectCoverPhoto": "Sélectionner la photo de couverture",
         "descriptionPlaceholder": "Entrez la description du groupe"
       }
     },
@@ -98,25 +98,25 @@
     "members": "Membres",
     "private": "Privé",
     "myGroups": "Mes groupes",
-    "noGroups": "Vous n'êtes membre d'aucun groupe pour l'instant",
-    "notAdmin": "Vous devez être un admin pour effectuer cette action",
+    "noGroups": "Vous n'êtes membre d'aucun groupe pour le moment",
+    "notAdmin": "Vous devez être un administrateur pour effectuer cette action",
     "joinGroup": "Rejoindre le groupe",
     "leftGroup": "Vous avez quitté le groupe avec succès",
     "noMembers": "Aucun membre trouvé",
-    "kickMember": "Exclure un membre",
+    "kickMember": "Expulser un membre",
     "leaveGroup": "Quitter le groupe",
     "deleteGroup": "Supprimer le groupe",
     "joinedGroup": "Vous avez rejoint le groupe avec succès",
     "memberCount": "{{count}} membres",
     "viewMembers": "Voir les membres",
-    "memberKicked": "Le membre a été exclu du groupe",
+    "memberKicked": "Le membre a été expulsé du groupe",
     "noGroupsFound": "Aucun groupe trouvé",
-    "noGroupsJoined": "Vous n'avez rejoint aucun groupe pour l'instant",
+    "noGroupsJoined": "Vous n'avez rejoint aucun groupe pour le moment",
     "noPublicGroups": "Aucun groupe public disponible",
-    "errorJoiningGroup": "Erreur lors de la rejoindre le groupe",
-    "errorLeavingGroup": "Erreur lors de la quitter le groupe",
+    "errorJoiningGroup": "Erreur lors de la rejoindre du groupe",
+    "errorLeavingGroup": "Erreur lors de la sortie du groupe",
     "searchPlaceholder": "Rechercher des groupes...",
-    "errorKickingMember": "Erreur lors de l'exclusion du membre du groupe",
+    "errorKickingMember": "Erreur lors de l'expulsion du membre du groupe",
     "discoverPublicGroups": "Groupes publics"
   },
   "profile": {
@@ -136,9 +136,9 @@
     "ended": "Défi terminé",
     "meters": "mètres",
     "loading": "Chargement du défi...",
-    "yourGuess": "Votre devinette",
-    "topGuesses": "Meilleures devinettes",
-    "guessLocation": "Deviner l'emplacement",
+    "yourGuess": "Votre supposition",
+    "topGuesses": "Meilleures suppositions",
+    "guessLocation": "Devinez l'emplacement",
     "timeRemaining": "Temps restant",
     "noChallengeToday": "Aucun défi aujourd'hui"
   },
@@ -150,22 +150,22 @@
     "groups": "Groupes",
     "upload": {
       "error": {
-        "storage": "Échec du téléchargement de l'image dans le stockage",
-        "unknown": "Une erreur est survenue lors du téléchargement de l'image",
-        "database": "Échec de l'enregistrement des informations de l'image",
+        "storage": "Échec de l'envoi de l'image dans le stockage",
+        "unknown": "Une erreur s'est produite lors de l'envoi de l'image",
+        "database": "Échec de la sauvegarde des informations sur l'image",
         "unauthorized": "Vous n'êtes pas autorisé à télécharger des images dans ces groupes"
       },
       "success": "Image téléchargée avec succès"
     },
     "profile": "Profil",
     "settings": "Paramètres",
-    "selectAll": "Tout sélectionner",
+    "selectAll": "Sélectionner tout",
     "shareWithX": "Partager avec {{count}} groupes",
     "deselectAll": "Désélectionner tout",
     "linkAccount": "Lier le compte",
-    "guessLocation": "Deviner l'emplacement",
+    "guessLocation": "Devinez l'emplacement",
     "noImageSelected": "Aucune image sélectionnée",
-    "previewAndShare": "Prévisualiser & Partager",
+    "previewAndShare": "Aperçu & Partager",
     "shareWithGroups": "Partager avec des groupes"
   },
   "onboarding": {
@@ -177,26 +177,26 @@
       "Les autres essaient de deviner où vous êtes",
       "Des points sont attribués en fonction de la précision"
     ],
-    "description": "PinPoint est un jeu basé sur la localisation où vous et vos amis concourez pour deviner les emplacements des autres. Voici comment cela fonctionne :",
+    "description": "PinPoint est un jeu basé sur la localisation où vous et vos amis rivalisez pour deviner les emplacements des uns et des autres. Voici comment cela fonctionne :",
     "readyToStart": "Prêt à commencer à jouer ?",
     "groupDescription": "Cet écran vous permettra de rejoindre un groupe existant ou d'en créer un nouveau. Pour l'instant, continuez simplement à l'étape suivante.",
     "joinOrCreateGroup": "Rejoindre ou créer un groupe"
   },
   "leaderboard": {
-    "title": "Tableau des leaders",
+    "title": "Classement",
     "today": "Aujourd'hui",
     "noData": "Aucune donnée disponible",
     "allTime": "De tous les temps",
-    "loading": "Chargement du tableau des leaders...",
+    "loading": "Chargement du classement...",
     "thisWeek": "Cette semaine",
     "thisMonth": "Ce mois-ci"
   },
   "linkAccount": {
-    "title": "Liez votre compte",
+    "title": "Lier votre compte",
     "cancel": "Annuler",
-    "description": "Liez votre compte anonyme pour garder vos données et votre progression.",
+    "description": "Liez votre compte anonyme pour conserver vos données et votre progression.",
     "fillAllFields": "Veuillez remplir tous les champs",
-    "linkWithEmail": "Lier avec email",
+    "linkWithEmail": "Lier avec Email",
     "linkWithGoogle": "Lier avec Google",
     "googleSignInFailed": "La connexion Google a été annulée ou a échoué"
   }
