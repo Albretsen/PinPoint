@@ -1,9 +1,0 @@
-[
-  {
-    "key": "auth.password",
-    "locale": "it",
-    "suggested_fix": "Password",
-    "explanation": "The translation for 'password' is misspelled as 'Passord'.",
-    "severity": "error"
-  }
-]
