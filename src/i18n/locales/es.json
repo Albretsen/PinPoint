@@ -6,30 +6,30 @@
     "signOut": "Cerrar sesión",
     "continue": "Continuar",
     "password": "Contraseña",
-    "required": "es necesario",
+    "required": "es requerido",
     "supabase": {
       "unknown": "Ocurrió un error desconocido",
-      "networkError": "Error de red. Por favor intenta de nuevo.",
+      "networkError": "Error de red. Por favor, intenta de nuevo.",
       "userNotFound": "Usuario no encontrado",
-      "emailNotConfirmed": "Por favor confirma tu correo electrónico antes de iniciar sesión",
+      "emailNotConfirmed": "Por favor, confirma tu correo electrónico antes de iniciar sesión",
       "invalidCredentials": "Correo electrónico o contraseña inválidos",
       "emailAlreadyRegistered": "El correo electrónico ya está registrado"
     },
     "username": "Nombre de usuario",
-    "needAccount": "¿Necesitas una cuenta? Registrarse",
+    "needAccount": "¿Necesitas una cuenta? Regístrate",
     "clearStorage": "Limpiar almacenamiento (Depuración)",
-    "createAccount": "Crear una cuenta",
+    "createAccount": "Crear cuenta",
     "createProfile": "Crear perfil",
     "chooseUsername": "Elige un nombre de usuario",
     "storageCleared": "Almacenamiento limpiado con éxito",
-    "avatarGenerated": "Tu avatar se generará en función de tu nombre de usuario",
+    "avatarGenerated": "Tu avatar será generado basado en tu nombre de usuario",
     "alreadyHaveAccount": "¿Ya tienes una cuenta? Iniciar sesión",
-    "storageClearFailed": "Falló al limpiar el almacenamiento"
+    "storageClearFailed": "Error al limpiar el almacenamiento"
   },
   "home": {
     "noGroups": "Aún no te has unido a ningún grupo",
-    "guessLocation": "Adivinar ubicación",
-    "failedToFetchGroups": "Error al recuperar grupos"
+    "guessLocation": "Adivina la ubicación",
+    "failedToFetchGroups": "Error al obtener grupos"
   },
   "list": {
     "error": {
@@ -51,7 +51,7 @@
   "groups": {
     "join": "Unirse",
     "sort": {
-      "new": "Más reciente",
+      "new": "Más nuevo",
       "members": "Más miembros",
       "trending": "Tendencias"
     },
@@ -68,12 +68,12 @@
         "public": "Grupo público",
         "private": "Grupo privado",
         "inviteCode": "Código de invitación",
-        "selectTime": "Seleccionar tiempo",
+        "selectTime": "Seleccionar hora",
         "copyInviteCode": "Copiar código de invitación",
         "copiedToClipboard": "Copiado al portapapeles",
         "publicDescription": "Cualquiera puede encontrar y unirse a este grupo",
-        "dailyChallengeTime": "Tiempo del desafío diario",
-        "privateDescription": "Solo las personas con el código de invitación pueden unirse"
+        "dailyChallengeTime": "Hora del desafío diario",
+        "privateDescription": "Sólo las personas con el código de invitación pueden unirse"
       },
       "success": {
         "title": "¡Grupo creado!",
@@ -86,9 +86,9 @@
         "coverPhoto": "Foto de portada",
         "description": "Descripción",
         "charactersLeft": "{{count}} caracteres restantes",
-        "namePlaceholder": "Introduce el nombre del grupo",
-        "selectCoverPhoto": "Seleccionar foto de portada",
-        "descriptionPlaceholder": "Introduce la descripción del grupo"
+        "namePlaceholder": "Ingresa el nombre del grupo",
+        "selectCoverPhoto": "Selecciona foto de portada",
+        "descriptionPlaceholder": "Ingresa la descripción del grupo"
       }
     },
     "member": "miembro",
@@ -116,16 +116,16 @@
     "errorJoiningGroup": "Error al unirse al grupo",
     "errorLeavingGroup": "Error al salir del grupo",
     "searchPlaceholder": "Buscar grupos...",
-    "errorKickingMember": "Error al expulsar miembro del grupo",
+    "errorKickingMember": "Error al expulsar al miembro del grupo",
     "discoverPublicGroups": "Grupos públicos"
   },
   "profile": {
     "cancel": "Cancelar",
     "anonymous": "Anónimo",
     "linkAccount": "Vincular cuenta",
-    "signOutWarning": "Advertencia de cierre de sesión",
-    "continueSignOut": "Continuar cierre de sesión",
-    "anonymousSignOutWarning": "Has iniciado sesión como usuario anónimo. Si cierras sesión, perderás el acceso a esta cuenta y todos los datos asociados."
+    "signOutWarning": "Advertencia al cerrar sesión",
+    "continueSignOut": "Continuar con el cierre de sesión",
+    "anonymousSignOutWarning": "Estás conectado como un usuario anónimo. Si cierras sesión, perderás el acceso a esta cuenta y a todos los datos asociados."
   },
   "settings": {
     "language": "Idioma",
@@ -136,9 +136,9 @@
     "ended": "Desafío terminado",
     "meters": "metros",
     "loading": "Cargando desafío...",
-    "yourGuess": "Tu suposición",
-    "topGuesses": "Mejores suposiciones",
-    "guessLocation": "Adivinar ubicación",
+    "yourGuess": "Tu adivinanza",
+    "topGuesses": "Mejores adivinanzas",
+    "guessLocation": "Adivina la ubicación",
     "timeRemaining": "Tiempo restante",
     "noChallengeToday": "No hay desafío hoy"
   },
@@ -151,11 +151,11 @@
     "upload": {
       "error": {
         "storage": "Error al cargar la imagen en el almacenamiento",
-        "unknown": "Ocurrió un error al subir la imagen",
+        "unknown": "Ocurrió un error al cargar la imagen",
         "database": "Error al guardar la información de la imagen",
-        "unauthorized": "No estás autorizado para subir imágenes a estos grupos"
+        "unauthorized": "No estás autorizado para cargar imágenes en estos grupos"
       },
-      "success": "Imagen subida con éxito"
+      "success": "Imagen cargada con éxito"
     },
     "profile": "Perfil",
     "settings": "Configuraciones",
@@ -163,23 +163,23 @@
     "shareWithX": "Compartir con {{count}} grupos",
     "deselectAll": "Deseleccionar todo",
     "linkAccount": "Vincular cuenta",
-    "guessLocation": "Adivinar ubicación",
+    "guessLocation": "Adivina la ubicación",
     "noImageSelected": "No se ha seleccionado ninguna imagen",
     "previewAndShare": "Vista previa y compartir",
     "shareWithGroups": "Compartir con grupos"
   },
   "onboarding": {
     "welcome": "Bienvenido a PinPoint",
-    "getStarted": "Comenzar",
+    "getStarted": "Empezar",
     "howItWorks": [
       "Toma una foto en tu ubicación actual",
       "Compártela con tu grupo",
       "Otros intentan adivinar dónde estás",
-      "Se otorgan puntos basados en la precisión"
+      "Se otorgan puntos según la precisión"
     ],
-    "description": "PinPoint es un juego basado en ubicación donde tú y tus amigos compiten para adivinar las ubicaciones de los demás. Así es como funciona:",
+    "description": "PinPoint es un juego basado en la ubicación donde tú y tus amigos compiten para adivinar las ubicaciones de los demás. Así es como funciona:",
     "readyToStart": "¿Listo para empezar a jugar?",
-    "groupDescription": "Esta pantalla te permitirá unirte a un grupo existente o crear uno nuevo. Por ahora, solo continúa al siguiente paso.",
+    "groupDescription": "Esta pantalla te permitirá unirte a un grupo existente o crear uno nuevo. Por ahora, simplemente continúa al siguiente paso.",
     "joinOrCreateGroup": "Unirse o crear un grupo"
   },
   "leaderboard": {
@@ -187,17 +187,17 @@
     "today": "Hoy",
     "noData": "No hay datos disponibles",
     "allTime": "De todos los tiempos",
-    "loading": "Cargando la clasificación...",
+    "loading": "Cargando clasificación...",
     "thisWeek": "Esta semana",
     "thisMonth": "Este mes"
   },
   "linkAccount": {
     "title": "Vincula tu cuenta",
     "cancel": "Cancelar",
-    "description": "Vincula tu cuenta anónima para mantener tus datos y progreso.",
-    "fillAllFields": "Por favor completa todos los campos",
+    "description": "Vincula tu cuenta anónima para mantener tu data y progreso.",
+    "fillAllFields": "Por favor, completa todos los campos",
     "linkWithEmail": "Vincular con correo electrónico",
     "linkWithGoogle": "Vincular con Google",
-    "googleSignInFailed": "El inicio de sesión en Google fue cancelado o falló"
+    "googleSignInFailed": "El inicio de sesión con Google fue cancelado o falló"
   }
 }
