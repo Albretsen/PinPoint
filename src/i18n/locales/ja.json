@@ -1,0 +1,203 @@
+{
+  "auth": {
+    "email": "メール",
+    "signIn": "サインイン",
+    "signUp": "サインアップ",
+    "signOut": "サインアウト",
+    "continue": "続ける",
+    "password": "パスワード",
+    "required": "は必須です",
+    "supabase": {
+      "unknown": "不明なエラーが発生しました",
+      "networkError": "ネットワークエラー。もう一度お試しください。",
+      "userNotFound": "ユーザーが見つかりません",
+      "emailNotConfirmed": "サインインする前にメールを確認してください",
+      "invalidCredentials": "無効なメールアドレスまたはパスワード",
+      "emailAlreadyRegistered": "このメールアドレスはすでに登録されています"
+    },
+    "username": "ユーザー名",
+    "needAccount": "アカウントが必要ですか？ サインアップ",
+    "clearStorage": "ストレージをクリアする（デバッグ）",
+    "createAccount": "アカウントを作成",
+    "createProfile": "プロファイルを作成",
+    "chooseUsername": "ユーザー名を選択",
+    "storageCleared": "ストレージが正常にクリアされました",
+    "avatarGenerated": "ユーザー名に基づいてアバターが生成されます",
+    "alreadyHaveAccount": "すでにアカウントを持っていますか？ サインイン",
+    "storageClearFailed": "ストレージのクリアに失敗しました"
+  },
+  "home": {
+    "noGroups": "まだどのグループにも参加していません",
+    "guessLocation": "位置を推測",
+    "failedToFetchGroups": "グループの取得に失敗しました"
+  },
+  "list": {
+    "error": {
+      "empty": "アイテムが見つかりません",
+      "retry": "もう一度試す",
+      "title": "何かがうまくいきませんでした"
+    }
+  },
+  "error": {
+    "notFound": "見つかりません",
+    "tryAgain": "もう一度試す",
+    "forbidden": "禁止されています",
+    "serverError": "サーバーエラー。しばらくしてから再試行してください。",
+    "networkError": "ネットワークエラー。接続を確認してください。",
+    "unauthorized": "認証されていません",
+    "unknownError": "不明なエラーが発生しました",
+    "somethingWentWrong": "何かがうまくいきませんでした"
+  },
+  "groups": {
+    "join": "参加する",
+    "sort": {
+      "new": "最新",
+      "members": "最も多くのメンバー",
+      "trending": "トレンド"
+    },
+    "admin": "管理者",
+    "create": {
+      "title": "新しいグループを作成",
+      "preview": {
+        "title": "プレビューと確認",
+        "cancel": "戻る",
+        "confirm": "グループを作成"
+      },
+      "privacy": {
+        "title": "プライバシーとルール",
+        "public": "パブリックグループ",
+        "private": "プライベートグループ",
+        "inviteCode": "招待コード",
+        "selectTime": "時間を選択",
+        "copyInviteCode": "招待コードをコピー",
+        "copiedToClipboard": "クリップボードにコピーされました",
+        "publicDescription": "誰でもこのグループを見つけて参加できます",
+        "dailyChallengeTime": "日次チャレンジ時間",
+        "privateDescription": "招待コードを持っている人のみ参加できます"
+      },
+      "success": {
+        "title": "グループが作成されました！",
+        "viewGroup": "グループを表示",
+        "description": "グループが正常に作成されました"
+      },
+      "basicInfo": {
+        "name": "グループ名",
+        "title": "基本情報",
+        "coverPhoto": "カバー写真",
+        "description": "説明",
+        "charactersLeft": "{{count}} 文字残っています",
+        "namePlaceholder": "グループ名を入力",
+        "selectCoverPhoto": "カバー写真を選択",
+        "descriptionPlaceholder": "グループの説明を入力"
+      }
+    },
+    "member": "メンバー",
+    "public": "パブリック",
+    "joining": "参加中...",
+    "leaving": "退出中...",
+    "members": "メンバー",
+    "private": "プライベート",
+    "myGroups": "私のグループ",
+    "noGroups": "まだどのグループのメンバーでもありません",
+    "notAdmin": "この操作を行うには管理者である必要があります",
+    "joinGroup": "グループに参加",
+    "leftGroup": "グループを正常に退出しました",
+    "noMembers": "メンバーが見つかりません",
+    "kickMember": "メンバーを追放",
+    "leaveGroup": "グループを退出",
+    "deleteGroup": "グループを削除",
+    "joinedGroup": "グループに正常に参加しました",
+    "memberCount": "{{count}} メンバー",
+    "viewMembers": "メンバーを見る",
+    "memberKicked": "メンバーがグループから追放されました",
+    "noGroupsFound": "グループが見つかりません",
+    "noGroupsJoined": "まだどのグループにも参加していません",
+    "noPublicGroups": "利用可能なパブリックグループはありません",
+    "errorJoiningGroup": "グループ参加エラー",
+    "errorLeavingGroup": "グループ退出エラー",
+    "searchPlaceholder": "グループを検索...",
+    "errorKickingMember": "グループからメンバーを追放する際のエラー",
+    "discoverPublicGroups": "パブリックグループ"
+  },
+  "profile": {
+    "cancel": "キャンセル",
+    "anonymous": "匿名",
+    "linkAccount": "アカウントをリンク",
+    "signOutWarning": "サインアウト警告",
+    "continueSignOut": "サインアウトを続行",
+    "anonymousSignOutWarning": "匿名ユーザーとしてサインインしています。サインアウトすると、このアカウントおよび関連データへのアクセスが失われます。"
+  },
+  "settings": {
+    "language": "言語",
+    "appearance": "外観",
+    "selectLanguage": "言語を選択"
+  },
+  "challenge": {
+    "ended": "チャレンジが終了しました",
+    "meters": "メートル",
+    "loading": "チャレンジを読み込んでいます...",
+    "yourGuess": "あなたの推測",
+    "topGuesses": "トップ推測",
+    "guessLocation": "位置を推測",
+    "timeRemaining": "残り時間",
+    "noChallengeToday": "今日のチャレンジはありません"
+  },
+  "navigation": {
+    "back": "戻る",
+    "home": "ホーム",
+    "next": "次",
+    "camera": "カメラ",
+    "groups": "グループ",
+    "upload": {
+      "error": {
+        "storage": "画像をストレージにアップロードできませんでした",
+        "unknown": "画像のアップロード中にエラーが発生しました",
+        "database": "画像情報の保存に失敗しました",
+        "unauthorized": "これらのグループに画像をアップロードする権限がありません"
+      },
+      "success": "画像が正常にアップロードされました"
+    },
+    "profile": "プロフィール",
+    "settings": "設定",
+    "selectAll": "すべて選択",
+    "shareWithX": "{{count}} グループと共有",
+    "deselectAll": "すべて選択解除",
+    "linkAccount": "アカウントをリンク",
+    "guessLocation": "位置を推測",
+    "noImageSelected": "画像が選択されていません",
+    "previewAndShare": "プレビューと共有",
+    "shareWithGroups": "グループと共有"
+  },
+  "onboarding": {
+    "welcome": "PinPointへようこそ",
+    "getStarted": "始める",
+    "howItWorks": [
+      "現在地で写真を撮影",
+      "グループと共有",
+      "他の人はあなたの位置を推測しようとします",
+      "ポイントは正確さに基づいて与えられます"
+    ],
+    "description": "PinPointは、あなたと友達が互いの位置を推測し合う位置ベースのゲームです。その仕組みは以下の通りです：",
+    "readyToStart": "プレイを開始する準備はできていますか？",
+    "groupDescription": "この画面では、既存のグループに参加するか、新しいグループを作成できます。今は次のステップに進んでください。",
+    "joinOrCreateGroup": "グループに参加または作成"
+  },
+  "leaderboard": {
+    "title": "リーダーボード",
+    "today": "今日",
+    "noData": "データがありません",
+    "allTime": "全期間",
+    "loading": "リーダーボードを読み込んでいます...",
+    "thisWeek": "今週",
+    "thisMonth": "今月"
+  },
+  "linkAccount": {
+    "title": "アカウントをリンク",
+    "cancel": "キャンセル",
+    "description": "データと進行状況を保持するために、匿名アカウントをリンクします。",
+    "fillAllFields": "すべてのフィールドを記入してください",
+    "linkWithEmail": "メールでリンク",
+    "linkWithGoogle": "Googleでリンク",
+    "googleSignInFailed": "Googleサインインがキャンセルされたか、失敗しました"
+  }
+}
