@@ -11,8 +11,8 @@
       "unknown": "Si è verificato un errore sconosciuto",
       "networkError": "Errore di rete. Riprova.",
       "userNotFound": "Utente non trovato",
-      "emailNotConfirmed": "Si prega di confermare la propria email prima di effettuare l'accesso",
-      "invalidCredentials": "Email o password non validi",
+      "emailNotConfirmed": "Per favore conferma la tua email prima di effettuare il login",
+      "invalidCredentials": "Email o password non valide",
       "emailAlreadyRegistered": "L'email è già registrata"
     },
     "username": "Nome utente",
@@ -27,8 +27,8 @@
     "storageClearFailed": "Impossibile cancellare la memoria"
   },
   "home": {
-    "noGroups": "Non hai ancora aderito a nessun gruppo",
-    "guessLocation": "Indovina Luogo",
+    "noGroups": "Non hai ancora aderito a gruppi",
+    "guessLocation": "Indovina Posizione",
     "failedToFetchGroups": "Impossibile recuperare i gruppi"
   },
   "list": {
@@ -42,7 +42,7 @@
     "notFound": "Non trovato",
     "tryAgain": "Riprova",
     "forbidden": "Vietato",
-    "serverError": "Errore del server. Riprova più tardi.",
+    "serverError": "Errore del server. Per favore riprova più tardi.",
     "networkError": "Errore di rete. Controlla la tua connessione.",
     "unauthorized": "Non autorizzato",
     "unknownError": "Si è verificato un errore sconosciuto",
@@ -51,9 +51,9 @@
   "groups": {
     "join": "Unisciti",
     "sort": {
-      "new": "Più recenti",
+      "new": "Più recente",
       "members": "Più membri",
-      "trending": "In tendenza"
+      "trending": "Tendenze"
     },
     "admin": "Amministratore",
     "create": {
@@ -67,13 +67,13 @@
         "title": "Privacy & Regole",
         "public": "Gruppo Pubblico",
         "private": "Gruppo Privato",
-        "inviteCode": "Codice di Invito",
-        "selectTime": "Seleziona Orario",
-        "copyInviteCode": "Copia Codice di Invito",
+        "inviteCode": "Codice d'invito",
+        "selectTime": "Seleziona Ora",
+        "copyInviteCode": "Copia Codice d'invito",
         "copiedToClipboard": "Copiato negli appunti",
         "publicDescription": "Chiunque può trovare e unirsi a questo gruppo",
         "dailyChallengeTime": "Ora della Sfida Giornaliera",
-        "privateDescription": "Solo le persone con il codice di invito possono unirsi"
+        "privateDescription": "Solo le persone con il codice d'invito possono unirsi"
       },
       "success": {
         "title": "Gruppo Creato!",
@@ -81,42 +81,42 @@
         "description": "Il tuo gruppo è stato creato con successo"
       },
       "basicInfo": {
-        "name": "Nome del Gruppo",
+        "name": "Nome Gruppo",
         "title": "Informazioni di Base",
         "coverPhoto": "Foto di Copertura",
         "description": "Descrizione",
-        "charactersLeft": "{{count}} caratteri rimanenti",
-        "namePlaceholder": "Inserisci il nome del gruppo",
+        "charactersLeft": "{{count}} caratteri rimasti",
+        "namePlaceholder": "Inserisci nome gruppo",
         "selectCoverPhoto": "Seleziona Foto di Copertura",
-        "descriptionPlaceholder": "Inserisci la descrizione del gruppo"
+        "descriptionPlaceholder": "Inserisci descrizione del gruppo"
       }
     },
     "member": "membro",
     "public": "Pubblico",
-    "joining": "Unione in corso...",
-    "leaving": "Uscita in corso...",
+    "joining": "Unendo...",
+    "leaving": "Uscendo...",
     "members": "Membri",
     "private": "Privato",
     "myGroups": "I Miei Gruppi",
-    "noGroups": "Non sei ancora membro di nessun gruppo",
-    "notAdmin": "Devi essere un amministratore per eseguire quest'azione",
+    "noGroups": "Non sei ancora membro di alcun gruppo",
+    "notAdmin": "Devi essere un amministratore per eseguire questa azione",
     "joinGroup": "Unisciti al gruppo",
-    "leftGroup": "Uscito dal gruppo con successo",
+    "leftGroup": "Uscita dal gruppo avvenuta con successo",
     "noMembers": "Nessun membro trovato",
     "kickMember": "Espelli Membro",
-    "leaveGroup": "Lascia il gruppo",
+    "leaveGroup": "Lascia gruppo",
     "deleteGroup": "Elimina Gruppo",
     "joinedGroup": "Unito al gruppo con successo",
     "memberCount": "{{count}} membri",
     "viewMembers": "Visualizza Membri",
-    "memberKicked": "Il membro è stato espulso dal gruppo",
+    "memberKicked": "Membro espulso dal gruppo",
     "noGroupsFound": "Nessun gruppo trovato",
-    "noGroupsJoined": "Non hai ancora aderito a nessun gruppo",
+    "noGroupsJoined": "Non hai ancora aderito a gruppi",
     "noPublicGroups": "Nessun gruppo pubblico disponibile",
     "errorJoiningGroup": "Errore nell'unirsi al gruppo",
     "errorLeavingGroup": "Errore nell'uscire dal gruppo",
     "searchPlaceholder": "Cerca gruppi...",
-    "errorKickingMember": "Errore nell'espulsione del membro dal gruppo",
+    "errorKickingMember": "Errore nell'espellere il membro dal gruppo",
     "discoverPublicGroups": "Gruppi Pubblici"
   },
   "profile": {
@@ -124,8 +124,8 @@
     "anonymous": "Anonimo",
     "linkAccount": "Collega Account",
     "signOutWarning": "Avviso di Disconnessione",
-    "continueSignOut": "Continua Disconnessione",
-    "anonymousSignOutWarning": "Sei connesso come utente anonimo. Se ti disconnetti, perderai l'accesso a questo account e a tutti i dati associati."
+    "continueSignOut": "Continua la Disconnessione",
+    "anonymousSignOutWarning": "Sei connesso come utente anonimo. Se esci, perderai l'accesso a questo account e a tutti i dati associati."
   },
   "settings": {
     "language": "Lingua",
@@ -136,9 +136,9 @@
     "ended": "Sfida terminata",
     "meters": "metri",
     "loading": "Caricamento sfida...",
-    "yourGuess": "La tua ipotesi",
-    "topGuesses": "Migliori Ipotesi",
-    "guessLocation": "Indovina Luogo",
+    "yourGuess": "Il tuo indovinello",
+    "topGuesses": "Migliori Indovinelli",
+    "guessLocation": "Indovina Posizione",
     "timeRemaining": "Tempo rimanente",
     "noChallengeToday": "Nessuna sfida oggi"
   },
@@ -163,7 +163,7 @@
     "shareWithX": "Condividi con {{count}} gruppi",
     "deselectAll": "Deseleziona Tutto",
     "linkAccount": "Collega Account",
-    "guessLocation": "Indovina Luogo",
+    "guessLocation": "Indovina Posizione",
     "noImageSelected": "Nessuna immagine selezionata",
     "previewAndShare": "Anteprima & Condividi",
     "shareWithGroups": "Condividi con Gruppi"
@@ -172,32 +172,32 @@
     "welcome": "Benvenuto in PinPoint",
     "getStarted": "Inizia",
     "howItWorks": [
-      "Scatta una foto nella tua posizione attuale",
+      "Fai una foto nella tua posizione attuale",
       "Condividila con il tuo gruppo",
-      "Gli altri cercano di indovinare dove sei",
-      "I punti sono assegnati in base all'accuratezza"
+      "Altri cercano di indovinare dove ti trovi",
+      "I punti vengono assegnati in base all'accuratezza"
     ],
-    "description": "PinPoint è un gioco basato sulla posizione in cui tu e i tuoi amici competete per indovinare le posizioni reciproche. Ecco come funziona:",
+    "description": "PinPoint è un gioco basato sulla posizione in cui tu e i tuoi amici compete per indovinare le posizioni degli uni e degli altri. Ecco come funziona:",
     "readyToStart": "Pronto per iniziare a giocare?",
-    "groupDescription": "Questo schermo ti permetterà di unirti a un gruppo esistente o crearne uno nuovo. Per ora, continua semplicemente al passaggio successivo.",
+    "groupDescription": "Questa schermata ti permetterà di unirti a un gruppo esistente o di crearne uno nuovo. Per ora, continua al passo successivo.",
     "joinOrCreateGroup": "Unisciti o Crea un Gruppo"
   },
   "leaderboard": {
     "title": "Classifica",
     "today": "Oggi",
     "noData": "Nessun dato disponibile",
-    "allTime": "Di sempre",
+    "allTime": "Di Sempre",
     "loading": "Caricamento classifica...",
-    "thisWeek": "Questa settimana",
-    "thisMonth": "Questo mese"
+    "thisWeek": "Questa Settimana",
+    "thisMonth": "Questo Mese"
   },
   "linkAccount": {
-    "title": "Collega il Tuo Account",
+    "title": "Collega Il Tuo Account",
     "cancel": "Annulla",
     "description": "Collega il tuo account anonimo per mantenere i tuoi dati e i tuoi progressi.",
-    "fillAllFields": "Si prega di compilare tutti i campi",
+    "fillAllFields": "Compila tutti i campi",
     "linkWithEmail": "Collega con Email",
     "linkWithGoogle": "Collega con Google",
-    "googleSignInFailed": "Accesso Google annullato o fallito"
+    "googleSignInFailed": "Il login con Google è stato annullato o è fallito"
   }
 }
