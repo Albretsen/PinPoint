@@ -113,22 +113,26 @@ export default function PrivacyScreen() {
         </View>
       </View>
 
-      {!isPublic && (
-        <View style={[styles.section, { backgroundColor: theme.colors.card }]}>
-          <PinText style={[styles.sectionTitle, { color: theme.colors.text }]}>
-            {t('groups.create.privacy.inviteCode')}
+      <View style={[styles.section, { backgroundColor: theme.colors.card }]}>
+        <PinText style={[styles.sectionTitle, { color: theme.colors.text }]}>
+          {t('groups.create.privacy.inviteCode')}
+        </PinText>
+        <PinText style={[styles.sectionDescription, { color: theme.colors.text }]}>
+          {isPublic 
+            ? t('groups.create.privacy.publicInviteCodeDescription') 
+            : t('groups.create.privacy.privateInviteCodeDescription')
+          }
+        </PinText>
+        <TouchableOpacity
+          style={[styles.inviteCodeContainer, { backgroundColor: theme.colors.background }]}
+          onPress={handleCopyInviteCode}
+        >
+          <PinText style={[styles.inviteCode, { color: theme.colors.text }]}>
+            {inviteCode}
           </PinText>
-          <TouchableOpacity
-            style={[styles.inviteCodeContainer, { backgroundColor: theme.colors.background }]}
-            onPress={handleCopyInviteCode}
-          >
-            <PinText style={[styles.inviteCode, { color: theme.colors.text }]}>
-              {inviteCode}
-            </PinText>
-            <Ionicons name="copy-outline" size={20} color={theme.colors.text} />
-          </TouchableOpacity>
-        </View>
-      )}
+          <Ionicons name="copy-outline" size={20} color={theme.colors.text} />
+        </TouchableOpacity>
+      </View>
 
       <View style={[styles.section, { backgroundColor: theme.colors.card }]}>
         <PinText style={[styles.sectionTitle, { color: theme.colors.text }]}>

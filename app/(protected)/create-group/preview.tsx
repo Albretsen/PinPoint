@@ -46,7 +46,7 @@ export default function PreviewScreen() {
           name: params.name,
           description: params.description,
           is_public: params.isPublic === 'true',
-          invite_code: params.isPublic === 'false' ? params.inviteCode : null,
+          invite_code: params.inviteCode,
           owner_id: session.user.id,
           daily_challenge_time: new Date(params.challengeTime).toLocaleTimeString('en-US', {
             hour12: false,

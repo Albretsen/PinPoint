@@ -10,6 +10,7 @@ import { useUserStore } from '@/src/store/userStore';
 import { Group } from '@/src/types/group';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
+import * as Clipboard from 'expo-clipboard';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
@@ -184,6 +185,18 @@ export default function GroupDetailsScreen() {
     }
   };
 
+  const handleCopyInviteCode = async () => {
+    if (!group?.invite_code) return;
+    
+    try {
+      await Clipboard.setStringAsync(group.invite_code);
+      showToast(t('groups.create.privacy.copiedToClipboard'));
+    } catch (error) {
+      console.error('Error copying invite code:', error);
+      showToast(t('error.somethingWentWrong'));
+    }
+  };
+
   if (!group) {
     return (
       <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -200,6 +213,11 @@ export default function GroupDetailsScreen() {
       label: t('groups.viewMembers'),
       icon: 'people-outline',
       onPress: () => router.push(`/(protected)/group/members?id=${id}`),
+    },
+    {
+      label: t('groups.create.privacy.copyInviteCode'),
+      icon: 'copy-outline',
+      onPress: handleCopyInviteCode,
     },
     {
       label: t('groups.leaveGroup'),
