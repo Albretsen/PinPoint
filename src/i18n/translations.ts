@@ -41,6 +41,7 @@ export const translations = {
       join: 'Join',
       joinGroup: 'Join group',
       joining: 'Joining...',
+      joinByInviteCode: 'Enter invite code',
       leaveGroup: 'Leave group',
       leaving: 'Leaving...',
       leftGroup: 'Successfully left the group',
@@ -224,6 +225,12 @@ export const translations = {
       noData: 'No data available',
       loading: 'Loading leaderboard...',
     },
+
+    // Common
+    common: {
+      confirm: 'Confirm',
+      cancel: 'Cancel',
+    },
   },
   no: {
     // Auth
@@ -267,6 +274,7 @@ export const translations = {
       join: 'Bli med',
       joinGroup: 'Bli med i gruppe',
       joining: 'Bli med...',
+      joinByInviteCode: 'Enter invite code',
       leaveGroup: 'Forlat gruppe',
       leaving: 'Forlater...',
       leftGroup: 'Forlot gruppen',
@@ -449,6 +457,12 @@ export const translations = {
       allTime: 'All tid',
       noData: 'Ingen data tilgjengelig',
       loading: 'Laster toppliste...',
+    },
+
+    // Common
+    common: {
+      confirm: 'Bekreft',
+      cancel: 'Avbryt',
     },
   },
 } as const;
