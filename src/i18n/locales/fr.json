@@ -1,8 +1,8 @@
 {
   "auth": {
+    "email": "Email",
     "signIn": "Se connecter",
     "signUp": "S'inscrire",
-    "fakeKey": "this is a fake key",
     "signOut": "Se déconnecter",
     "continue": "Continuer",
     "password": "Mot de passe",
