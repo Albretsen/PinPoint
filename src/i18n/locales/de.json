@@ -1,0 +1,205 @@
+{
+  "auth": {
+    "email": "E-Mail",
+    "newKey": "dies ist der Wert",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "newKey2": "das ist ein anderer neuer Wert",
+    "signOut": "Abmelden",
+    "continue": "Fortfahren",
+    "password": "Passwort",
+    "required": "wird benötigt",
+    "supabase": {
+      "unknown": "Ein unbekannter Fehler ist aufgetreten",
+      "networkError": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
+      "userNotFound": "Benutzer nicht gefunden",
+      "emailNotConfirmed": "Bitte bestätigen Sie Ihre E-Mail, bevor Sie sich anmelden",
+      "invalidCredentials": "Ungültige E-Mail oder Passwort",
+      "emailAlreadyRegistered": "E-Mail ist bereits registriert"
+    },
+    "username": "Benutzername",
+    "needAccount": "Konto benötigen? Registrieren",
+    "clearStorage": "Speicher leeren (Debug)",
+    "createAccount": "Konto erstellen",
+    "createProfile": "Profil erstellen",
+    "chooseUsername": "Einen Benutzernamen wählen",
+    "storageCleared": "Speicher erfolgreich geleert",
+    "avatarGenerated": "Ihr Avatar wird basierend auf Ihrem Benutzernamen generiert",
+    "alreadyHaveAccount": "Bereits ein Konto? Anmelden",
+    "storageClearFailed": "Fehler beim Leeren des Speichers"
+  },
+  "home": {
+    "noGroups": "Sie haben noch keinen Gruppen beigetreten",
+    "guessLocation": "Standort erraten",
+    "failedToFetchGroups": "Fehler beim Abrufen der Gruppen"
+  },
+  "list": {
+    "error": {
+      "empty": "Keine Elemente gefunden",
+      "retry": "Erneut versuchen",
+      "title": "Etwas ist schiefgelaufen"
+    }
+  },
+  "error": {
+    "notFound": "Nicht gefunden",
+    "tryAgain": "Erneut versuchen",
+    "forbidden": "Zugriff verweigert",
+    "serverError": "Serverfehler. Bitte versuchen Sie es später erneut.",
+    "networkError": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
+    "unauthorized": "Unbefugt",
+    "unknownError": "Ein unbekannter Fehler ist aufgetreten",
+    "somethingWentWrong": "Etwas ist schiefgelaufen"
+  },
+  "groups": {
+    "join": "Beitreten",
+    "sort": {
+      "new": "Neueste",
+      "members": "Die meisten Mitglieder",
+      "trending": "Trendierend"
+    },
+    "admin": "Administrator",
+    "create": {
+      "title": "Neue Gruppe erstellen",
+      "preview": {
+        "title": "Vorschau & Bestätigen",
+        "cancel": "Zurückgehen",
+        "confirm": "Gruppe erstellen"
+      },
+      "privacy": {
+        "title": "Datenschutz & Regeln",
+        "public": "Öffentliche Gruppe",
+        "private": "Private Gruppe",
+        "inviteCode": "Einladungscode",
+        "selectTime": "Zeit auswählen",
+        "copyInviteCode": "Einladungscode kopieren",
+        "copiedToClipboard": "In die Zwischenablage kopiert",
+        "publicDescription": "Jeder kann diese Gruppe finden und beitreten",
+        "dailyChallengeTime": "Tägliche Challenge-Zeit",
+        "privateDescription": "Nur Personen mit dem Einladungscode können beitreten"
+      },
+      "success": {
+        "title": "Gruppe erstellt!",
+        "viewGroup": "Gruppe ansehen",
+        "description": "Ihre Gruppe wurde erfolgreich erstellt"
+      },
+      "basicInfo": {
+        "name": "Gruppenname",
+        "title": "Grundinformationen",
+        "coverPhoto": "Titelbild",
+        "description": "Beschreibung",
+        "charactersLeft": "{{count}} Zeichen übrig",
+        "namePlaceholder": "Gruppennamen eingeben",
+        "selectCoverPhoto": "Titelbild auswählen",
+        "descriptionPlaceholder": "Gruppenbeschreibung eingeben"
+      }
+    },
+    "member": "Mitglied",
+    "public": "Öffentlich",
+    "joining": "Beitritt...",
+    "leaving": "Verlassen...",
+    "members": "Mitglieder",
+    "private": "Privat",
+    "myGroups": "Meine Gruppen",
+    "noGroups": "Sie sind noch kein Mitglied einer Gruppe",
+    "notAdmin": "Sie müssen Administrator sein, um diese Aktion auszuführen",
+    "joinGroup": "Gruppe beitreten",
+    "leftGroup": "Gruppe erfolgreich verlassen",
+    "noMembers": "Keine Mitglieder gefunden",
+    "kickMember": "Mitglied kicken",
+    "leaveGroup": "Gruppe verlassen",
+    "deleteGroup": "Gruppe löschen",
+    "joinedGroup": "Erfolgreich der Gruppe beigetreten",
+    "memberCount": "{{count}} Mitglieder",
+    "viewMembers": "Mitglieder ansehen",
+    "memberKicked": "Mitglied wurde aus der Gruppe entfernt",
+    "noGroupsFound": "Keine Gruppen gefunden",
+    "noGroupsJoined": "Sie haben noch keinen Gruppen beigetreten",
+    "noPublicGroups": "Keine öffentlichen Gruppen verfügbar",
+    "errorJoiningGroup": "Fehler beim Beitreten zur Gruppe",
+    "errorLeavingGroup": "Fehler beim Verlassen der Gruppe",
+    "searchPlaceholder": "Gruppen suchen...",
+    "errorKickingMember": "Fehler beim Kicken des Mitglieds aus der Gruppe",
+    "discoverPublicGroups": "Öffentliche Gruppen"
+  },
+  "profile": {
+    "cancel": "Abbrechen",
+    "anonymous": "Anonym",
+    "linkAccount": "Konto verknüpfen",
+    "signOutWarning": "Abmeldewarnung",
+    "continueSignOut": "Abmeldung fortsetzen",
+    "anonymousSignOutWarning": "Sie sind als anonymen Benutzer angemeldet. Wenn Sie sich abmelden, verlieren Sie den Zugang zu diesem Konto und allen zugehörigen Daten."
+  },
+  "settings": {
+    "language": "Sprache",
+    "appearance": "Erscheinungsbild",
+    "selectLanguage": "Sprache auswählen"
+  },
+  "challenge": {
+    "ended": "Challenge beendet",
+    "meters": "Meter",
+    "loading": "Challenge wird geladen...",
+    "yourGuess": "Ihr Tipp",
+    "topGuesses": "Top-Tipps",
+    "guessLocation": "Standort erraten",
+    "timeRemaining": "Verbleibende Zeit",
+    "noChallengeToday": "Heute keine Challenge"
+  },
+  "navigation": {
+    "back": "Zurück",
+    "home": "Startseite",
+    "next": "Nächste",
+    "camera": "Kamera",
+    "groups": "Gruppen",
+    "upload": {
+      "error": {
+        "storage": "Fehler beim Hochladen des Bildes in den Speicher",
+        "unknown": "Beim Hochladen des Bildes ist ein Fehler aufgetreten",
+        "database": "Fehler beim Speichern der Bildinformationen",
+        "unauthorized": "Sie sind nicht berechtigt, Bilder in diese Gruppen hochzuladen"
+      },
+      "success": "Bild erfolgreich hochgeladen"
+    },
+    "profile": "Profil",
+    "settings": "Einstellungen",
+    "selectAll": "Alle auswählen",
+    "shareWithX": "Mit {{count}} Gruppen teilen",
+    "deselectAll": "Alle abwählen",
+    "linkAccount": "Konto verknüpfen",
+    "guessLocation": "Standort erraten",
+    "noImageSelected": "Kein Bild ausgewählt",
+    "previewAndShare": "Vorschau & Teilen",
+    "shareWithGroups": "Mit Gruppen teilen"
+  },
+  "onboarding": {
+    "welcome": "Willkommen bei PinPoint",
+    "getStarted": "Loslegen",
+    "howItWorks": [
+      "Machen Sie ein Foto an Ihrem aktuellen Standort",
+      "Teilen Sie es mit Ihrer Gruppe",
+      "Andere versuchen zu erraten, wo Sie sind",
+      "Punkte werden basierend auf der Genauigkeit vergeben"
+    ],
+    "description": "PinPoint ist ein standortbasiertes Spiel, bei dem Sie und Ihre Freunde gegeneinander antreten, um die Standorte des jeweils anderen zu erraten. So funktioniert es:",
+    "readyToStart": "Bereit, mit dem Spielen zu beginnen?",
+    "groupDescription": "Dieser Bildschirm ermöglicht es Ihnen, einer bestehenden Gruppe beizutreten oder eine neue zu erstellen. Fahren Sie zunächst einfach mit dem nächsten Schritt fort.",
+    "joinOrCreateGroup": "Gruppe beitreten oder erstellen"
+  },
+  "leaderboard": {
+    "title": "Rangliste",
+    "today": "Heute",
+    "noData": "Keine Daten verfügbar",
+    "allTime": "Alle Zeiten",
+    "loading": "Rangliste wird geladen...",
+    "thisWeek": "Diese Woche",
+    "thisMonth": "Diesen Monat"
+  },
+  "linkAccount": {
+    "title": "Konto verknüpfen",
+    "cancel": "Abbrechen",
+    "description": "Verknüpfen Sie Ihr anonymes Konto, um Ihre Daten und Fortschritte zu sichern.",
+    "fillAllFields": "Bitte füllen Sie alle Felder aus",
+    "linkWithEmail": "Mit E-Mail verknüpfen",
+    "linkWithGoogle": "Mit Google verknüpfen",
+    "googleSignInFailed": "Die Anmeldung bei Google wurde abgebrochen oder ist fehlgeschlagen"
+  }
+}
