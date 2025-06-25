@@ -1,32 +1,5 @@
 {
-  "auth": {
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "signOut": "Sign Out",
-    "email": "Email",
-    "password": "Passord",
-    "username": "Username",
-    "createAccount": "Create Account",
-    "alreadyHaveAccount": "Already have an account? Sign In",
-    "createProfile": "Create Profile",
-    "chooseUsername": "Choose a username",
-    "avatarGenerated": "Your avatar will be generated based on your username",
-    "continue": "Continue",
-    "needAccount": "Need an account? Sign Up",
-    "clearStorage": "Clear Storage (Debug)",
-    "storageCleared": "Storage cleared successfully",
-    "storageClearFailed": "Failed to clear storage",
-    "required": "is required",
-    "fakeKey": "__DELETE__",
-    "supabase": {
-      "invalidCredentials": "Invalid email or password",
-      "emailNotConfirmed": "Please confirm your email before signing in",
-      "userNotFound": "User not found",
-      "emailAlreadyRegistered": "Email is already registered",
-      "networkError": "Network error. Please try again.",
-      "unknown": "An unknown error occurred"
-    }
-  },
+  "auth": {},
   "groups": {
     "myGroups": "My Groups",
     "discoverPublicGroups": "Public Groups",
