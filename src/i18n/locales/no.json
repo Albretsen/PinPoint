@@ -1,11 +1,11 @@
 {
   "auth": {
-    "email": "E-post",
+    "email": "Email",
     "signIn": "Logg Inn",
     "signUp": "Registrer deg",
-    "fakeKey": "this is a fake key",
     "signOut": "Logg Ut",
     "continue": "Fortsett",
+    "password": "Passord",
     "required": "er påkrevd",
     "supabase": {
       "unknown": "En ukjent feil oppstod",
@@ -55,6 +55,7 @@
       "members": "Flest Medlemmer",
       "trending": "Populære"
     },
+    "admin": "Admin",
     "create": {
       "title": "Opprett Ny Gruppe",
       "preview": {
