@@ -17,7 +17,6 @@
     "storageCleared": "Storage cleared successfully",
     "storageClearFailed": "Failed to clear storage",
     "required": "is required",
-    "fakeKey": "__DELETE__",
     "supabase": {
       "invalidCredentials": "Invalid email or password",
       "emailNotConfirmed": "Please confirm your email before signing in",
