@@ -1,8 +1,8 @@
 {
   "auth": {
-    "email": "Email",
     "signIn": "Se connecter",
     "signUp": "S'inscrire",
+    "fakeKey": "this is a fake key",
     "signOut": "Se déconnecter",
     "continue": "Continuer",
     "password": "Mot de passe",
@@ -55,7 +55,6 @@
       "members": "Le plus de membres",
       "trending": "Tendances"
     },
-    "admin": "Admin",
     "create": {
       "title": "Créer un nouveau groupe",
       "preview": {
@@ -84,7 +83,6 @@
         "name": "Nom du groupe",
         "title": "Informations de base",
         "coverPhoto": "Photo de couverture",
-        "description": "Description",
         "charactersLeft": "{{count}} caractères restants",
         "namePlaceholder": "Entrez le nom du groupe",
         "selectCoverPhoto": "Sélectionner la photo de couverture",
@@ -92,7 +90,6 @@
       }
     },
     "member": "membre",
-    "public": "Public",
     "joining": "En train de rejoindre...",
     "leaving": "En train de quitter...",
     "members": "Membres",
