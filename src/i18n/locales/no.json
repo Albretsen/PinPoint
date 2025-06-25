@@ -25,7 +25,8 @@
     "storageCleared": "Lagring tømt med hell",
     "avatarGenerated": "Din avatar vil bli generert basert på brukernavnet ditt",
     "alreadyHaveAccount": "Har du allerede en konto? Logg Inn",
-    "storageClearFailed": "Klarte ikke å tømme lagring"
+    "storageClearFailed": "Klarte ikke å tømme lagring",
+    "newKey2": "dette er en annen ny verdi"
   },
   "home": {
     "noGroups": "Du har ikke blitt med i noen grupper ennå",
