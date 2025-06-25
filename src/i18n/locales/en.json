@@ -1,10 +1,10 @@
 {
   "auth": {
     "email": "Correo electrónico",
-    "newKey": "este es el valor",
+    "newKey": "este es un valor",
     "signIn": "Iniciar sesión",
-    "signUp": "Registrarse",
-    "newKey2": "este es un nuevo valor diferente",
+    "signUp": "Regístrate",
+    "newKey2": "este es un valor nuevo diferente",
     "signOut": "Cerrar sesión",
     "continue": "Continuar",
     "password": "Contraseña",
@@ -19,19 +19,19 @@
     },
     "username": "Nombre de usuario",
     "needAccount": "¿Necesitas una cuenta? Regístrate",
-    "clearStorage": "Borrar almacenamiento (Depurar)",
+    "clearStorage": "Borrar almacenamiento (Depuración)",
     "createAccount": "Crear cuenta",
     "createProfile": "Crear perfil",
     "chooseUsername": "Elige un nombre de usuario",
-    "storageCleared": "Almacenamiento borrado exitosamente",
-    "avatarGenerated": "Tu avatar se generará en función de tu nombre de usuario",
+    "storageCleared": "Almacenamiento borrado con éxito",
+    "avatarGenerated": "Tu avatar se generará basado en tu nombre de usuario",
     "alreadyHaveAccount": "¿Ya tienes una cuenta? Iniciar sesión",
-    "storageClearFailed": "Error al borrar el almacenamiento"
+    "storageClearFailed": "No se pudo borrar el almacenamiento"
   },
   "home": {
-    "noGroups": "No has unido a ningún grupo aún",
+    "noGroups": "Aún no te has unido a ningún grupo",
     "guessLocation": "Adivinar ubicación",
-    "failedToFetchGroups": "Error al obtener grupos"
+    "failedToFetchGroups": "No se pudo obtener los grupos"
   },
   "list": {
     "error": {
@@ -44,7 +44,7 @@
     "notFound": "No encontrado",
     "tryAgain": "Intenta de nuevo",
     "forbidden": "Prohibido",
-    "serverError": "Error del servidor. Por favor, inténtalo más tarde.",
+    "serverError": "Error del servidor. Por favor, inténtalo de nuevo más tarde.",
     "networkError": "Error de red. Por favor, verifica tu conexión.",
     "unauthorized": "No autorizado",
     "unknownError": "Ocurrió un error desconocido",
@@ -57,7 +57,7 @@
       "members": "Más miembros",
       "trending": "Tendencias"
     },
-    "admin": "Admin",
+    "admin": "Administrador",
     "create": {
       "title": "Crear nuevo grupo",
       "preview": {
@@ -80,7 +80,7 @@
       "success": {
         "title": "¡Grupo creado!",
         "viewGroup": "Ver grupo",
-        "description": "Tu grupo ha sido creado exitosamente"
+        "description": "Tu grupo ha sido creado con éxito"
       },
       "basicInfo": {
         "name": "Nombre del grupo",
@@ -88,9 +88,9 @@
         "coverPhoto": "Foto de portada",
         "description": "Descripción",
         "charactersLeft": "{{count}} caracteres restantes",
-        "namePlaceholder": "Ingresa el nombre del grupo",
+        "namePlaceholder": "Ingresar nombre del grupo",
         "selectCoverPhoto": "Seleccionar foto de portada",
-        "descriptionPlaceholder": "Ingresa la descripción del grupo"
+        "descriptionPlaceholder": "Ingresar descripción del grupo"
       }
     },
     "member": "miembro",
@@ -101,19 +101,19 @@
     "private": "Privado",
     "myGroups": "Mis grupos",
     "noGroups": "Aún no eres miembro de ningún grupo",
-    "notAdmin": "Debes ser un administrador para realizar esta acción",
+    "notAdmin": "Debes ser administrador para realizar esta acción",
     "joinGroup": "Unirse al grupo",
-    "leftGroup": "Saliste del grupo exitosamente",
+    "leftGroup": "Saliste del grupo con éxito",
     "noMembers": "No se encontraron miembros",
     "kickMember": "Expulsar miembro",
     "leaveGroup": "Salir del grupo",
     "deleteGroup": "Eliminar grupo",
-    "joinedGroup": "Te has unido al grupo exitosamente",
+    "joinedGroup": "Te uniste al grupo con éxito",
     "memberCount": "{{count}} miembros",
     "viewMembers": "Ver miembros",
     "memberKicked": "El miembro ha sido expulsado del grupo",
     "noGroupsFound": "No se encontraron grupos",
-    "noGroupsJoined": "No has unido a ningún grupo aún",
+    "noGroupsJoined": "Aún no te has unido a ningún grupo",
     "noPublicGroups": "No hay grupos públicos disponibles",
     "errorJoiningGroup": "Error al unirse al grupo",
     "errorLeavingGroup": "Error al salir del grupo",
@@ -127,7 +127,7 @@
     "linkAccount": "Vincular cuenta",
     "signOutWarning": "Advertencia de cierre de sesión",
     "continueSignOut": "Continuar con el cierre de sesión",
-    "anonymousSignOutWarning": "Has iniciado sesión como un usuario anónimo. Si cierras sesión, perderás acceso a esta cuenta y todos los datos asociados."
+    "anonymousSignOutWarning": "Estás conectado como usuario anónimo. Si sales, perderás el acceso a esta cuenta y a todos los datos asociados."
   },
   "settings": {
     "language": "Idioma",
@@ -135,12 +135,12 @@
     "selectLanguage": "Seleccionar idioma"
   },
   "challenge": {
-    "ended": "Desafío terminado",
+    "ended": "El desafío ha terminado",
     "meters": "metros",
     "loading": "Cargando desafío...",
     "yourGuess": "Tu suposición",
     "topGuesses": "Mejores suposiciones",
-    "guessLocation": "Adivinar ubicación",
+    "guessLocation": "Adivina ubicación",
     "timeRemaining": "Tiempo restante",
     "noChallengeToday": "No hay desafío hoy"
   },
@@ -157,10 +157,10 @@
         "database": "Error al guardar la información de la imagen",
         "unauthorized": "No estás autorizado para subir imágenes a estos grupos"
       },
-      "success": "Imagen subida exitosamente"
+      "success": "Imagen subida con éxito"
     },
     "profile": "Perfil",
-    "settings": "Configuraciones",
+    "settings": "Configuración",
     "selectAll": "Seleccionar todo",
     "shareWithX": "Compartir con {{count}} grupos",
     "deselectAll": "Deseleccionar todo",
@@ -172,7 +172,7 @@
   },
   "onboarding": {
     "welcome": "Bienvenido a PinPoint",
-    "getStarted": "Comenzar",
+    "getStarted": "Empezar",
     "howItWorks": [
       "Toma una foto en tu ubicación actual",
       "Compártela con tu grupo",
@@ -180,15 +180,15 @@
       "Se otorgan puntos según la precisión"
     ],
     "description": "PinPoint es un juego basado en la ubicación donde tú y tus amigos compiten para adivinar las ubicaciones de los demás. Así es como funciona:",
-    "readyToStart": "¿Listo para comenzar a jugar?",
-    "groupDescription": "Esta pantalla te permitirá unirte a un grupo existente o crear uno nuevo. Por ahora, simplemente continúa al siguiente paso.",
+    "readyToStart": "¿Listo para empezar a jugar?",
+    "groupDescription": "Esta pantalla te permitirá unirte a un grupo existente o crear uno nuevo. Por ahora, continúa al siguiente paso.",
     "joinOrCreateGroup": "Unirse o crear un grupo"
   },
   "leaderboard": {
     "title": "Clasificación",
     "today": "Hoy",
     "noData": "No hay datos disponibles",
-    "allTime": "Todo el tiempo",
+    "allTime": "De todos los tiempos",
     "loading": "Cargando clasificación...",
     "thisWeek": "Esta semana",
     "thisMonth": "Este mes"
@@ -196,8 +196,8 @@
   "linkAccount": {
     "title": "Vincula tu cuenta",
     "cancel": "Cancelar",
-    "description": "Vincula tu cuenta anónima para conservar tus datos y progreso.",
-    "fillAllFields": "Por favor, llena todos los campos",
+    "description": "Vincula tu cuenta anónima para mantener tus datos y progreso.",
+    "fillAllFields": "Por favor, completa todos los campos",
     "linkWithEmail": "Vincular con correo electrónico",
     "linkWithGoogle": "Vincular con Google",
     "googleSignInFailed": "El inicio de sesión de Google fue cancelado o falló"
