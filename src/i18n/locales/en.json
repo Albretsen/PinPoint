@@ -17,6 +17,7 @@
     "storageCleared": "Storage cleared successfully",
     "storageClearFailed": "Failed to clear storage",
     "newKey": "this is value",
+    "newKey2": "this is a different new value",
     "required": "is required",
     "supabase": {
       "invalidCredentials": "Invalid email or password",
