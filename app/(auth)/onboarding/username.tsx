@@ -3,7 +3,7 @@ import { useTranslation } from '@/src/i18n/useTranslation';
 import { useOnboardingStore } from '@/src/store/onboardingStore';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Image, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 
 export default function UsernameScreen() {
   const { theme } = useTheme();
@@ -23,50 +23,58 @@ export default function UsernameScreen() {
   };
 
   // Generate avatar URL based on username
-  const avatarUrl = usernameInput 
+  const avatarUrl = usernameInput
     ? `https://api.dicebear.com/7.x/avataaars/svg?seed=${usernameInput}`
     : 'https://api.dicebear.com/7.x/avataaars/svg?seed=default';
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text style={[styles.title, { color: theme.colors.text }]}>
-        {t('auth.createProfile')}
-      </Text>
-      
-      <View style={styles.avatarContainer}>
-        <Image
-          source={{ uri: avatarUrl }}
-          style={styles.avatar}
-        />
-      </View>
+    <KeyboardAvoidingView
+      // This ensures the keyboard does not cover the continue button on iOS
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      style={{ flex: 1 }}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+          <Text style={[styles.title, { color: theme.colors.text }]}>
+            {t('auth.createProfile')}
+          </Text>
 
-      <TextInput
-        style={[
-          styles.input,
-          {
-            backgroundColor: theme.colors.card,
-            color: theme.colors.text,
-            borderColor: theme.colors.border,
-          },
-        ]}
-        placeholder={t('auth.chooseUsername')}
-        placeholderTextColor={theme.colors.text + '80'}
-        value={usernameInput}
-        onChangeText={setUsernameInput}
-        autoCapitalize="none"
-      />
+          <View style={styles.avatarContainer}>
+            <Image
+              source={{ uri: avatarUrl }}
+              style={styles.avatar}
+            />
+          </View>
 
-      {error && (
-        <Text style={[styles.error, { color: theme.colors.error }]}>{error}</Text>
-      )}
+          <TextInput
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.colors.card,
+                color: theme.colors.text,
+                borderColor: theme.colors.border,
+              },
+            ]}
+            placeholder={t('auth.chooseUsername')}
+            placeholderTextColor={theme.colors.text + '80'}
+            value={usernameInput}
+            onChangeText={setUsernameInput}
+            autoCapitalize="none"
+          />
 
-      <View style={styles.buttonContainer}>
-        <Button
-          title={t('auth.continue')}
-          onPress={handleContinue}
-        />
-      </View>
-    </View>
+          {error && (
+            <Text style={[styles.error, { color: theme.colors.error }]}>{error}</Text>
+          )}
+
+          <View style={styles.buttonContainer}>
+            <Button
+              title={t('auth.continue')}
+              onPress={handleContinue}
+            />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 

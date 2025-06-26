@@ -3,7 +3,7 @@ import { useTranslation } from '@/src/i18n/useTranslation';
 import { useUserStore } from '@/src/store/userStore';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 
 export default function SignUpScreen() {
   const { theme } = useTheme();
@@ -29,69 +29,76 @@ export default function SignUpScreen() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text style={[styles.title, { color: theme.colors.text }]}>
-        {t('auth.createAccount')}
-      </Text>
-      <TextInput
-        style={[
-          styles.input,
-          {
-            backgroundColor: theme.colors.card,
-            color: theme.colors.text,
-            borderColor: theme.colors.border,
-          },
-        ]}
-        placeholder={t('auth.email')}
-        placeholderTextColor={theme.colors.text + '80'}
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={[
-          styles.input,
-          {
-            backgroundColor: theme.colors.card,
-            color: theme.colors.text,
-            borderColor: theme.colors.border,
-          },
-        ]}
-        placeholder={t('auth.password')}
-        placeholderTextColor={theme.colors.text + '80'}
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <TextInput
-        style={[
-          styles.input,
-          {
-            backgroundColor: theme.colors.card,
-            color: theme.colors.text,
-            borderColor: theme.colors.border,
-          },
-        ]}
-        placeholder={t('auth.username')}
-        placeholderTextColor={theme.colors.text + '80'}
-        value={username}
-        onChangeText={setUsername}
-        autoCapitalize="none"
-      />
-      {error && (
-        <Text style={[styles.error, { color: theme.colors.error }]}>{error}</Text>
-      )}
-      <View style={styles.buttonContainer}>
-        <Button
-          title={t('auth.signUp')}
-          onPress={handleSignUp}
-        />
-        <Button
-          title={t('auth.alreadyHaveAccount')}
-          onPress={() => router.replace('/login')}
-        />
-      </View>
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      style={{ flex: 1 }}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+          <Text style={[styles.title, { color: theme.colors.text }]}>
+            {t('auth.createAccount')}
+          </Text>
+          <TextInput
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.colors.card,
+                color: theme.colors.text,
+                borderColor: theme.colors.border,
+              },
+            ]}
+            placeholder={t('auth.email')}
+            placeholderTextColor={theme.colors.text + '80'}
+            value={email}
+            onChangeText={setEmail}
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.colors.card,
+                color: theme.colors.text,
+                borderColor: theme.colors.border,
+              },
+            ]}
+            placeholder={t('auth.password')}
+            placeholderTextColor={theme.colors.text + '80'}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+          <TextInput
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.colors.card,
+                color: theme.colors.text,
+                borderColor: theme.colors.border,
+              },
+            ]}
+            placeholder={t('auth.username')}
+            placeholderTextColor={theme.colors.text + '80'}
+            value={username}
+            onChangeText={setUsername}
+            autoCapitalize="none"
+          />
+          {error && (
+            <Text style={[styles.error, { color: theme.colors.error }]}>{error}</Text>
+          )}
+          <View style={styles.buttonContainer}>
+            <Button
+              title={t('auth.signUp')}
+              onPress={handleSignUp}
+            />
+            <Button
+              title={t('auth.alreadyHaveAccount')}
+              onPress={() => router.replace('/login')}
+            />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
