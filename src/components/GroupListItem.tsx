@@ -40,7 +40,7 @@ export function GroupListItem({
   useEffect(() => {
     const fetchSecureUrl = async () => {
       if (!imageUrl) return;
-      
+
       const { data } = await supabase.storage
         .from('photos')
         .createSignedUrl(imageUrl, 3600);
@@ -67,29 +67,34 @@ export function GroupListItem({
       style={[styles.container, { backgroundColor: theme.colors.card }]}
       onPress={onPress}
     >
-      <View style={styles.content}>
-        <View style={[styles.imageContainer, { backgroundColor: theme.colors.border }]}>
-          {secureImageUrl && !imageError ? (
-            <Image 
-              source={{ uri: secureImageUrl }} 
-              style={styles.image}
-              onError={() => setImageError(true)}
-            />
-          ) : (
-            <Ionicons name="image-outline" size={24} color={theme.colors.text} />
-          )}
-        </View>
-        <View style={styles.info}>
+      <View style={[styles.imageContainer, { backgroundColor: theme.colors.border }]}>
+        {secureImageUrl && !imageError ? (
+          <Image
+            source={{ uri: secureImageUrl }}
+            style={styles.image}
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <Ionicons name="image-outline" size={24} color={theme.colors.text} />
+        )}
+      </View>
+
+      <View style={styles.info}>
+        <View style={styles.header}>
           <PinText style={[styles.name, { color: theme.colors.text }]}>
             {name}
           </PinText>
-          <View style={styles.details}>
-            <View style={styles.memberCount}>
-              <Ionicons name="people-outline" size={16} color={theme.colors.text} />
-              <PinText style={[styles.memberCountText, { color: theme.colors.text }]}>
-                {memberCount} {memberCount === 1 ? t('groups.member') : t('groups.members')}
-              </PinText>
-            </View>
+          <View style={styles.memberCount}>
+            <Ionicons name="people-outline" size={16} color={theme.colors.text} />
+            <PinText style={[styles.memberCountText, { color: theme.colors.text }]}>
+              {memberCount} {memberCount === 1 ? t('groups.member') : t('groups.members')}
+            </PinText>
+          </View>
+        </View>
+
+        <View style={styles.detailsContainer}>
+          <View style={styles.leftColumn}>
+
             <View style={styles.status}>
               <Ionicons
                 name={status === 'public' ? 'globe-outline' : 'lock-closed-outline'}
@@ -101,17 +106,21 @@ export function GroupListItem({
               </PinText>
             </View>
           </View>
+
+          {status === 'public' && !isMember && (
+            <View style={styles.joinButtonContainer}>
+              <PinButton
+                variant='secondary'
+                onPress={handleJoin}
+                loading={isJoining}
+                disabled={isJoining}
+              >
+                {t('groups.join')}
+              </PinButton>
+            </View>
+          )}
         </View>
-        {status === 'public' && !isMember && (
-          <PinButton
-            variant="pill"
-            onPress={handleJoin}
-            loading={isJoining}
-            disabled={isJoining}
-          >
-            {t('groups.join')}
-          </PinButton>
-        )}
+
       </View>
     </TouchableOpacity>
   );
@@ -119,34 +128,57 @@ export function GroupListItem({
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
+    borderRadius: 16,
+    marginBottom: 16,
+    flexDirection: 'column',
   },
-  content: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
+
   imageContainer: {
-    width: 60,
-    height: 60,
-    borderRadius: 8,
+    width: '100%',
+    height: 110,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
   },
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 8,
+    position: 'absolute',
   },
   info: {
-    flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
+  },
+
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4,
   },
   name: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 4,
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#fff',
+    flexShrink: 1,
+  },
+  detailsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    gap: 12,
+  },
+  leftColumn: {
+    flexDirection: 'column',
+    gap: 4,
+    flexShrink: 1,
+  },
+  joinButtonContainer: {
+    justifyContent: 'flex-start',
   },
   details: {
     flexDirection: 'row',
@@ -160,6 +192,7 @@ const styles = StyleSheet.create({
   },
   memberCountText: {
     fontSize: 14,
+    color: '#eee',
   },
   status: {
     flexDirection: 'row',
@@ -168,5 +201,6 @@ const styles = StyleSheet.create({
   },
   statusText: {
     fontSize: 14,
+    color: '#eee',
   },
-}); 
+});
