@@ -62,7 +62,7 @@ export const themes = {
       buttonFilledText: '#FDFDFD',
       skeleton: '#E5E5EA',
     },
-    fontFamily: 'Satoshi',
+    fontFamily: 'LilitaOne',
     spacing: {
       spacing2: 2,
       spacing4: 4,
@@ -78,7 +78,7 @@ export const themes = {
   dark: {
     name: 'Dark',
     colors: {
-      background: '#000000',
+      background: '#1E1F22',
       text: '#FFFFFF',
       primary: '#0A84FF',
       secondary: '#5E5CE6',
@@ -93,7 +93,7 @@ export const themes = {
       buttonFilledText: '#FDFDFD',
       skeleton: '#38383A',
     },
-    fontFamily: 'Satoshi',
+    fontFamily: 'LilitaOne',
     spacing: {
       spacing2: 2,
       spacing4: 4,
@@ -124,7 +124,7 @@ export const themes = {
       buttonFilledText: '#FFFFFF',
       skeleton: '#FFB8B8',
     },
-    fontFamily: 'Satoshi',
+    fontFamily: 'LilitaOne',
     spacing: {
       spacing2: 2,
       spacing4: 4,
@@ -155,7 +155,7 @@ export const themes = {
       buttonFilledText: '#FDFDFD',
       skeleton: '#DEE2E6',
     },
-    fontFamily: 'Satoshi',
+    fontFamily: 'LilitaOne',
     spacing: {
       spacing2: 2,
       spacing4: 4,

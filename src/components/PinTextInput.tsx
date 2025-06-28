@@ -11,14 +11,14 @@ interface PinTextInputProps extends TextInputProps {
   showCharacterCount?: boolean;
 }
 
-export function PinTextInput({ 
-  label, 
-  style, 
-  error, 
+export function PinTextInput({
+  label,
+  style,
+  error,
   maxLength,
   showCharacterCount,
   value,
-  ...props 
+  ...props
 }: PinTextInputProps) {
   const { theme } = useTheme();
   const { t } = useTranslation();
@@ -37,7 +37,7 @@ export function PinTextInput({
           {
             color: theme.colors.text,
             borderColor: error ? theme.colors.error : theme.colors.inputBorder,
-            fontFamily: 'Satoshi',
+            fontFamily: 'LilitaOne',
           },
           style,
         ]}

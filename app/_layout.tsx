@@ -2,30 +2,46 @@ import { ErrorBoundary } from '@/src/components/ErrorBoundary';
 import { PinToastProvider } from '@/src/components/PinToast';
 import { AuthProvider } from '@/src/context/AuthProvider';
 import { ThemeProvider } from '@/src/context/ThemeProvider';
+import { useLoadFonts } from '@/src/hooks/useFont';
 import { useRemoteConfig } from '@/src/hooks/useRemoteConfig';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
-import { Platform } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+import { Platform, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { MenuProvider } from 'react-native-popup-menu';
 import { enableScreens } from 'react-native-screens';
 
-// Enable native screens for better performance and animations
 enableScreens(true);
 
-// Create a client
+// Prevent auto-hiding splash screen
+SplashScreen.preventAutoHideAsync();
+
+// React Query client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60, // 1 minute
-      gcTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: 1000 * 60,
+      gcTime: 1000 * 60 * 5,
     },
   },
 });
 
 export default function RootLayout() {
-  // Initialize remote config
+  const [fontsLoaded] = useLoadFonts();
+
   useRemoteConfig();
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return <View style={{ flex: 1, backgroundColor: '#000' }} />;
+  }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -48,15 +64,11 @@ export default function RootLayout() {
                   >
                     <Stack.Screen
                       name="(auth)"
-                      options={{
-                        animation: 'slide_from_left',
-                      }}
+                      options={{ animation: 'slide_from_left' }}
                     />
                     <Stack.Screen
                       name="(protected)"
-                      options={{
-                        animation: 'slide_from_right',
-                      }}
+                      options={{ animation: 'slide_from_right' }}
                     />
                   </Stack>
                 </MenuProvider>
