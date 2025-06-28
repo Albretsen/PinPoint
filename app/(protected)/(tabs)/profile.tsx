@@ -1,10 +1,10 @@
-import PinText from '@/src/components/PinText';
+import ProfileTop from '@/src/components/profile/ProfileTop';
 import { useTheme } from '@/src/context/ThemeProvider';
 import { useTranslation } from '@/src/i18n/useTranslation';
 import { useUserStore } from '@/src/store/userStore';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Button, Image, Modal, StyleSheet, Text, View } from 'react-native';
+import { Button, Modal, StyleSheet, Text, View } from 'react-native';
 
 export default function ProfileScreen() {
   const { theme } = useTheme();
@@ -39,15 +39,20 @@ export default function ProfileScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <View style={styles.profileHeader}>
-        <Image
-          source={{ uri: userData?.avatar_url }}
-          style={styles.avatar}
-        />
-        <PinText style={[styles.username, { color: theme.colors.text }]}>
-          {userData?.username || t('profile.anonymous')}
-        </PinText>
-      </View>
+      <ProfileTop
+        name={userData?.username || t('profile.anonymous')}
+        profileImage={{ uri: userData?.avatar_url }}
+        backgroundImage={{ uri: userData?.background_url }}
+        leftStat={{
+          value: '54,402',
+          label: 'Total points'
+        }}
+        rightStat={{
+          value: '7',
+          label: 'Friends'
+        }}
+        level={300}
+      />
       <View style={styles.buttonContainer}>
         <Button title={t('auth.signOut')} onPress={handleSignOutPress} />
       </View>
@@ -81,11 +86,7 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-  },
-  profileHeader: {
-    alignItems: 'center',
-    marginTop: 20,
+    // padding: 20,
   },
   avatar: {
     width: 120,
