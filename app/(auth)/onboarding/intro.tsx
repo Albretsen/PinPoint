@@ -23,20 +23,22 @@ export default function IntroScreen() {
 
       // Sign in anonymously
       const { data, error: signInError } = await supabase.auth.signInAnonymously({
-        options: { data: {
-          username,
-          avatar_url: `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`,
-        },
-      }});
+        options: {
+          data: {
+            username,
+            avatar_url: `https://api.dicebear.com/7.x/avataaars/png?seed=${username}`,
+          },
+        }
+      });
 
       if (signInError) {
         throw signInError;
       }
-      
+
       // Clear onboarding data and update device state
       clearOnboarding();
       setHasLoggedInBefore(true);
-      
+
       // Navigate to home
       router.replace('/(protected)/(tabs)/home');
     } catch (err) {
@@ -49,7 +51,7 @@ export default function IntroScreen() {
       <Text style={[styles.title, { color: theme.colors.text }]}>
         {t('onboarding.welcome')}
       </Text>
-      
+
       <Text style={[styles.description, { color: theme.colors.text }]}>
         {t('onboarding.description')}
 

@@ -24,8 +24,8 @@ export default function UsernameScreen() {
 
   // Generate avatar URL based on username
   const avatarUrl = usernameInput
-    ? `https://api.dicebear.com/7.x/avataaars/svg?seed=${usernameInput}`
-    : 'https://api.dicebear.com/7.x/avataaars/svg?seed=default';
+    ? `https://api.dicebear.com/7.x/avataaars/png?seed=${usernameInput}`
+    : 'https://api.dicebear.com/7.x/avataaars/png?seed=default';
 
   return (
     <KeyboardAvoidingView

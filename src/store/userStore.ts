@@ -15,7 +15,7 @@ export const useUserStore = create<UserState>((set) => ({
       password,
     });
     if (error) throw error;
-    
+
     // Update device state after successful sign in
     const deviceStore = useDeviceStore.getState();
     deviceStore.setHasLoggedInBefore(true);
@@ -28,12 +28,12 @@ export const useUserStore = create<UserState>((set) => ({
       options: {
         data: {
           username,
-          avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=' + username, // Using DiceBear for placeholder avatars
+          avatar_url: 'https://api.dicebear.com/7.x/avataaars/png?seed=' + username, // Using DiceBear for placeholder avatars
         },
       },
     });
     if (error) throw error;
-    
+
     // Update device state after successful sign up
     const deviceStore = useDeviceStore.getState();
     deviceStore.setHasLoggedInBefore(true);
@@ -43,15 +43,15 @@ export const useUserStore = create<UserState>((set) => ({
     try {
       // Clear all Supabase related storage first
       const keys = await AsyncStorage.getAllKeys();
-      const supabaseKeys = keys.filter(key => 
-        key.startsWith('supabase.auth') || 
+      const supabaseKeys = keys.filter(key =>
+        key.startsWith('supabase.auth') ||
         key.startsWith('sb-')
       );
       await AsyncStorage.multiRemove(supabaseKeys);
 
       // Clear local state
       set({ session: null });
-      
+
       // Try to sign out from Supabase, but don't throw if it fails
       // since we've already cleared the storage
       await supabase.auth.signOut().catch(() => {
