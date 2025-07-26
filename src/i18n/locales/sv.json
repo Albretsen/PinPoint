@@ -1,0 +1,207 @@
+{
+  "auth": {
+    "signIn": "Logga in",
+    "signUp": "Registrera dig",
+    "signOut": "Logga ut",
+    "email": "E-post",
+    "password": "Lösenord",
+    "username": "Användarnamn",
+    "createAccount": "Skapa konto",
+    "alreadyHaveAccount": "Har du redan ett konto? Logga in",
+    "createProfile": "Skapa profil",
+    "chooseUsername": "Välj ett användarnamn",
+    "avatarGenerated": "Din avatar kommer att genereras baserat på ditt användarnamn",
+    "continue": "Fortsätt",
+    "needAccount": "Behöver du ett konto? Registrera dig",
+    "clearStorage": "Rensa lagring (Debug)",
+    "storageCleared": "Lagring rensad framgångsrikt",
+    "storageClearFailed": "Misslyckades med att rensa lagring",
+    "required": "är obligatorisk",
+    "supabase": {
+      "invalidCredentials": "Ogiltig e-post eller lösenord",
+      "emailNotConfirmed": "Vänligen bekräfta din e-post innan du loggar in",
+      "userNotFound": "Användare hittades inte",
+      "emailAlreadyRegistered": "E-postadress är redan registrerad",
+      "networkError": "Nätverksfel. Vänligen försök igen.",
+      "unknown": "Ett okänt fel inträffade"
+    }
+  },
+  "groups": {
+    "myGroups": "Mina grupper",
+    "discoverPublicGroups": "Offentliga grupper",
+    "member": "medlem",
+    "members": "Medlemmar",
+    "memberCount": "{{count}} medlemmar",
+    "public": "Öppen",
+    "private": "Privat",
+    "join": "Gå med",
+    "joinGroup": "Gå med i grupp",
+    "joining": "Går med...",
+    "leaveGroup": "Lämna grupp",
+    "leaving": "Lämnar...",
+    "leftGroup": "Framgångsrikt lämnat gruppen",
+    "errorLeavingGroup": "Fel vid lämna grupp",
+    "noGroups": "Du är inte medlem i några grupper ännu",
+    "noGroupsJoined": "Du har ännu inte gått med i några grupper",
+    "noGroupsFound": "Inga grupper hittades",
+    "noPublicGroups": "Inga offentliga grupper tillgängliga",
+    "viewMembers": "Visa medlemmar",
+    "admin": "Admin",
+    "kickMember": "Uteslut medlem",
+    "memberKicked": "Medlem har uteslutits från gruppen",
+    "noMembers": "Inga medlemmar hittades",
+    "joinedGroup": "Framgångsrikt gått med i gruppen",
+    "errorJoiningGroup": "Fel vid gå med i grupp",
+    "notAdmin": "Du måste vara admin för att utföra denna åtgärd",
+    "errorKickingMember": "Fel vid uteslutning av medlem från grupp",
+    "deleteGroup": "Ta bort grupp",
+    "searchPlaceholder": "Sök grupper...",
+    "sort": {
+      "trending": "Trender",
+      "members": "Flest medlemmar",
+      "new": "Nyaste"
+    },
+    "create": {
+      "title": "Skapa ny grupp",
+      "basicInfo": {
+        "title": "Grundläggande information",
+        "name": "Gruppnamn",
+        "namePlaceholder": "Skriv gruppnamn",
+        "description": "Beskrivning",
+        "descriptionPlaceholder": "Skriv gruppbeskrivning",
+        "coverPhoto": "Cover Photo",
+        "selectCoverPhoto": "Välj omslagsbild",
+        "charactersLeft": "{{count}} tecken kvar"
+      },
+      "privacy": {
+        "title": "Sekretess \u0026 Regler",
+        "public": "Offentlig grupp",
+        "publicDescription": "Alla kan hitta och gå med i denna grupp",
+        "private": "Privat grupp",
+        "privateDescription": "Endast personer med inbjudningskoden kan gå med",
+        "inviteCode": "Inbjudningskod",
+        "copyInviteCode": "Kopiera inbjudningskod",
+        "copiedToClipboard": "Kopierad till urklipp",
+        "dailyChallengeTime": "Daglig utmaningstid",
+        "selectTime": "Välj tid"
+      },
+      "preview": {
+        "title": "Förhandsgranska \u0026 Bekräfta",
+        "confirm": "Skapa grupp",
+        "cancel": "Gå tillbaka"
+      },
+      "success": {
+        "title": "Grupp skapad!",
+        "description": "Din grupp har skapats framgångsrikt",
+        "viewGroup": "Visa grupp"
+      }
+    }
+  },
+  "home": {
+    "noGroups": "Du har ännu inte gått med i några grupper",
+    "guessLocation": "Gissa plats",
+    "failedToFetchGroups": "Misslyckades med att hämta grupper"
+  },
+  "navigation": {
+    "next": "Nästa",
+    "back": "Tillbaka",
+    "home": "Hem",
+    "groups": "Grupper",
+    "camera": "Kamera",
+    "settings": "Inställningar",
+    "profile": "Profil",
+    "guessLocation": "Gissa plats",
+    "linkAccount": "Länka konto",
+    "previewAndShare": "Förhandsgranska \u0026 Dela",
+    "noImageSelected": "Ingen bild vald",
+    "shareWithGroups": "Dela med grupper",
+    "selectAll": "Välj alla",
+    "deselectAll": "Avmarkera alla",
+    "shareWithX": "Dela med {{count}} grupper",
+    "upload": {
+      "success": "Bild uppladdad framgångsrikt",
+      "error": {
+        "unauthorized": "Du är inte auktoriserad att ladda upp bilder till dessa grupper",
+        "storage": "Misslyckades med att ladda upp bild till lagring",
+        "database": "Misslyckades med att spara bildinformation",
+        "unknown": "Ett fel inträffade vid uppladdning av bilden"
+      }
+    }
+  },
+  "profile": {
+    "signOutWarning": "Varning för utloggning",
+    "anonymousSignOutWarning": "Du är inloggad som en anonym användare. Om du loggar ut kommer du att förlora åtkomst till detta konto och all tillhörande data.",
+    "cancel": "Avbryt",
+    "linkAccount": "Länka konto",
+    "continueSignOut": "Fortsätt logga ut",
+    "anonymous": "Anonym"
+  },
+  "onboarding": {
+    "welcome": "Välkommen till PinPoint",
+    "description": "PinPoint är ett platsbaserat spel där du och dina vänner tävlar om att gissa varandra’s platser. Så här fungerar det:",
+    "howItWorks": [
+      "Take a photo at your current location",
+      "Share it with your group",
+      "Others try to guess where you are",
+      "Points are awarded based on accuracy"
+    ],
+    "readyToStart": "Redo att börja spela?",
+    "getStarted": "Kom igång",
+    "joinOrCreateGroup": "Gå med i eller skapa en grupp",
+    "groupDescription": "Denna skärm kommer att låta dig gå med i en befintlig grupp eller skapa en ny. För nu, fortsätt bara till nästa steg.",
+    "howItWorks[0]": "Ta ett foto på din nuvarande plats",
+    "howItWorks[1]": "Dela det med din grupp",
+    "howItWorks[2]": "Andra försöker gissa var du är",
+    "howItWorks[3]": "Poäng ges baserat på noggrannhet"
+  },
+  "settings": {
+    "appearance": "Utseende",
+    "language": "Språk",
+    "selectLanguage": "Välj språk"
+  },
+  "linkAccount": {
+    "title": "Länk ditt konto",
+    "description": "Länka ditt anonyma konto för att behålla dina data och framsteg.",
+    "linkWithEmail": "Länka med e-post",
+    "linkWithGoogle": "Länka med Google",
+    "cancel": "Avbryt",
+    "fillAllFields": "Vänligen fyll i alla fält",
+    "googleSignInFailed": "Google-inloggning avbröts eller misslyckades"
+  },
+  "error": {
+    "somethingWentWrong": "Något gick fel",
+    "unknownError": "Ett okänt fel inträffade",
+    "tryAgain": "Försök igen",
+    "networkError": "Nätverksfel. Kontrollera din anslutning.",
+    "serverError": "Serverfel. Vänligen försök igen senare.",
+    "notFound": "Hittas inte",
+    "unauthorized": "Obehörig",
+    "forbidden": "Förbjudet"
+  },
+  "list": {
+    "error": {
+      "title": "Något gick fel",
+      "retry": "Försök igen",
+      "empty": "Inga objekt hittades"
+    }
+  },
+  "challenge": {
+    "ended": "Utmaningen avslutad",
+    "noChallengeToday": "Ingen utmaning idag",
+    "yourGuess": "Din gissning",
+    "guessLocation": "Gissa plats",
+    "topGuesses": "Topp-gissningar",
+    "timeRemaining": "Tid kvar",
+    "meters": "meter",
+    "loading": "Laddar utmaning..."
+  },
+  "leaderboard": {
+    "title": "Topplista",
+    "today": "Idag",
+    "thisWeek": "Denna vecka",
+    "thisMonth": "Denna månad",
+    "allTime": "Genom tiderna",
+    "noData": "Ingen data tillgänglig",
+    "loading": "Laddar topplistan..."
+  }
+}
