@@ -1,0 +1,207 @@
+{
+  "auth": {
+    "signIn": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "signOut": "تسجيل الخروج",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "username": "اسم المستخدم",
+    "createAccount": "إنشاء حساب",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟ تسجيل الدخول",
+    "createProfile": "إنشاء ملف شخصي",
+    "chooseUsername": "اختر اسم المستخدم",
+    "avatarGenerated": "سيتم إنشاء الصورة الرمزية الخاصة بك بناءً على اسم المستخدم الخاص بك",
+    "continue": "استمر",
+    "needAccount": "تحتاج إلى حساب؟ إنشاء حساب",
+    "clearStorage": "مسح التخزين (تصحيح)",
+    "storageCleared": "تم مسح التخزين بنجاح",
+    "storageClearFailed": "فشل في مسح التخزين",
+    "required": "مطلوب",
+    "supabase": {
+      "invalidCredentials": "بريد إلكتروني أو كلمة مرور غير صحيحة",
+      "emailNotConfirmed": "يرجى تأكيد بريدك الإلكتروني قبل تسجيل الدخول",
+      "userNotFound": "لم يتم العثور على المستخدم",
+      "emailAlreadyRegistered": "البريد الإلكتروني مسجل بالفعل",
+      "networkError": "خطأ في الشبكة. يرجى المحاولة مرة أخرى.",
+      "unknown": "حدث خطأ غير معروف"
+    }
+  },
+  "groups": {
+    "myGroups": "مجموعتي",
+    "discoverPublicGroups": "المجموعات العامة",
+    "member": "عضو",
+    "members": "الأعضاء",
+    "memberCount": "{{count}} أعضاء",
+    "public": "عام",
+    "private": "خاص",
+    "join": "انضمام",
+    "joinGroup": "انضم إلى المجموعة",
+    "joining": "ينضم...",
+    "leaveGroup": "غادر المجموعة",
+    "leaving": "يترك...",
+    "leftGroup": "تم مغادرة المجموعة بنجاح",
+    "errorLeavingGroup": "خطأ في مغادرة المجموعة",
+    "noGroups": "أنت لست عضواً في أي مجموعات بعد",
+    "noGroupsJoined": "لم تنضم إلى أي مجموعات بعد",
+    "noGroupsFound": "لم يتم العثور على مجموعات",
+    "noPublicGroups": "لا توجد مجموعات عامة متاحة",
+    "viewMembers": "عرض الأعضاء",
+    "admin": "مدير",
+    "kickMember": "طرد العضو",
+    "memberKicked": "تم طرد العضو من المجموعة",
+    "noMembers": "لم يتم العثور على أعضاء",
+    "joinedGroup": "تم الانضمام إلى المجموعة بنجاح",
+    "errorJoiningGroup": "خطأ في الانضمام إلى المجموعة",
+    "notAdmin": "يجب أن تكون مديرا لأداء هذا الإجراء",
+    "errorKickingMember": "خطأ في طرد العضو من المجموعة",
+    "deleteGroup": "حذف المجموعة",
+    "searchPlaceholder": "بحث عن مجموعات...",
+    "sort": {
+      "trending": "الرائجة",
+      "members": "أكثر الأعضاء",
+      "new": "الأحدث"
+    },
+    "create": {
+      "title": "إنشاء مجموعة جديدة",
+      "basicInfo": {
+        "title": "المعلومات الأساسية",
+        "name": "اسم المجموعة",
+        "namePlaceholder": "أدخل اسم المجموعة",
+        "description": "الوصف",
+        "descriptionPlaceholder": "أدخل وصف المجموعة",
+        "coverPhoto": "صورة الغلاف",
+        "selectCoverPhoto": "اختر صورة الغلاف",
+        "charactersLeft": "{{count}} أحرف متبقية"
+      },
+      "privacy": {
+        "title": "الخصوصية والقواعد",
+        "public": "المجموعة العامة",
+        "publicDescription": "يمكن لأي شخص العثور على هذه المجموعة والانضمام إليها",
+        "private": "مجموعة خاصة",
+        "privateDescription": "يمكن فقط للأشخاص الذين لديهم رمز الدعوة الانضمام",
+        "inviteCode": "رمز الدعوة",
+        "copyInviteCode": "نسخ رمز الدعوة",
+        "copiedToClipboard": "تم النسخ إلى الحافظة",
+        "dailyChallengeTime": "وقت التحدي اليومي",
+        "selectTime": "حدد الوقت"
+      },
+      "preview": {
+        "title": "معاينة وتأكيد",
+        "confirm": "إنشاء مجموعة",
+        "cancel": "العودة"
+      },
+      "success": {
+        "title": "تم إنشاء المجموعة!",
+        "description": "تم إنشاء مجموعتك بنجاح",
+        "viewGroup": "عرض المجموعة"
+      }
+    }
+  },
+  "home": {
+    "noGroups": "لم تنضم إلى أي مجموعات بعد",
+    "guessLocation": "تخمين الموقع",
+    "failedToFetchGroups": "فشل في جلب المجموعات"
+  },
+  "navigation": {
+    "next": "التالي",
+    "back": "رجوع",
+    "home": "الرئيسية",
+    "groups": "المجموعات",
+    "camera": "كاميرا",
+    "settings": "الإعدادات",
+    "profile": "الملف الشخصي",
+    "guessLocation": "تخمين الموقع",
+    "linkAccount": "ربط الحساب",
+    "previewAndShare": "معاينة ومشاركة",
+    "noImageSelected": "لم يتم تحديد صورة",
+    "shareWithGroups": "شارك مع المجموعات",
+    "selectAll": "تحديد الكل",
+    "deselectAll": "إلغاء تحديد الكل",
+    "shareWithX": "شارك مع {{count}} مجموعات",
+    "upload": {
+      "success": "تم تحميل الصورة بنجاح",
+      "error": {
+        "unauthorized": "لست مخولًا لتحميل الصور إلى هذه المجموعات",
+        "storage": "فشل في تحميل الصورة إلى التخزين",
+        "database": "فشل في حفظ معلومات الصورة",
+        "unknown": "حدث خطأ أثناء تحميل الصورة"
+      }
+    }
+  },
+  "profile": {
+    "signOutWarning": "تحذير تسجيل الخروج",
+    "anonymousSignOutWarning": "أنت مسجل كـ مستخدم مجهول. إذا قمت بتسجيل الخروج، ستفقد الوصول إلى هذا الحساب وجميع البيانات المرتبطة به.",
+    "cancel": "إلغاء",
+    "linkAccount": "ربط الحساب",
+    "continueSignOut": "متابعة تسجيل الخروج",
+    "anonymous": "مجهول"
+  },
+  "onboarding": {
+    "welcome": "مرحباً بك في PinPoint",
+    "description": "PinPoint هي لعبة تعتمد على الموقع حيث تتنافس مع أصدقائك لتخمين مواقع بعضكم البعض. إليك كيف يعمل الأمر:",
+    "howItWorks": [
+      "Take a photo at your current location",
+      "Share it with your group",
+      "Others try to guess where you are",
+      "Points are awarded based on accuracy"
+    ],
+    "readyToStart": "هل أنت مستعد للبدء في اللعب؟",
+    "getStarted": "ابدأ",
+    "joinOrCreateGroup": "انضم أو أنشئ مجموعة",
+    "groupDescription": "ستسمح لك هذه الشاشة بالانضمام إلى مجموعة موجودة أو إنشاء مجموعة جديدة. في الوقت الحالي، تابع الخطوة التالية.",
+    "howItWorks[0]": "التقط صورة في موقعك الحالي",
+    "howItWorks[1]": "شاركها مع مجموعتك",
+    "howItWorks[2]": "حاول الآخرون أن يخمنوا مكانك",
+    "howItWorks[3]": "تمنح النقاط بناءً على الدقة"
+  },
+  "settings": {
+    "appearance": "المظهر",
+    "language": "اللغة",
+    "selectLanguage": "اختر اللغة"
+  },
+  "linkAccount": {
+    "title": "ربط حسابك",
+    "description": "قم بربط حسابك المجهول للحفاظ على بياناتك وتقدمك.",
+    "linkWithEmail": "رابط باستخدام البريد الإلكتروني",
+    "linkWithGoogle": "رابط باستخدام جوجل",
+    "cancel": "إلغاء",
+    "fillAllFields": "يرجى ملء جميع الحقول",
+    "googleSignInFailed": "فشلت عملية تسجيل الدخول باستخدام جوجل أو تم إلغاؤها"
+  },
+  "error": {
+    "somethingWentWrong": "حدث خطأ ما",
+    "unknownError": "حدث خطأ غير معروف",
+    "tryAgain": "حاول مرة أخرى",
+    "networkError": "خطأ في الشبكة. يرجى التحقق من اتصالك.",
+    "serverError": "خطأ في الخادم. يرجى المحاولة لاحقاً.",
+    "notFound": "غير موجود",
+    "unauthorized": "غير مصرح",
+    "forbidden": "ممنوع"
+  },
+  "list": {
+    "error": {
+      "title": "حدث خطأ ما",
+      "retry": "حاول مرة أخرى",
+      "empty": "لا توجد عناصر"
+    }
+  },
+  "challenge": {
+    "ended": "إنتهت التحدي",
+    "noChallengeToday": "لا تحدي اليوم",
+    "yourGuess": "تخمينك",
+    "guessLocation": "تخمين الموقع",
+    "topGuesses": "أفضل التخمينات",
+    "timeRemaining": "الوقت المتبقي",
+    "meters": "متر",
+    "loading": "تحميل التحدي..."
+  },
+  "leaderboard": {
+    "title": "لوحة المتصدرين",
+    "today": "اليوم",
+    "thisWeek": "هذا الأسبوع",
+    "thisMonth": "هذا الشهر",
+    "allTime": "على مر الزمن",
+    "noData": "لا توجد بيانات متاحة",
+    "loading": "جارٍ تحميل لوحة المتصدرين..."
+  }
+}
