@@ -1,0 +1,207 @@
+{
+  "auth": {
+    "signIn": "Logga in",
+    "signUp": "Registrera dig",
+    "signOut": "Logga ut",
+    "email": "E-post",
+    "password": "L\u00F6senord",
+    "username": "Anv\u00E4ndarnamn",
+    "createAccount": "Skapa konto",
+    "alreadyHaveAccount": "Har du redan ett konto? Logga in",
+    "createProfile": "Skapa profil",
+    "chooseUsername": "V\u00E4lj ett anv\u00E4ndarnamn",
+    "avatarGenerated": "Din avatar kommer att genereras baserat p\u00E5 ditt anv\u00E4ndarnamn",
+    "continue": "Forts\u00E4tt",
+    "needAccount": "Beh\u00F6ver du ett konto? Registrera dig",
+    "clearStorage": "Rensa lagring (Debug)",
+    "storageCleared": "Lagring rensad framg\u00E5ngsrikt",
+    "storageClearFailed": "Misslyckades med att rensa lagring",
+    "required": "\u00E4r obligatoriskt",
+    "supabase": {
+      "invalidCredentials": "Ogiltig e-post eller l\u00F6senord",
+      "emailNotConfirmed": "V\u00E4nligen bekr\u00E4fta din e-postadress innan du loggar in",
+      "userNotFound": "Anv\u00E4ndare hittades inte",
+      "emailAlreadyRegistered": "E-post \u00E4r redan registrerad",
+      "networkError": "N\u00E4tverksfel. F\u00F6rs\u00F6k igen.",
+      "unknown": "Ett ok\u00E4nt fel intr\u00E4ffade"
+    }
+  },
+  "groups": {
+    "myGroups": "Mina grupper",
+    "discoverPublicGroups": "Offentliga grupper",
+    "member": "medlem",
+    "members": "Medlemmar",
+    "memberCount": "{{count}} medlemmar",
+    "public": "\u00D6ppen",
+    "private": "Privat",
+    "join": "G\u00E5 med",
+    "joinGroup": "G\u00E5 med i grupp",
+    "joining": "G\u00E5r med...",
+    "leaveGroup": "L\u00E4mna grupp",
+    "leaving": "L\u00E4mnar...",
+    "leftGroup": "Lyckades l\u00E4mna gruppen",
+    "errorLeavingGroup": "Fel vid avl\u00E4mnande fr\u00E5n grupp",
+    "noGroups": "Du \u00E4r inte medlem i n\u00E5gra grupper \u00E4n",
+    "noGroupsJoined": "Du har inte g\u00E5tt med i n\u00E5gra grupper \u00E4n",
+    "noGroupsFound": "Inga grupper hittades",
+    "noPublicGroups": "Inga offentliga grupper tillg\u00E4ngliga",
+    "viewMembers": "Visa medlemmar",
+    "admin": "Admin",
+    "kickMember": "Sparka medlem",
+    "memberKicked": "Medlem har blivit utkickad fr\u00E5n gruppen",
+    "noMembers": "Inga medlemmar hittades",
+    "joinedGroup": "Lyckades g\u00E5 med i gruppen",
+    "errorJoiningGroup": "Fel vid anslutning till grupp",
+    "notAdmin": "Du m\u00E5ste vara admin f\u00F6r att utf\u00F6ra denna \u00E5tg\u00E4rd",
+    "errorKickingMember": "Fel vid utkickande av medlem",
+    "deleteGroup": "Ta bort grupp",
+    "searchPlaceholder": "S\u00F6k grupper...",
+    "sort": {
+      "trending": "Popul\u00E4ra",
+      "members": "Flest medlemmar",
+      "new": "Nyaste"
+    },
+    "create": {
+      "title": "Skapa ny grupp",
+      "basicInfo": {
+        "title": "Grundl\u00E4ggande information",
+        "name": "Gruppnamn",
+        "namePlaceholder": "Skriv in gruppnamn",
+        "description": "Beskrivning",
+        "descriptionPlaceholder": "Ange gruppbeskrivning",
+        "coverPhoto": "Omslagsbild",
+        "selectCoverPhoto": "V\u00E4lj omslagsbild",
+        "charactersLeft": "{{count}} tecken kvar"
+      },
+      "privacy": {
+        "title": "Integritet \u0026 Regler",
+        "public": "\u00D6ppen grupp",
+        "publicDescription": "Alla kan hitta och g\u00E5 med i denna grupp",
+        "private": "Privat grupp",
+        "privateDescription": "Endast personer med inbjudningskod kan g\u00E5 med",
+        "inviteCode": "Inbjudningskod",
+        "copyInviteCode": "Kopiera inbjudningskod",
+        "copiedToClipboard": "Kopierad till urklipp",
+        "dailyChallengeTime": "Daglig utmaningstid",
+        "selectTime": "V\u00E4lj tid"
+      },
+      "preview": {
+        "title": "F\u00F6rhandsgranska \u0026 Bekr\u00E4fta",
+        "confirm": "Skapa grupp",
+        "cancel": "G\u00E5 tillbaka"
+      },
+      "success": {
+        "title": "Grupp skapad!",
+        "description": "Din grupp har skapats framg\u00E5ngsrikt",
+        "viewGroup": "Visa grupp"
+      }
+    }
+  },
+  "home": {
+    "noGroups": "Du har inte g\u00E5tt med i n\u00E5gra grupper \u00E4n",
+    "guessLocation": "Gissa plats",
+    "failedToFetchGroups": "Misslyckades med att h\u00E4mta grupper"
+  },
+  "navigation": {
+    "next": "N\u00E4sta",
+    "back": "Tillbaka",
+    "home": "Hem",
+    "groups": "Grupper",
+    "camera": "Kamera",
+    "settings": "Inst\u00E4llningar",
+    "profile": "Profil",
+    "guessLocation": "Gissa plats",
+    "linkAccount": "L\u00E4nk konto",
+    "previewAndShare": "F\u00F6rhandsgranska \u0026 Dela",
+    "noImageSelected": "Ingen bild vald",
+    "shareWithGroups": "Dela med grupper",
+    "selectAll": "V\u00E4lj alla",
+    "deselectAll": "Avmarkera alla",
+    "shareWithX": "Dela med {{count}} grupper",
+    "upload": {
+      "success": "Bild uppladdad framg\u00E5ngsrikt",
+      "error": {
+        "unauthorized": "Du \u00E4r inte auktoriserad att ladda upp bilder till dessa grupper",
+        "storage": "Misslyckades med att ladda upp bild till lagring",
+        "database": "Misslyckades med att spara bildinformation",
+        "unknown": "Ett fel intr\u00E4ffade vid uppladdning av bilden"
+      }
+    }
+  },
+  "profile": {
+    "signOutWarning": "Logga ut varning",
+    "anonymousSignOutWarning": "Du \u00E4r inloggad som en anonym anv\u00E4ndare. Om du loggar ut kommer du att f\u00F6rlora tillg\u00E5ng till detta konto och all associerad data.",
+    "cancel": "Avbryt",
+    "linkAccount": "L\u00E4nk konto",
+    "continueSignOut": "Forts\u00E4tt logga ut",
+    "anonymous": "Anonym"
+  },
+  "onboarding": {
+    "welcome": "V\u00E4lkommen till PinPoint",
+    "description": "PinPoint \u00E4r ett platsbaserat spel d\u00E4r du och dina v\u00E4nner t\u00E4vlar om att gissa varandra platser. S\u00E5 h\u00E4r fungerar det:",
+    "howItWorks": [
+      "Take a photo at your current location",
+      "Share it with your group",
+      "Others try to guess where you are",
+      "Points are awarded based on accuracy"
+    ],
+    "readyToStart": "Redo att b\u00F6rja spela?",
+    "getStarted": "B\u00F6rja nu",
+    "joinOrCreateGroup": "G\u00E5 med i eller skapa en grupp",
+    "groupDescription": "Den h\u00E4r sk\u00E4rmen l\u00E5ter dig g\u00E5 med i en befintlig grupp eller skapa en ny. F\u00F6r nu, forts\u00E4tt bara till n\u00E4sta steg.",
+    "howItWorks[0]": "Ta ett foto p\u00E5 din nuvarande plats",
+    "howItWorks[1]": "Dela det med din grupp",
+    "howItWorks[2]": "Andra f\u00F6rs\u00F6ker gissa var du \u00E4r",
+    "howItWorks[3]": "Po\u00E4ng tilldelas baserat p\u00E5 noggrannhet"
+  },
+  "settings": {
+    "appearance": "Utseende",
+    "language": "Spr\u00E5k",
+    "selectLanguage": "V\u00E4lj spr\u00E5k"
+  },
+  "linkAccount": {
+    "title": "L\u00E4nk ditt konto",
+    "description": "L\u00E4nka ditt anonyma konto f\u00F6r att beh\u00E5lla dina data och framsteg.",
+    "linkWithEmail": "L\u00E4nk med e-post",
+    "linkWithGoogle": "L\u00E4nk med Google",
+    "cancel": "Avbryt",
+    "fillAllFields": "Fyll i alla f\u00E4lt",
+    "googleSignInFailed": "Google-inloggning avbr\u00F6ts eller misslyckades"
+  },
+  "error": {
+    "somethingWentWrong": "N\u00E5got gick fel",
+    "unknownError": "Ett ok\u00E4nt fel intr\u00E4ffade",
+    "tryAgain": "F\u00F6rs\u00F6k igen",
+    "networkError": "N\u00E4tverksfel. Kontrollera din anslutning.",
+    "serverError": "Serverfel. F\u00F6rs\u00F6k igen senare.",
+    "notFound": "Hittades inte",
+    "unauthorized": "Obeh\u00F6rig",
+    "forbidden": "Otill\u00E5ten"
+  },
+  "list": {
+    "error": {
+      "title": "N\u00E5got gick fel",
+      "retry": "F\u00F6rs\u00F6k igen",
+      "empty": "Inga artiklar hittades"
+    }
+  },
+  "challenge": {
+    "ended": "Utmaningen \u00E4r \u00F6ver",
+    "noChallengeToday": "Ingen utmaning idag",
+    "yourGuess": "Din gissning",
+    "guessLocation": "Gissa plats",
+    "topGuesses": "B\u00E4sta gissningar",
+    "timeRemaining": "Tid kvar",
+    "meters": "meter",
+    "loading": "Laddar utmaning..."
+  },
+  "leaderboard": {
+    "title": "Po\u00E4ngtabell",
+    "today": "Idag",
+    "thisWeek": "Denna vecka",
+    "thisMonth": "Denna m\u00E5nad",
+    "allTime": "Genomsnittlig tid",
+    "noData": "Ingen data tillg\u00E4nglig",
+    "loading": "Laddar po\u00E4ngtabell..."
+  }
+}
